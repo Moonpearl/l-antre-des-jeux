@@ -1,5 +1,9 @@
 'use strict'
 
+require("dotenv").config({
+  path: `.env`,
+});
+
 module.exports = {
   siteMetadata: {
     title: 'gatsby-starter-typescript-plus',
@@ -13,6 +17,17 @@ module.exports = {
     }
   },
   plugins: [
+    {
+      resolve: 'gatsby-source-graphcms',
+      options: {
+        // Your GraphCMS API endpoint. Available from your project settings.
+        endpoint: process.env.GRAPHCMS_ENDPOINT,
+        // A PAT (Permanent Auth Token) for your project. Required if your project is not available publicly, or you want to scope access to a specific content stage (i.e. draft content).
+        // token: process.env.GRAPHCMS_TOKEN
+        buildMarkdownNodes: true,
+        locales: ['fr_FR', 'en'],
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
