@@ -1,4 +1,8 @@
-'use strict'
+'use strict';
+
+require('dotenv').config({
+  path: `.env`,
+});
 
 module.exports = {
   siteMetadata: {
@@ -9,16 +13,27 @@ module.exports = {
     author: {
       name: 'Resi Respati',
       url: 'https://twitter.com/resir014',
-      email: 'resir014@gmail.com'
-    }
+      email: 'resir014@gmail.com',
+    },
   },
   plugins: [
+    {
+      resolve: 'gatsby-source-graphcms',
+      options: {
+        // Your GraphCMS API endpoint. Available from your project settings.
+        endpoint: process.env.GRAPHCMS_ENDPOINT,
+        // A PAT (Permanent Auth Token) for your project. Required if your project is not available publicly, or you want to scope access to a specific content stage (i.e. draft content).
+        // token: process.env.GRAPHCMS_TOKEN
+        buildMarkdownNodes: true,
+        locales: ['fr_FR', 'en'],
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'content',
-        path: `${__dirname}/src/content`
-      }
+        path: `${__dirname}/src/content`,
+      },
     },
     {
       resolve: 'gatsby-transformer-remark',
@@ -27,8 +42,8 @@ module.exports = {
           {
             resolve: 'gatsby-remark-responsive-iframe',
             options: {
-              wrapperStyle: 'margin-bottom: 1rem'
-            }
+              wrapperStyle: 'margin-bottom: 1rem',
+            },
           },
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
@@ -38,23 +53,23 @@ module.exports = {
             options: {
               maxWidth: 1140,
               quality: 90,
-              linkImagesToOriginal: false
-            }
-          }
-        ]
-      }
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
+      },
     },
     'gatsby-transformer-json',
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com'
-      }
+        siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
+      },
     },
     'gatsby-plugin-emotion',
     'gatsby-plugin-typescript',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-react-helmet'
-  ]
-}
+    'gatsby-plugin-react-helmet',
+  ],
+};
