@@ -3,11 +3,24 @@
   margin-left: auto;
   margin-right: auto;
   width: auto;
+  background-color: #252524;
+  overflow: hidden;
 }
 
+.ulContainer {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+
+}
+
+
 .ulImg {
+  object-fit: cover;
   max-height: 65vh;
-  max-width: 200vh;
+  height: auto;
+  width: auto;
 }
 
 .one {
@@ -38,24 +51,45 @@
   background-color: brown;
 }
 
-.height {
+.eight {
   background-color: burlywood;
+  height: auto;
+  display: block;
+  /*height: 10%;*/
 }
 
 .olImg {
+  position: absolute;
   background-color: green;
   border-radius: 40px;
   margin: 10px;
-  height: 300px;
-  width: 500px;
+  height: 550px;
+  width: 740px;
+  top: 0;
+  /* box-shadow: 5px 16px rgb(255, 255, 255); */
+
+
+
 }
 
 .olTitle {
   color: white;
-  font-size: 3rem;
-  padding-left: 70px;
-  padding-top: 80px;
+  font-size: 80px;
+  margin-left: 10%;
+  margin-top: 20%;
   justify-content: right;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+}
+
+
+.olTitle-eight {
+  color: white;
+  font-size: 70px;
+  margin-bottom: 20px;
+  padding-left: 0%;
+
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 10px;
@@ -63,24 +97,116 @@
 
 .olButton {
   color: white;
-  font-size: 1rem;
-  padding-left: 70px;
+  font-size: 2rem;
+  margin-left: 10%;
   padding-top: 10px;
-  justify-content: right;
+
   font-weight: bold;
 
+  box-shadow: inset 0px 1px 0px 0px #d9fbbe;
+  background: linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
+  background-color: #b8e356;
+  border-radius: 10px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 25px;
+  text-decoration: none;
+  text-shadow: 0px 3px 0px #86ae47;
+
 }
 
-.accessory {
-  padding-bottom: 20px;
-  height: 200px;
+.ol01 {
+  right: 0;
+  margin-top: 10%;
+  margin-right: 5%;
+
+  background: rgb(192, 110, 75);
+  background: linear-gradient(0deg, rgba(192, 110, 75, 1) 0%, rgba(210, 134, 66, 1) 100%);
+
 }
+
+.ol02 {
+  left: 0;
+  margin-top: 36%;
+  margin-left: 5%;
+
+  background: rgb(74, 117, 146);
+  background: linear-gradient(0deg, rgba(74, 117, 146, 1) 0%, rgba(77, 178, 254, 1) 100%);
+}
+
+.ol03 {
+  right: 0;
+  margin-top: 65%;
+  margin-right: 5%;
+
+  background: rgb(159, 178, 62);
+  background: linear-gradient(0deg, rgba(159, 178, 62, 1) 0%, rgba(240, 196, 35, 1) 100%);
+
+}
+
+.ol04 {
+  background: #704EA4;
+  left: 0;
+  margin-top: 95%;
+  margin-left: 5%;
+
+  background: rgb(112, 78, 164);
+  background: linear-gradient(180deg, rgba(112, 78, 164, 1) 0%, rgba(62, 30, 107, 1) 100%);
+}
+
+.ol05 {
+  right: 0;
+  margin-top: 125%;
+  margin-right: 5%;
+
+  background: rgb(57, 110, 142);
+  background: linear-gradient(0deg, rgba(57, 110, 142, 1) 0%, rgba(192, 108, 82, 1) 100%);
+}
+
+.ol06 {
+  left: 0;
+  margin-top: 160%;
+  margin-left: 5%;
+
+  background: rgb(243, 55, 44);
+  background: linear-gradient(0deg, rgba(243, 55, 44, 1) 0%, rgba(210, 104, 34, 1) 100%);
+}
+
+.ol07 {
+
+  right: 0;
+  margin-top: 185%;
+  margin-right: 5%;
+
+  background: rgb(0, 91, 166);
+  background: linear-gradient(0deg, rgba(0, 91, 166, 1) 0%, rgba(67, 179, 183, 1) 100%);
+}
+
+.ol08 {
+  left: 0;
+  margin-top: 220%;
+  margin-left: 5%;
+  height: 5%;
+
+  background: rgb(182, 139, 44);
+  background: linear-gradient(0deg, #F55A00 0%, rgba(254, 188, 128, 1) 100%);
+}
+
+
 
 .footer {
+  position: absolute;
+  bottom: 0;
+  margin-left: -15%;
   z-index: 9;
-  background-color: #03989E;
+  padding-left: 50%;
   color: white;
   text-align: center;
-  padding: 20px;
+
   font-style: italic;
+  letter-spacing: 10px;
 }

@@ -17,75 +17,77 @@ const welcomePage = () => (
   <IndexLayout>
     <div className="container">
       {/* UNDERLAY BG */}
-      <ul>
-        <li className="ulImg one">
-          <img src={Img01} alt="society" />
-        </li>
-        <li className="ulImg two">
-          <img src={Img02} alt="children" />
-        </li>
-        <li className="ulImg three">
-          <img src={Img03} alt="figurines" />
-        </li>
-        <li className="ulImg four">
-          <img src={Img04} alt="roleplayer" />
-        </li>
-        <li className="ulImg five">
-          <img src={Img05} alt="history" />
-        </li>
-        <li className="ulImg six">
-          <img src={Img06} alt="cards" />
-        </li>
-        <li className="ulImg seven">
-          <img src={Img07} alt="classic" />
-        </li>
-        <li className="ulImg height">
-          <img src={Img08} alt="accessory" />
-        </li>
-      </ul>
-
-      {/* FOOTER */}
-      <ul>
-        <div className="footer">
-          <p>Copyright 2021 - L'Antre des jeux</p>
-        </div>
-      </ul>
+      <div className="ulContainer">
+        <ul>
+          <li className="ulImg one">
+            <img src={Img01} alt="society" />
+          </li>
+          <li className="ulImg two">
+            <img src={Img02} alt="children" />
+          </li>
+          <li className="ulImg three">
+            <img src={Img03} alt="figurines" />
+          </li>
+          <li className="ulImg four">
+            <img src={Img04} alt="roleplayer" />
+          </li>
+          <li className="ulImg five">
+            <img src={Img05} alt="history" />
+          </li>
+          <li className="ulImg six">
+            <img src={Img06} alt="cards" />
+          </li>
+          <li className="ulImg seven">
+            <img src={Img07} alt="classic" />
+          </li>
+          <li className="ulImg eight">
+            <img src={Img08} alt="accessory" />
+          </li>
+          <li>
+            <div className="footer">
+              <p>Copyright 2021 - L'Antre des jeux</p>
+            </div>
+          </li>
+        </ul>
+      </div>
 
       {/* OVERLAY */}
-      <ul>
-        <li className="olImg">
-          <div className="olTitle">Jeux de société</div>
-          <div className="olButton">En voir +</div>
-        </li>
-        <li className="olImg">
-          <div className="olTitle">Jeux d'enfants</div>
-          <div className="olButton">En voir +</div>
-        </li>
-        <li className="olImg">
-          <div className="olTitle">Jeux de figurines</div>
-          <div className="olButton">En voir +</div>
-        </li>
-        <li className="olImg">
-          <div className="olTitle">Jeux de roles</div>
-          <div className="olButton">En voir +</div>
-        </li>
-        <li className="olImg">
-          <div className="olTitle">Jeux d'histoires</div>
-          <div className="olButton">En voir +</div>
-        </li>
-        <li className="olImg">
-          <div className="olTitle">Jeux de cartes</div>
-          <div className="olButton">En voir +</div>
-        </li>
-        <li className="olImg">
-          <div className="olTitle">Jeux classiques</div>
-          <div className="olButton">En voir +</div>
-        </li>
-        <li className="olImg accessory">
-          <div className="olTitle">Accessoires</div>
-          <div className="olButton">En voir +</div>
-        </li>
-      </ul>
+      <div className="olContainer">
+        <ul>
+          <li className="olImg ol01">
+            <div className="olTitle">Jeux de societe</div>
+            <div className="olButton">En voir +</div>
+          </li>
+          <li className="olImg ol02">
+            <div className="olTitle">Jeux d'enfants</div>
+            <div className="olButton">En voir +</div>
+          </li>
+          <li className="olImg ol03">
+            <div className="olTitle">Jeux de figurines</div>
+            <div className="olButton">En voir +</div>
+          </li>
+          <li className="olImg ol04">
+            <div className="olTitle">Jeux de role</div>
+            <div className="olButton">En voir +</div>
+          </li>
+          <li className="olImg ol05">
+            <div className="olTitle">Jeux d'histoire</div>
+            <div className="olButton">En voir +</div>
+          </li>
+          <li className="olImg ol06">
+            <div className="olTitle">Jeux de cartes</div>
+            <div className="olButton">En voir +</div>
+          </li>
+          <li className="olImg ol07">
+            <div className="olTitle">Jeux classiques</div>
+            <div className="olButton">En voir +</div>
+          </li>
+          <li className="olImg accessory ol08">
+            <div className="olTitle olTitle-eight">Accessoires</div>
+            <div className="olButton">En voir +</div>
+          </li>
+        </ul>
+      </div>
     </div>
   </IndexLayout>
 )
