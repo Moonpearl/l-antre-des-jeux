@@ -1,6 +1,85 @@
+.container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+}
+
+.ulImg {
+  height: 65vh;
+  width: 200vh;
+}
+
+.one {
+  background-color: yellow;
+}
+
+.two {
+  background-color: yellowgreen;
+}
+
+.three {
+  background-color: aqua;
+}
+
+.four {
+  background-color: aquamarine;
+}
+
+.five {
+  background-color: azure;
+}
+
+.six {
+  background-color: bisque;
+}
+
+.seven {
+  background-color: brown;
+}
+
+.height {
+  background-color: burlywood;
+}
+
+.olImg {
+  background-color: green;
+  border-radius: 40px;
+  margin: 10px;
+  height: 300px;
+  width: 500px;
+}
+
+.olTitle {
+  color: white;
+  font-size: 3rem;
+  padding-left: 70px;
+  padding-top: 80px;
+  justify-content: right;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+}
+
+.olButton {
+  color: white;
+  font-size: 1rem;
+  padding-left: 70px;
+  padding-top: 10px;
+  justify-content: right;
+  font-weight: bold;
+
+}
+
+.accessory {
+  padding-bottom: 20px;
+  height: 200px;
+}
+
 .footer {
   background-color: #03989E;
   color: white;
   text-align: center;
-  padding-top: 20px;
+  padding: 20px;
+  font-style: italic;
 }
