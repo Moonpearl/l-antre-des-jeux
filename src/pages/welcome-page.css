@@ -6,8 +6,8 @@
 }
 
 .ulImg {
-  height: 65vh;
-  width: 200vh;
+  max-height: 65vh;
+  max-width: 200vh;
 }
 
 .one {
@@ -77,6 +77,7 @@
 }
 
 .footer {
+  z-index: 9;
   background-color: #03989E;
   color: white;
   text-align: center;
