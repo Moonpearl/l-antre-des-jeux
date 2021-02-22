@@ -12,79 +12,33 @@ import Img05 from '../images/history.jpg'
 import Img06 from '../images/cards.jpg'
 import Img07 from '../images/classic.jpg'
 import Img08 from '../images/accessory.jpg'
+import { relative } from 'path'
 
 const welcomePage = () => (
   <IndexLayout>
-    <div className="container">
+    <div>
       {/* UNDERLAY BG */}
-      <div className="ulContainer">
+      <div>
         <ul>
-          <li className="ulImg one">
-            <img src={Img01} alt="society" />
-          </li>
-          <li className="ulImg two">
-            <img src={Img02} alt="children" />
-          </li>
-          <li className="ulImg three">
-            <img src={Img03} alt="figurines" />
-          </li>
-          <li className="ulImg four">
-            <img src={Img04} alt="roleplayer" />
-          </li>
-          <li className="ulImg five">
-            <img src={Img05} alt="history" />
-          </li>
-          <li className="ulImg six">
-            <img src={Img06} alt="cards" />
-          </li>
-          <li className="ulImg seven">
-            <img src={Img07} alt="classic" />
-          </li>
-          <li className="ulImg eight">
-            <img src={Img08} alt="accessory" />
-          </li>
-          <li>
-            <div className="footer">
-              <p>Copyright 2021 - L'Antre des jeux</p>
+          <li className="frame" style={{ backgroundColor: 'red', padding: '4em' }}>
+            <div style={{ position: 'relative', top: '8em', backgroundColor: 'darkred', padding: '2em', maxWidth: '20em' }}>
+              <h2>Nom du rayon</h2>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta assumenda? Accusamus, molestias!</p>
+              <button type="button">En voir plus</button>
             </div>
           </li>
-        </ul>
-      </div>
-
-      {/* OVERLAY */}
-      <div className="olContainer">
-        <ul>
-          <li className="olImg ol01">
-            <div className="olTitle">Jeux de societe</div>
-            <div className="olButton">En voir +</div>
+          <li className="frame" style={{ backgroundColor: 'blue', padding: '4em' }}>
+            <div style={{ position: 'relative', top: '8em', backgroundColor: 'darkblue', padding: '2em', maxWidth: '20em' }}>
+              <h2>Nom du rayon</h2>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo eaque debitis, fugit dicta impedit ut obcaecati commodi beatae, placeat quo at doloremque nobis earum natus facilis architecto est atque ex, itaque dolore alias. Quas officia tempore vitae eum consequatur sunt quod autem aperiam laboriosam ut, tenetur nulla expedita debitis impedit assumenda obcaecati culpa velit ducimus porro reiciendis numquam nihil aut aliquam quasi. Illo, quae doloremque. Ducimus accusamus temporibus a, id modi facilis, ipsam iusto ipsa nihil ipsum alias itaque. Minus repellendus placeat possimus molestias deserunt nisi molestiae est debitis libero explicabo adipisci ipsum facere, alias, rerum quos qui fuga. Facere.</p>
+              <button type="button">En voir plus</button>
+            </div>
           </li>
-          <li className="olImg ol02">
-            <div className="olTitle">Jeux d'enfants</div>
-            <div className="olButton">En voir +</div>
-          </li>
-          <li className="olImg ol03">
-            <div className="olTitle">Jeux de figurines</div>
-            <div className="olButton">En voir +</div>
-          </li>
-          <li className="olImg ol04">
-            <div className="olTitle">Jeux de role</div>
-            <div className="olButton">En voir +</div>
-          </li>
-          <li className="olImg ol05">
-            <div className="olTitle">Jeux d'histoire</div>
-            <div className="olButton">En voir +</div>
-          </li>
-          <li className="olImg ol06">
-            <div className="olTitle">Jeux de cartes</div>
-            <div className="olButton">En voir +</div>
-          </li>
-          <li className="olImg ol07">
-            <div className="olTitle">Jeux classiques</div>
-            <div className="olButton">En voir +</div>
-          </li>
-          <li className="olImg accessory ol08">
-            <div className="olTitle olTitle-eight">Accessoires</div>
-            <div className="olButton">En voir +</div>
+          <li className="frame" style={{ backgroundColor: 'green', padding: '4em' }}>
+            <div style={{ position: 'relative', top: '8em', backgroundColor: 'darkgreen', padding: '2em', maxWidth: '20em' }}>
+              <h2>Nom du rayon</h2>
+              <button type="button">En voir plus</button>
+            </div>
           </li>
         </ul>
       </div>
