@@ -5,6 +5,9 @@ import Page from '../components/Page'
 import Container from '../components/Container'
 import IndexLayout from '../layouts'
 
+import './welcome-page.css'
+import './reset.css'
+
 const welcomePage = () => (
   <IndexLayout>
     <Page>
