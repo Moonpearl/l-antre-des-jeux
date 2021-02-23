@@ -6,7 +6,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: 'gatsby-starter-typescript-plus',
+    title: 'l Antre des jeux',
     description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
     keywords: 'gatsbyjs, gatsby, javascript, sample, something',
     siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
@@ -16,8 +16,7 @@ module.exports = {
       email: 'resir014@gmail.com'
     }
   },
-  plugins: [
-    {
+  plugins: [{
       resolve: 'gatsby-source-graphcms',
       options: {
         // Your GraphCMS API endpoint. Available from your project settings.
@@ -38,8 +37,7 @@ module.exports = {
     {
       resolve: 'gatsby-transformer-remark',
       options: {
-        plugins: [
-          {
+        plugins: [{
             resolve: 'gatsby-remark-responsive-iframe',
             options: {
               wrapperStyle: 'margin-bottom: 1rem'

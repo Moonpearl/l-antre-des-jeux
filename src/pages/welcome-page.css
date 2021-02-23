@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 
-.ulContainer {
+.ulContainer:nth-child(odd) {
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -15,62 +15,13 @@
 
 }
 
-
-.ulImg {
-  object-fit: cover;
-  max-height: 65vh;
-  height: auto;
-  width: auto;
+.frame:nth-child(odd) {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
-.one {
-  background-color: yellow;
-}
-
-.two {
-  background-color: yellowgreen;
-}
-
-.three {
-  background-color: aqua;
-}
-
-.four {
-  background-color: aquamarine;
-}
-
-.five {
-  background-color: azure;
-}
-
-.six {
-  background-color: bisque;
-}
-
-.seven {
-  background-color: brown;
-}
-
-.eight {
-  background-color: burlywood;
-  height: auto;
-  display: block;
-  /*height: 10%;*/
-}
-
-.olImg {
-  position: absolute;
-  background-color: green;
-  border-radius: 40px;
-  margin: 10px;
-  height: 550px;
-  width: 740px;
-  top: 0;
-  /* box-shadow: 5px 16px rgb(255, 255, 255); */
 
 
-
-}
 
 .olTitle {
   color: white;
@@ -95,29 +46,6 @@
   letter-spacing: 10px;
 }
 
-.olButton {
-  color: white;
-  font-size: 2rem;
-  margin-left: 10%;
-  padding-top: 10px;
-
-  font-weight: bold;
-
-  box-shadow: inset 0px 1px 0px 0px #d9fbbe;
-  background: linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
-  background-color: #b8e356;
-  border-radius: 10px;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: Arial;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 10px 25px;
-  text-decoration: none;
-  text-shadow: 0px 3px 0px #86ae47;
-
-}
 
 .ol01 {
   right: 0;
@@ -199,12 +127,12 @@
 
 
 .footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
-  margin-left: -15%;
+
   z-index: 9;
-  padding-left: 50%;
-  color: white;
+
+
   text-align: center;
 
   font-style: italic;
