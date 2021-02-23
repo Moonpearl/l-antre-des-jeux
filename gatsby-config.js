@@ -6,7 +6,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: 'l Antre des jeux',
+    title: "L'Antre des jeux",
     description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
     keywords: 'gatsbyjs, gatsby, javascript, sample, something',
     siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',

@@ -3,13 +3,14 @@ import styled from '@emotion/styled'
 import { transparentize } from 'polished'
 import { Link } from 'gatsby'
 
-import { heights, dimensions, colors } from '../styles/variables'
+import { heights, dimensions, colors, fonts } from '../styles/variables'
 import Container from './Container'
 
 const Logo = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: red;
+  width: 3em;
+  height: 3em;
+  background-color: green;
+  margin: 2em;
 `
 const StyledHeader = styled.header`
   height: ${heights.header}px;
@@ -29,6 +30,7 @@ const HomepageLink = styled(Link)`
   color: ${colors.teal};
   font-size: 1.5rem;
   font-weight: 600;
+  font-family: ${fonts.monospace};
 
   &:hover,
   &:focus {
