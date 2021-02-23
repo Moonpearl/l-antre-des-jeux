@@ -6,6 +6,7 @@ import { Link } from 'gatsby'
 import { heights, dimensions, colors, fonts } from '../styles/variables'
 import Container from './Container'
 
+
 const Logo = styled.div`
   width: 3em;
   height: 3em;
