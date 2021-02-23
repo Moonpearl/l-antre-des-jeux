@@ -6,11 +6,16 @@ import { Link } from 'gatsby'
 import { heights, dimensions, colors } from '../styles/variables'
 import Container from './Container'
 
+const Logo = styled.div`
+  width: 100px;
+  height: 100px;
+  background-color: red;
+`
 const StyledHeader = styled.header`
   height: ${heights.header}px;
   padding: 0 ${dimensions.containerPadding}rem;
-  background-color: ${colors.brand};
-  color: ${transparentize(0.5, colors.white)};
+  background-color: ${colors.white};
+  color: ${colors.teal};
 `
 
 const HeaderInner = styled(Container)`
@@ -21,7 +26,7 @@ const HeaderInner = styled(Container)`
 `
 
 const HomepageLink = styled(Link)`
-  color: ${colors.white};
+  color: ${colors.teal};
   font-size: 1.5rem;
   font-weight: 600;
 
@@ -38,6 +43,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title }) => (
   <StyledHeader>
     <HeaderInner>
+      <Logo />
       <HomepageLink to="/">{title}</HomepageLink>
     </HeaderInner>
   </StyledHeader>

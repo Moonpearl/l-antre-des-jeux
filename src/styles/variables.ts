@@ -6,6 +6,7 @@ export const colors = {
   accent: '#ffb238',
   success: '#37b635',
   warning: '#ec1818',
+  teal: '#03989E',
   ui: {
     bright: '#e0d6eb',
     light: '#f5f3f7',
@@ -18,7 +19,8 @@ export const colors = {
     calm: 'rgba(0, 0, 0, 0.54)'
   },
   white: '#fff',
-  black: '#000'
+  black: '#000',
+
 }
 
 export const fonts = {

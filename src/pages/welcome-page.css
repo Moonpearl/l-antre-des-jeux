@@ -18,17 +18,6 @@
 .frame:nth-child(odd) {
   display: flex;
   flex-direction: row-reverse;
-<<<<<<< HEAD
-=======
-}
-
-
-.ulImg {
-  object-fit: cover;
-  max-height: 65vh;
-  height: auto;
-  width: auto;
->>>>>>> bead88f7723e14080f6c895e570e6c636d483e9e
 }
 
 
