@@ -1,20 +1,3 @@
-.container {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  width: auto;
-  background-color: #252524;
-  overflow: hidden;
-}
-
-.ulContainer:nth-child(odd) {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 80%;
-
-}
-
 .frame:nth-child(odd) {
   display: flex;
   flex-direction: row-reverse;
@@ -22,29 +5,6 @@
 
 
 
-
-.olTitle {
-  color: white;
-  font-size: 80px;
-  margin-left: 10%;
-  margin-top: 20%;
-  justify-content: right;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 10px;
-}
-
-
-.olTitle-eight {
-  color: white;
-  font-size: 70px;
-  margin-bottom: 20px;
-  padding-left: 0%;
-
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 10px;
-}
 
 
 .ol01 {
@@ -122,19 +82,4 @@
 
   background: rgb(182, 139, 44);
   background: linear-gradient(0deg, #F55A00 0%, rgba(254, 188, 128, 1) 100%);
-}
-
-
-
-.footer {
-  position: relative;
-  bottom: 0;
-
-  z-index: 9;
-
-
-  text-align: center;
-
-  font-style: italic;
-  letter-spacing: 10px;
 }
