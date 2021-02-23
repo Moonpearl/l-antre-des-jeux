@@ -1,7 +1,8 @@
 import * as React from 'react'
-import IndexLayout from '../layouts'
 import styled from '@emotion/styled'
-import { transparentize } from 'polished'
+import { transparentize, padding } from 'polished'
+import { relative } from 'path'
+import IndexLayout from '../layouts'
 import { heights, dimensions, colors } from '../styles/variables'
 
 import './welcome-page.css'
@@ -15,8 +16,6 @@ import Img05 from '../images/history.jpg'
 import Img06 from '../images/cards.jpg'
 import Img07 from '../images/classic.jpg'
 import Img08 from '../images/accessory.jpg'
-import { relative } from 'path'
-import { padding } from 'polished'
 
 const welcomePage = () => (
   <IndexLayout>
@@ -55,7 +54,6 @@ const welcomePage = () => (
                   textShadow: '0px 3px 0px #86ae47',
                   boxShadow: 'inset 0px 1px 0px 0px #d9fbbe',
                   border: 'none'
-
                 }}
               >
                 En voir plus
@@ -97,7 +95,6 @@ const welcomePage = () => (
                   textShadow: '0px 3px 0px #86ae47',
                   boxShadow: 'inset 0px 1px 0px 0px #d9fbbe',
                   border: 'none'
-
                 }}
               >
                 En voir plus
@@ -139,7 +136,6 @@ const welcomePage = () => (
                   textShadow: '0px 3px 0px #86ae47',
                   boxShadow: 'inset 0px 1px 0px 0px #d9fbbe',
                   border: 'none'
-
                 }}
               >
                 En voir plus
@@ -147,8 +143,6 @@ const welcomePage = () => (
             </div>
           </div>
         </li>
-
-
       </ul>
     </div>
 
