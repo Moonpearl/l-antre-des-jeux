@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
-import styled from '@emotion/styled'
+import React, { FC } from 'react';
+import styled from '@emotion/styled';
 
-import { BackgroundImageContainer } from './styles'
-import { Shelf } from '../models'
+import { BackgroundImageContainer } from './styles';
+import { Shelf } from '../models';
 
 interface OverlayProps {
-  backgroundColor?: string
+  backgroundColor?: string;
 }
 
 const Overlay = styled.div<OverlayProps>`
@@ -16,7 +16,7 @@ const Overlay = styled.div<OverlayProps>`
   padding: 2em;
   max-width: 40em;
   height: 25em;
-`
+`;
 const DiceTest = styled.img`
   position: relative;
   margin: 1em;
@@ -26,22 +26,22 @@ const DiceTest = styled.img`
   margin-bottom: -8.2em;
   transform: rotate(55deg);
   filter: hue-rotate(90deg);
-`
+`;
 
 const TextContainer = styled.div`
   margin-left: 3em;
   margin-top: 5em;
-`
+`;
 
 const Title = styled.h2`
   color: white;
   text-transform: uppercase;
   font-size: 3em;
-`
+`;
 
 const Text = styled.p`
   color: white;
-`
+`;
 
 const Button = styled.button`
   background: linear-gradient(to bottom, #b8e356 10%, #a5cc52 100%);
@@ -55,7 +55,7 @@ const Button = styled.button`
   text-shadow: 0px 3px 0px #86ae47;
   box-shadow: inset 0px 1px 0px 0px #d9fbbe;
   border: none;
-`
+`;
 
 interface ShelfPreviewProps {
   shelf: Shelf;
@@ -78,7 +78,7 @@ const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, even }) => (
       </TextContainer>
       {/* <DiceTest src={Dice} alt="de" /> */}
     </Overlay>
-  </BackgroundImageContainer >
-)
+  </BackgroundImageContainer>
+);
 
-export default ShelfPreview
+export default ShelfPreview;
