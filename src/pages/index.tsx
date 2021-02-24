@@ -1,23 +1,65 @@
-import * as React from 'react'
-import { Link } from 'gatsby'
-
-import Page from '../components/Page'
-import Container from '../components/Container'
+import React, { FC } from 'react'
+import styled from '@emotion/styled'
+import { graphql } from 'gatsby'
 import IndexLayout from '../layouts'
+import { Shelf } from '../models'
+import { ShelfPreview } from '../components'
 
-const IndexPage = () => (
+const ContainerIndex = styled.div`
+  background-color: pink;
+`
+
+const FooterStyled = styled.footer`
+  position: relative;
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 10px;
+  margin: 2em;
+`
+
+interface ShelfEdge {
+  node: Shelf
+}
+interface IndexPageProps {
+  data: {
+    allGraphCmsShelf: {
+      edges: ShelfEdge[]
+    }
+  }
+}
+
+const IndexPage: FC<IndexPageProps> = ({ data }) => (
   <IndexLayout>
-    <Page>
-      <Container>
-        <h1>Hi people</h1>
-        <p>Welcome to your new Gatsby site.</p>
-        <p>Now go build something great.</p>
-        <Link to="/page-2/">Go to page 2</Link>
-        <br />
-        <Link to="/welcome-page/">Go to Welcome page</Link>
-      </Container>
-    </Page>
+    <ContainerIndex>
+      <ul>
+        {data.allGraphCmsShelf.edges.map((edge, index) => (
+          <ShelfPreview key={index} shelf={edge.node} even={index % 2 === 0} />
+        ))}
+      </ul>
+
+      <FooterStyled>Copyright 2021 - L'Antre des jeux</FooterStyled>
+    </ContainerIndex>
   </IndexLayout>
 )
+
+export const query = graphql`
+  query HomePageQuery {
+    allGraphCmsShelf {
+      edges {
+        node {
+          color {
+            css
+          }
+          description
+          name
+          slug
+          backgroundImage {
+            url
+          }
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
