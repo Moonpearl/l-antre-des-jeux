@@ -1,31 +1,34 @@
-import React, { FC } from 'react'
-import styled from '@emotion/styled'
-import { graphql } from 'gatsby'
-import IndexLayout from '../layouts'
-import { Shelf } from '../models'
-import { ShelfPreview } from '../components'
+import React, { FC } from 'react';
+import styled from '@emotion/styled';
+import { graphql } from 'gatsby';
+import IndexLayout from '../layouts';
+import { Shelf } from '../models';
+import { ShelfPreview } from '../components';
 
 const ContainerIndex = styled.div`
-  background-color: pink;
-`
+  background-color: grey;
+`;
 
 const FooterStyled = styled.footer`
   position: relative;
   text-align: center;
   font-style: italic;
-  letter-spacing: 10px;
+  font-weight: bold;
+  font-size: 1.2em;
+  letter-spacing: 5px;
   margin: 2em;
-`
+  color: darkgrey;
+`;
 
 interface ShelfEdge {
-  node: Shelf
+  node: Shelf;
 }
 interface IndexPageProps {
   data: {
     allGraphCmsShelf: {
-      edges: ShelfEdge[]
-    }
-  }
+      edges: ShelfEdge[];
+    };
+  };
 }
 
 const IndexPage: FC<IndexPageProps> = ({ data }) => (
@@ -60,6 +63,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default IndexPage
+export default IndexPage;
