@@ -6,6 +6,7 @@ import { Shelf } from '../models';
 
 interface OverlayProps {
   backgroundColor?: string;
+  height: string;
 }
 
 const Overlay = styled.div<OverlayProps>`
@@ -13,9 +14,9 @@ const Overlay = styled.div<OverlayProps>`
   position: relative;
   top: 8em;
   border-radius: 2em;
-  padding: 2em;
+  padding: 1em;
   max-width: 40em;
-  height: 25em;
+  height: 20em;
 `;
 const DiceTest = styled.img`
   position: relative;
@@ -29,8 +30,8 @@ const DiceTest = styled.img`
 `;
 
 const TextContainer = styled.div`
-  margin-left: 3em;
-  margin-top: 5em;
+  /*margin-left: 2em;*/
+  padding: 1em;
 `;
 
 const Title = styled.h2`
@@ -41,6 +42,7 @@ const Title = styled.h2`
 
 const Text = styled.p`
   color: white;
+  padding: 0.5em;
 `;
 
 const Button = styled.button`

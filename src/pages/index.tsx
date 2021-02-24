@@ -6,14 +6,16 @@ import { ShelfPreview } from '../components';
 import { PagePropsWithData } from '../models';
 
 const ContainerIndex = styled.div`
-  background-color: pink;
+  background-color: grey;
 `;
 
 const FooterStyled = styled.footer`
   position: relative;
   text-align: center;
   font-style: italic;
-  letter-spacing: 10px;
+  font-weight: bold;
+  font-size: 1.2em;
+  letter-spacing: 5px;
   margin: 2em;
 `;
 
