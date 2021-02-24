@@ -1,7 +1,8 @@
-import * as React from 'react'
+import React, { FC } from 'react'
 import styled from '@emotion/styled'
 import { transparentize, padding } from 'polished'
 import { relative } from 'path'
+import { graphql } from 'gatsby'
 import IndexLayout from '../layouts'
 import { heights, dimensions, colors } from '../styles/variables'
 
@@ -38,8 +39,8 @@ const DiceTest = styled.img`
 interface ShelfStyledProps {
   backgroundImage: {
     url: string
-  };
-};
+  }
+}
 
 const ShelfStyled = styled.li<ShelfStyledProps>`
   background-color: red;
@@ -55,7 +56,7 @@ const ShelfStyled = styled.li<ShelfStyledProps>`
 `
 
 interface OverlayProps {
-  backgroundColor?: string;
+  backgroundColor?: string
 }
 
 const Overlay = styled.div<OverlayProps>`
@@ -104,62 +105,47 @@ const FooterStyled = styled.footer`
   letter-spacing: 10px;
   margin: 2em;
 `
-const shelves: Shelf[] = [
-  {
-    name: 'Jeux de stratégie',
-    slug: 'jeuxdestrategie',
-    description:
-      ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta',
-    products: [],
-    backgroundImage: {
-      url: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-board-games-adults-1585587217.jpg?crop=1.00xw:0.770xh;0,0.00750xh&resize=980:*'
-    },
-    color: {
-      css: 'rgb(228, 28, 184)',
-    }
-  },
-  {
-    name: 'Jeux enfants',
-    slug: 'jeuxenfants',
-    description:
-      ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta',
-    products: [],
-    backgroundImage: {
-      url: 'https://cdn.cheapism.com/images/Clue_mqATAxw.2e16d0ba.fill-1440x605.jpg'
-    },
-    color: {
-      css: 'rgb(215, 148, 93)',
-    }
-  },
-  {
-    name: "Jeux d'ambiance",
-    slug: 'jeux-d-ambiance',
-    description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta
-      assumenda? Accusamus, molestias! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea
-      numquam eaque cupiditate dicta assumenda? Accusamus, molestias! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-      Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta assumenda? Accusamus, molestias! Lorem, ipsum dolor sit amet
-      consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta assumenda? Accusamus,
-      molestias!`,
-    products: [],
-    backgroundImage: {
-      url: 'https://media.graphcms.com/oSGuMvARd6hAmn8QoZfA'
-    },
-    color: {
-      css: 'rgb(85, 210, 124)',
+
+export const query = graphql`
+  query HomePageQuery {
+    allGraphCmsShelf {
+      edges {
+        node {
+          color {
+            css
+          }
+          description
+          name
+          slug
+          backgroundImage {
+            url
+          }
+        }
+      }
     }
   }
-]
+`
+interface ShelfEdge {
+  node: Shelf
+}
+interface WelcomePageProps {
+  data: {
+    allGraphCmsShelf: {
+      edges: ShelfEdge[]
+    }
+  }
+}
 
-const welcomePage = () => (
+const welcomePage: FC<WelcomePageProps> = ({ data }) => (
   <IndexLayout>
     <ContainerWelcome>
       <ul>
-        {shelves.map(shelf => (
-          <ShelfStyled backgroundImage={shelf.backgroundImage}>
-            <Overlay backgroundColor={shelf.color.css}>
+        {data.allGraphCmsShelf.edges.map(edge => (
+          <ShelfStyled backgroundImage={edge.node.backgroundImage}>
+            <Overlay backgroundColor={edge.node.color.css}>
               <TextContainer>
-                <Title>{shelf.name}</Title>
-                <Text>{shelf.description}</Text>
+                <Title>{edge.node.name}</Title>
+                <Text>{edge.node.description}</Text>
                 <Button>En voir plus</Button>
               </TextContainer>
               <DiceTest src={Dice} alt="de" />
@@ -173,4 +159,4 @@ const welcomePage = () => (
   </IndexLayout>
 )
 
-export default welcomePage;
+export default welcomePage
