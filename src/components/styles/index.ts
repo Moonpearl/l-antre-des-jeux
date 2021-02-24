@@ -1,1 +1,1 @@
-export { default as BackgroundImageContainer } from './background-image-container'
+export { default as BackgroundImageContainer } from './background-image-container';

@@ -1,9 +1,9 @@
+import Asset from './asset';
 import Selection from './selection';
 import Shelf from './shelf';
 
-export default interface Product {
+export default interface Product extends Asset {
   name: string;
-  slug: string;
   description: string;
   price: number;
   imageUrl: string;

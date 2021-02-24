@@ -1,13 +1,13 @@
-import React, { FC } from 'react'
-import styled from '@emotion/styled'
-import { graphql } from 'gatsby'
-import IndexLayout from '../layouts'
-import { Shelf } from '../models'
-import { ShelfPreview } from '../components'
+import React, { FC } from 'react';
+import styled from '@emotion/styled';
+import { graphql } from 'gatsby';
+import IndexLayout from '../layouts';
+import { ShelfPreview } from '../components';
+import { PagePropsWithData } from '../models';
 
 const ContainerIndex = styled.div`
   background-color: pink;
-`
+`;
 
 const FooterStyled = styled.footer`
   position: relative;
@@ -15,29 +15,20 @@ const FooterStyled = styled.footer`
   font-style: italic;
   letter-spacing: 10px;
   margin: 2em;
-`
+`;
 
-interface ShelfEdge {
-  node: Shelf
-}
-interface IndexPageProps {
-  data: {
-    allGraphCmsShelf: {
-      edges: ShelfEdge[]
-    }
-  }
-}
-
-const IndexPage: FC<IndexPageProps> = ({ data }) => (
+const IndexPage: FC<PagePropsWithData> = ({ data }) => (
   <IndexLayout>
     <ContainerIndex>
       <ul>
-        {data.allGraphCmsShelf.edges.map((edge, index) => (
-          <ShelfPreview key={index} shelf={edge.node} even={index % 2 === 0} />
+        {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
+          <li key={node.id}>
+            <ShelfPreview shelf={node} even={index % 2 === 0} />
+          </li>
         ))}
       </ul>
 
-      <FooterStyled>Copyright 2021 - L'Antre des jeux</FooterStyled>
+      <FooterStyled>Copyright 2021 - L&apos;Antre des jeux</FooterStyled>
     </ContainerIndex>
   </IndexLayout>
 );
@@ -60,6 +51,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default IndexPage
+export default IndexPage;
