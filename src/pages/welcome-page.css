@@ -1,7 +1,7 @@
-.frame:nth-child(odd) {
+/*.frame:nth-child(odd) {
   display: flex;
   flex-direction: row-reverse;
-}
+}*/
 
 
 

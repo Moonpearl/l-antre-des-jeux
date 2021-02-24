@@ -18,6 +18,7 @@ import Img07 from '../images/classic.jpg'
 import Img08 from '../images/accessory.jpg'
 
 import Dice from '../images/dice.png'
+import { Shelf } from '../models'
 
 const ContainerWelcome = styled.div`
   background-color: pink;
@@ -34,13 +35,31 @@ const DiceTest = styled.img`
   filter: hue-rotate(90deg);
 `
 
-const Shelf = styled.li`
+interface ShelfStyledProps {
+  backgroundImage: {
+    url: string
+  };
+};
+
+const ShelfStyled = styled.li<ShelfStyledProps>`
   background-color: red;
   padding: 4em;
-  background-image: url('../images/societe.jpg');
+  background-image: url(${props => props.backgroundImage.url});
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  &:nth-child(odd) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
 `
-const Overlay = styled.div`
-  background-color: darkred;
+
+interface OverlayProps {
+  backgroundColor?: string;
+}
+
+const Overlay = styled.div<OverlayProps>`
+  background-color: ${props => props.backgroundColor};
   position: relative;
   top: 8em;
   border-radius: 2em;
@@ -65,8 +84,7 @@ const Text = styled.p`
 `
 
 const Button = styled.button`
-  background: linear-gradient(to bottom, #b8e356 5%, #a5cc52 100%);
-  background-color: #b8e356;
+  background: linear-gradient(to bottom, #b8e356 10%, #a5cc52 100%);
   border-radius: 2em;
   color: white;
   font-weight: bold;
@@ -86,61 +104,73 @@ const FooterStyled = styled.footer`
   letter-spacing: 10px;
   margin: 2em;
 `
+const shelves: Shelf[] = [
+  {
+    name: 'Jeux de stratégie',
+    slug: 'jeuxdestrategie',
+    description:
+      ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta',
+    products: [],
+    backgroundImage: {
+      url: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-board-games-adults-1585587217.jpg?crop=1.00xw:0.770xh;0,0.00750xh&resize=980:*'
+    },
+    color: {
+      css: 'rgb(228, 28, 184)',
+    }
+  },
+  {
+    name: 'Jeux enfants',
+    slug: 'jeuxenfants',
+    description:
+      ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta',
+    products: [],
+    backgroundImage: {
+      url: 'https://cdn.cheapism.com/images/Clue_mqATAxw.2e16d0ba.fill-1440x605.jpg'
+    },
+    color: {
+      css: 'rgb(215, 148, 93)',
+    }
+  },
+  {
+    name: "Jeux d'ambiance",
+    slug: 'jeux-d-ambiance',
+    description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta
+      assumenda? Accusamus, molestias! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea
+      numquam eaque cupiditate dicta assumenda? Accusamus, molestias! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+      Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta assumenda? Accusamus, molestias! Lorem, ipsum dolor sit amet
+      consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta assumenda? Accusamus,
+      molestias!`,
+    products: [],
+    backgroundImage: {
+      url: 'https://media.graphcms.com/oSGuMvARd6hAmn8QoZfA'
+    },
+    color: {
+      css: 'rgb(85, 210, 124)',
+    }
+  }
+]
 
 const welcomePage = () => (
   <IndexLayout>
     <ContainerWelcome>
       <ul>
-        <Shelf className="frame">
-          {/* <img src={Img01} alt="society" /> */}
-          <Overlay>
-            <TextContainer>
-              <Title>Nom du rayon</Title>
-              <Text>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta
-                assumenda? Accusamus, molestias!
-              </Text>
-              <Button>En voir plus</Button>
-            </TextContainer>
-            <DiceTest src={Dice} alt="de" />
-          </Overlay>
-        </Shelf>
-
-        <Shelf className="frame" style={{ backgroundColor: 'blue' }}>
-          <Overlay style={{ backgroundColor: 'darkblue' }}>
-            <TextContainer>
-              <Title>Nom du rayon</Title>
-              <Text>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta
-                assumenda? Accusamus, molestias!
-              </Text>
-              <Button>En voir plus</Button>
-            </TextContainer>
-          </Overlay>
-        </Shelf>
-
-        <Shelf className="frame" style={{ backgroundColor: 'green' }}>
-          <Overlay style={{ backgroundColor: 'darkgreen' }}>
-            <TextContainer>
-              <Title>Nom du rayon</Title>
-              <Text>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta
-                assumenda? Accusamus, molestias! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit adipisci placeat ea
-                numquam eaque cupiditate dicta assumenda? Accusamus, molestias! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta assumenda? Accusamus, molestias! Lorem, ipsum dolor sit amet
-                consectetur adipisicing elit. Aperiam sit adipisci placeat ea numquam eaque cupiditate dicta assumenda? Accusamus,
-                molestias!
-              </Text>
-              <Button>En voir plus</Button>
-            </TextContainer>
-          </Overlay>
-        </Shelf>
+        {shelves.map(shelf => (
+          <ShelfStyled backgroundImage={shelf.backgroundImage}>
+            <Overlay backgroundColor={shelf.color.css}>
+              <TextContainer>
+                <Title>{shelf.name}</Title>
+                <Text>{shelf.description}</Text>
+                <Button>En voir plus</Button>
+              </TextContainer>
+              <DiceTest src={Dice} alt="de" />
+            </Overlay>
+          </ShelfStyled>
+        ))}
       </ul>
 
       <FooterStyled>Copyright 2021 - L'Antre des jeux</FooterStyled>
     </ContainerWelcome>
-
   </IndexLayout>
 )
 
-export default welcomePage
+export default welcomePage;
