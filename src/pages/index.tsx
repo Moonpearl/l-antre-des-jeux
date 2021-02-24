@@ -40,7 +40,7 @@ const IndexPage: FC<IndexPageProps> = ({ data }) => (
       <FooterStyled>Copyright 2021 - L'Antre des jeux</FooterStyled>
     </ContainerIndex>
   </IndexLayout>
-)
+);
 
 export const query = graphql`
   query HomePageQuery {
