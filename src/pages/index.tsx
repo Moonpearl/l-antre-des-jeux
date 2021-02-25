@@ -6,10 +6,11 @@ import { ShelfPreview } from '../components';
 import { PagePropsWithData } from '../models';
 
 const ContainerIndex = styled.div`
-  background-color: grey;
+  background-color: #555455;
 `;
 
 const FooterStyled = styled.footer`
+  z-index: 0;
   position: relative;
   text-align: center;
   font-style: italic;
@@ -17,6 +18,8 @@ const FooterStyled = styled.footer`
   font-size: 1.2em;
   letter-spacing: 5px;
   margin: 2em;
+  color: #989898;
+  font-family: 'Indie Flower', cursive;
 `;
 
 const IndexPage: FC<PagePropsWithData> = ({ data }) => (
