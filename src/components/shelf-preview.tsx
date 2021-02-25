@@ -10,20 +10,20 @@ interface OverlayProps {
 }
 
 const Overlay = styled.div<OverlayProps>`
-  /* background-color: ${props => props.backgroundColor}; */
-  background-color: background-color: #4158D0;
+  background-color: ${props => props.backgroundColor};
+  /* background-color: background-color: #4158D0;
 background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-;
+; */
   position: relative;
   top: 8em;
-  border-radius: 5em;
-  border-top-left-radius: 1em;
-  border-bottom-right-radius: 1em;
-  border: white 10px double;
+  border-radius: 2em;
+  /* border-top-left-radius: 1em;
+  border-bottom-right-radius: 1em; */
+  /* border: white 10px double; */
   padding: 1em;
   max-width: 40em;
   z-index: 2;
-  filter: hue-rotate(-30deg);
+  /* filter: hue-rotate(-30deg); */
   transition: 1s;
 
   &:hover {
@@ -53,7 +53,7 @@ const Title = styled.h2`
   /* font-family: 'Fredericka the Great', cursive;*/
   /* font-family: 'Sriracha', cursive; */
   font-family: 'Cabin Sketch', cursive;
-  border-bottom: 3px dotted white;
+  /* border-bottom: 3px dotted white; */
 `;
 
 const Text = styled.p`
@@ -73,14 +73,14 @@ const Button = styled.button`
   font-weight: bold;
   display: inline-block;
   cursor: pointer;
-  font-size: 2em;
+  font-size: 1em;
   padding: 10px 20px;
   text-shadow: 0px 3px 0px #0093e9;
   box-shadow: inset 0px 1px 0px 0px #d9fbbe;
   border: none;
   font-family: 'Patrick Hand SC', cursive;
-  letter-spacing: 0.2em;
-  line-height: 0.7em;
+  /* letter-spacing: 0.2em;
+  line-height: 0.7em; */
 `;
 
 interface ShelfPreviewProps {
