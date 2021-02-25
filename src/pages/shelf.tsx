@@ -10,22 +10,36 @@ const BgColorPage = styled.div`
   background-color: #ece0d4;
 `;
 
+const ContainerShelfPageAll = styled.div`
+  margin: 1em;
+  display: flex;
+`;
+
 const IconsNavigationTopLeft = styled.div`
-  background-color: pink;
+  /* background-color: pink; */
+  color: #03989e;
 `;
 
 const LeftSide = styled.div`
-  background-color: orange;
-  display: flex;
-  flex-direction: column;
+  /* background-color: orange; */
 `;
 
 const LeftSideProductsNumber = styled.p`
   background-color: #ffde59;
+  color: #03989e;
+  border-radius: 1em;
+  max-width: 15em;
+  margin-top: 5em;
+  padding: 1em;
+  margin: 1em;
 `;
 
 const LeftSideMultiSidebar = styled.div`
   background-color: #03989e;
+  height: 25em;
+  margin: 1em;
+
+  clip-path: polygon(11% 0, 90% 0, 100% 12%, 100% 92%, 89% 100%, 10% 100%, 0 92%, 0 14%);
 `;
 
 const RightSideShelfContainer = styled.div`
@@ -70,39 +84,40 @@ const SearchBar = styled.div`
 const ShelfPage: FC = () => (
   <IndexLayout>
     <BgColorPage>
-      <IconsNavigationTopLeft>
-        <FaHome />
-        <FaChevronLeft />
-      </IconsNavigationTopLeft>
+      <ContainerShelfPageAll>
+        <LeftSide>
+          <IconsNavigationTopLeft>
+            <FaHome size="30" />
+            <FaChevronLeft size="30" />
+          </IconsNavigationTopLeft>
+          <LeftSideProductsNumber>Nombre de produits dans ce rayon: 150</LeftSideProductsNumber>
+          <LeftSideMultiSidebar> Barre multicritères ou image</LeftSideMultiSidebar>
+        </LeftSide>
 
-      <LeftSide>
-        <LeftSideProductsNumber>Nombre de produits dans ce rayon: 150</LeftSideProductsNumber>
-        <LeftSideMultiSidebar> Barre multicritères ou image</LeftSideMultiSidebar>
-      </LeftSide>
+        <RightSideShelfContainer>
+          <RightSideShelfTitle>Nom du rayon</RightSideShelfTitle>
 
-      <RightSideShelfContainer>
-        <RightSideShelfTitle>Nom du rayon</RightSideShelfTitle>
+          <ProductContainer>
+            <ProductImg />
+            <ProductTitle>Titre du produit</ProductTitle>
+            <ProductShoppingBasket>Panier</ProductShoppingBasket>
+          </ProductContainer>
 
-        <ProductContainer>
-          <ProductImg />
-          <ProductTitle>Titre du produit</ProductTitle>
-          <ProductShoppingBasket>Panier</ProductShoppingBasket>
-        </ProductContainer>
+          <ShelfPagesButtons>
+            <FaChevronLeft />
+            <ShelfPagesButtonsNumber>1</ShelfPagesButtonsNumber>
+            <ShelfPagesButtonsNumber>2</ShelfPagesButtonsNumber>
+            <ShelfPagesButtonsNumber>3</ShelfPagesButtonsNumber>
+            <ShelfPagesButtonsNumber>...</ShelfPagesButtonsNumber>
 
-        <ShelfPagesButtons>
-          <FaChevronLeft />
-          <ShelfPagesButtonsNumber>1</ShelfPagesButtonsNumber>
-          <ShelfPagesButtonsNumber>2</ShelfPagesButtonsNumber>
-          <ShelfPagesButtonsNumber>3</ShelfPagesButtonsNumber>
-          <ShelfPagesButtonsNumber>...</ShelfPagesButtonsNumber>
+            <FaChevronRight />
+          </ShelfPagesButtons>
 
-          <FaChevronRight />
-        </ShelfPagesButtons>
-      </RightSideShelfContainer>
-
-      <SearchBar>
-        <FaSearch />
-      </SearchBar>
+          <SearchBar>
+            <FaSearch />
+          </SearchBar>
+        </RightSideShelfContainer>
+      </ContainerShelfPageAll>
     </BgColorPage>
   </IndexLayout>
 );
