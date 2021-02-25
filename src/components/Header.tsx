@@ -1,15 +1,12 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
+import { FcHome, FcShop, FcInfo } from 'react-icons/fc';
+import { GiRollingDices } from 'react-icons/gi';
+import { FaChevronDown } from 'react-icons/fa';
 
 import { heights, dimensions, colors, fonts } from '../styles/variables';
 import Container from './Container';
-
-import Home from '../images/home.png';
-import Shop from '../images/shop.png';
-import Info from '../images/ring.png';
-import Shelves from '../images/dice.png';
-import ArrowDown from '../images/arrowdown.png';
 
 const Logo = styled.img`
   width: 3em;
@@ -22,42 +19,11 @@ const Logo = styled.img`
 /* ICONS HEADER */
 
 const Icons = styled.div`
-  margin: 2em;
-`;
-
-const IconHome = styled.img`
-  width: 3em;
-  height: 3em;
-  margin-right: 1em;
   cursor: pointer;
-`;
-
-const IconShop = styled.img`
-  width: 3em;
-  height: 3em;
-  margin-right: 1em;
-  cursor: pointer;
-`;
-
-const IconInfo = styled.img`
-  margin-right: 1em;
-  width: 2em;
-  height: 2.8em;
-  cursor: pointer;
-`;
-
-const IconShelves = styled.img`
-  width: 3em;
-  height: 3em;
-  margin-right: 1em;
-  cursor: pointer;
-`;
-
-const IconArrow = styled.img`
-  width: 1em;
-  height: 1em;
-  margin-bottom: 12px;
-  cursor: pointer;
+  margin-left: 1em;
+  display: flex;
+  flex-direction: row;
+  vertical-align: center;
 `;
 
 const StyledHeader = styled.header`
@@ -99,11 +65,11 @@ const Header: React.FC<HeaderProps> = ({ title }) => (
       <HomepageLink to="/">{title}</HomepageLink>
 
       <Icons>
-        <IconHome src={Home} />
-        <IconShop src={Shop} />
-        <IconInfo src={Info} />
-        <IconShelves src={Shelves} />
-        <IconArrow src={ArrowDown} />
+        <FcHome size="40" />
+        <FcShop size="40" />
+        <FcInfo size="40" />
+        <GiRollingDices size="40" />
+        <FaChevronDown size="10" />
       </Icons>
     </HeaderInner>
   </StyledHeader>
