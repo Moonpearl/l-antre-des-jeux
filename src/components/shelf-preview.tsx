@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styled from '@emotion/styled';
 
 import { BackgroundImageContainer } from './styles';
-import { Shelf } from '../models';
+import { GraphcmsShelf } from '../models/graphcms/assets';
 
 interface OverlayProps {
   backgroundColor?: string;
@@ -84,7 +84,7 @@ const Button = styled.button`
 `;
 
 interface ShelfPreviewProps {
-  shelf: Shelf;
+  shelf: GraphcmsShelf;
   even: boolean;
 }
 
