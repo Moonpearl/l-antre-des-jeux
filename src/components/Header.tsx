@@ -1,8 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import { FcHome, FcShop, FcInfo } from 'react-icons/fc';
-import { GiRollingDices } from 'react-icons/gi';
+import { GiHouse, GiRollingDices, GiShop, GiRingingBell, GiPlainArrow } from 'react-icons/gi';
 import { FaChevronDown } from 'react-icons/fa';
 
 import { heights, dimensions, colors, fonts } from '../styles/variables';
@@ -23,6 +22,7 @@ const Icons = styled.div`
   margin-left: 1em;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   vertical-align: center;
 `;
 
@@ -65,9 +65,9 @@ const Header: React.FC<HeaderProps> = ({ title }) => (
       <HomepageLink to="/">{title}</HomepageLink>
 
       <Icons>
-        <FcHome size="40" />
-        <FcShop size="40" />
-        <FcInfo size="40" />
+        <GiHouse size="40" />
+        <GiShop size="40" />
+        <GiRingingBell size="40" />
         <GiRollingDices size="40" />
         <FaChevronDown size="10" />
       </Icons>
