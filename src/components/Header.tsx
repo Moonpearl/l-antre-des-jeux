@@ -7,15 +7,30 @@ import { FaChevronDown } from 'react-icons/fa';
 import { heights, dimensions, colors, fonts } from '../styles/variables';
 import Container from './Container';
 
-const Logo = styled.img`
-  width: 3em;
-  height: 3em;
-  background-color: white;
-  margin-right: 2em;
-  border-radius: 1em;
-`;
+/*https://emotion.sh/docs/media-queries*/
 
-/* ICONS HEADER */
+/*import { jsx } from '@emotion/react';
+import facepaint from 'facepaint';
+
+const breakpoints = [576, 768, 992, 1200];
+
+const mq = facepaint(breakpoints.map(bp => `@media (min-width: ${bp}px)`));
+
+<div
+css={mq({
+  color: ['green', 'gray', 'hotpink'],
+})}
+>
+Some text.
+</div>*/
+
+const Logo = styled.div`
+  background-color: white;
+  height: 2em;
+  width: 2em;
+  border-radius: 0.2em;
+  margin: 1em;
+`;
 
 const Icons = styled.div`
   cursor: pointer;
@@ -23,6 +38,11 @@ const Icons = styled.div`
   display: flex;
   flex-direction: row;
   vertical-align: center;
+`;
+
+const IconLi = styled.li`
+  margin: 0.2em;
+  font-size: 2em;
 `;
 
 const StyledHeader = styled.header`
@@ -61,11 +81,21 @@ const Header: React.FC<HeaderProps> = ({ title }) => (
       <HomepageLink to="/">{title}</HomepageLink>
 
       <Icons>
-        <GiHouse size="40" />
-        <GiShop size="40" />
-        <GiRingingBell size="40" />
-        <GiRollingDices size="40" />
-        <FaChevronDown size="10" />
+        <IconLi>
+          <GiHouse />
+        </IconLi>
+        <IconLi>
+          <GiShop />
+        </IconLi>
+        <IconLi>
+          <GiRingingBell />
+        </IconLi>
+        <IconLi>
+          <GiRollingDices />
+        </IconLi>
+        <IconLi>
+          <FaChevronDown size="15" />
+        </IconLi>
       </Icons>
     </HeaderInner>
   </StyledHeader>
