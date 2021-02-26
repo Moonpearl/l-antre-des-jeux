@@ -14,22 +14,13 @@ const Overlay = styled.div<OverlayProps>`
   position: relative;
   top: 8em;
   border-radius: 2em;
-  /* border-top-left-radius: 1em;
-  border-bottom-right-radius: 1em; */
-  /* border: white 10px double; */
   padding: 1em;
   max-width: 40em;
   z-index: 2;
-  /* filter: hue-rotate(-30deg); */
   transition: 1s;
-
-  &:hover {
-    filter: hue-rotate(0deg);
-  }
 `;
 
 const TextContainer = styled.div`
-  /*margin-left: 2em;*/
   padding: 1em;
 `;
 
@@ -41,11 +32,7 @@ const Title = styled.h2<TitleProps>`
   color: orange;
   text-transform: uppercase;
   font-size: 2em;
-  /* font-family: 'Cabin Sketch', cursive;*/
   font-family: 'Oswald', 'sans-serif';
-  /* font-family: 'Bebas Neue', cursive;*/
-  /* font-family: 'Candal', sans-serif;*/
-
   font-style: italic;
   letter-spacing: 0.2em;
 `;
