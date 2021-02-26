@@ -10,7 +10,7 @@ import Container from './Container';
 const Logo = styled.img`
   width: 3em;
   height: 3em;
-  background-color: green;
+  background-color: white;
   margin-right: 2em;
   border-radius: 1em;
 `;
@@ -22,16 +22,13 @@ const Icons = styled.div`
   margin-left: 1em;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   vertical-align: center;
 `;
 
 const StyledHeader = styled.header`
   height: ${heights.header}px;
-  padding: 0 ${dimensions.containerPadding}rem;
-  background-color: ${colors.white};
-  color: ${colors.teal};
-  width: 50em;
+  background-color: grey;
+  color: ${colors.white};
 `;
 
 const HeaderInner = styled(Container)`
@@ -42,11 +39,10 @@ const HeaderInner = styled(Container)`
 `;
 
 const HomepageLink = styled(Link)`
-  color: ${colors.teal};
+  color: ${colors.white};
   font-size: 1.5rem;
   font-weight: 600;
-  /* font-family: 'Satisfy', cursive; */
-  font-family: 'Patrick Hand SC', cursive;
+  font-family: 'Oswald', 'sans-serif';
 
   &:hover,
   &:focus {
