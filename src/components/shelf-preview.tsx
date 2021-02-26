@@ -50,18 +50,15 @@ const Title = styled.h2`
   color: white;
   text-transform: uppercase;
   font-size: 2em;
-  /* font-family: 'Fredericka the Great', cursive;*/
-  /* font-family: 'Sriracha', cursive; */
-  font-family: 'Cabin Sketch', cursive;
-  /* border-bottom: 3px dotted white; */
+  /* font-family: 'Cabin Sketch', cursive;*/
+  font-family: 'Oswald', 'sans-serif';
+  font-style: italic;
 `;
 
 const Text = styled.p`
   color: white;
   padding: 0.5em;
   font-family: 'Neucha', cursive;
-  /* font-family: 'Architects Daughter', cursive; */
-  /* font-family: 'Indie Flower', cursive; */
 `;
 
 const Button = styled.button`
