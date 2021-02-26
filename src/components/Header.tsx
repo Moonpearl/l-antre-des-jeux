@@ -46,7 +46,8 @@ const HomepageLink = styled(Link)`
   font-size: 1.5rem;
   font-weight: 600;
   /* font-family: 'Satisfy', cursive; */
-  font-family: 'Patrick Hand SC', cursive;
+  font-family: 'Oswald', 'sans-serif';
+  font-weight: bold;
 
   &:hover,
   &:focus {
