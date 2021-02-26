@@ -15,6 +15,10 @@ const GlobalStyles: React.FC = () => (
     styles={css`
       @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Candal&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
     `}
   />
 );

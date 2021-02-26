@@ -19,7 +19,7 @@ const FooterStyled = styled.footer`
   letter-spacing: 5px;
   margin: 2em;
   color: #989898;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Ubuntu Condensed', sans-serif;
 `;
 
 const PostFooter = styled.div`

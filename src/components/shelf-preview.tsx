@@ -11,9 +11,6 @@ interface OverlayProps {
 
 const Overlay = styled.div<OverlayProps>`
   background-color: ${props => props.backgroundColor};
-  /* background-color: background-color: #4158D0;
-background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-; */
   position: relative;
   top: 8em;
   border-radius: 2em;
@@ -30,35 +27,33 @@ background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
     filter: hue-rotate(0deg);
   }
 `;
-const DiceTest = styled.img`
-  position: relative;
-  margin: 1em;
-  height: 7em;
-  width: 15em;
-  margin-left: -8.5em;
-  margin-bottom: -8.2em;
-  transform: rotate(55deg);
-  filter: hue-rotate(90deg);
-`;
 
 const TextContainer = styled.div`
   /*margin-left: 2em;*/
   padding: 1em;
 `;
 
-const Title = styled.h2`
-  color: white;
+interface TitleProps {
+  color: string;
+}
+
+const Title = styled.h2<TitleProps>`
+  color: orange;
   text-transform: uppercase;
   font-size: 2em;
   /* font-family: 'Cabin Sketch', cursive;*/
   font-family: 'Oswald', 'sans-serif';
+  /* font-family: 'Bebas Neue', cursive;*/
+  /* font-family: 'Candal', sans-serif;*/
+
   font-style: italic;
+  letter-spacing: 0.2em;
 `;
 
 const Text = styled.p`
   color: white;
   padding: 0.5em;
-  font-family: 'Neucha', cursive;
+  font-family: 'Ubuntu Condensed', sans-serif;
 `;
 
 const Button = styled.button`
@@ -75,9 +70,10 @@ const Button = styled.button`
   text-shadow: 0px 3px 0px #0093e9;
   box-shadow: inset 0px 1px 0px 0px #d9fbbe;
   border: none;
-  font-family: 'Patrick Hand SC', cursive;
-  /* letter-spacing: 0.2em;
-  line-height: 0.7em; */
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-style: italic;
+  letter-spacing: 0.2em;
+  line-height: 0.7em;
 `;
 
 interface ShelfPreviewProps {
