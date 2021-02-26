@@ -49,7 +49,7 @@ const TextContainer = styled.div`
 const Title = styled.h2`
   color: white;
   text-transform: uppercase;
-  font-size: 3em;
+  font-size: 2em;
   /* font-family: 'Fredericka the Great', cursive;*/
   /* font-family: 'Sriracha', cursive; */
   font-family: 'Cabin Sketch', cursive;

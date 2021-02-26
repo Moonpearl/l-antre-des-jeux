@@ -22,6 +22,12 @@ const FooterStyled = styled.footer`
   font-family: 'Indie Flower', cursive;
 `;
 
+const PostFooter = styled.div`
+  background-attachment: fixed;
+  background-color: #555455;
+  height: 5em;
+`;
+
 const IndexPage: FC<PagePropsWithData> = ({ data }) => (
   <IndexLayout>
     <ContainerIndex>
@@ -32,7 +38,7 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
           </li>
         ))}
       </ul>
-
+      <PostFooter />
       <FooterStyled>Copyright 2021 - L&apos;Antre des jeux</FooterStyled>
     </ContainerIndex>
   </IndexLayout>
