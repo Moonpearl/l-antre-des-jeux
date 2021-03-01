@@ -14,9 +14,9 @@ interface ShelfFrameProps {
 const ShelfFrame = styled.div<ShelfFrameProps>`
   background-color: ${(props): string => props.backgroundColor as string};
   position: relative;
-  top: 4em;
+  top: 8em;
   border-radius: 2em;
-  margin-top: 16em;
+  margin: 16em 0.5em 0;
   padding: 2em;
   max-width: 30em;
   z-index: 2;
@@ -75,7 +75,7 @@ const Separator = styled.div`
   left: 0;
   right: 0;
   bottom: -24em;
-  transform: scale(1, 0.25);
+  transform: scale(1, 0.35);
   z-index: 1;
 `;
 
