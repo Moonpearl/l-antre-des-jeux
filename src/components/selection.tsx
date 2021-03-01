@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
 import { GraphcmsSelection } from '../models/graphcms/assets';
+import { FaProductHunt } from 'react-icons/fa';
 
 interface SelectionProps {
   selection: GraphcmsSelection;
@@ -48,15 +49,17 @@ const BoardGamesNameSelection = styled.li`
 
 const Selection: FC<SelectionProps> = ({ selection }) => (
   <SelectionContainer>
-    <StyledSelection>
-      <TitleSelection>{selection.name}</TitleSelection>
-      <ImgSelection />
-      <BoardGamesSelection>
-        {selection.products.map(product => (
+    <StyledSelection />
+    <TitleSelection>{selection.name}</TitleSelection>
+    <ImgSelection />
+    <BoardGamesSelection>
+      {selection.products.map(product => (
+        <>
           <BoardGamesNameSelection key={product.slug}>{product.name}</BoardGamesNameSelection>
-        ))}
-      </BoardGamesSelection>
-    </StyledSelection>
+          <img src={product.imageUrl} alt="bg" />
+        </>
+      ))}
+    </BoardGamesSelection>
   </SelectionContainer>
 );
 
