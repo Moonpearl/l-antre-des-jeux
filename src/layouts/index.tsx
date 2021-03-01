@@ -15,6 +15,52 @@ const GlobalStyles: React.FC = () => (
     styles={css`
       @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+      .wave {
+        transform-origin: left center;
+        width: 1440px;
+      }
+
+      .wave.up {
+        position: relative;
+        top: 8px;
+      }
+
+      @media (min-width: 360px) {
+        .wave {
+          transform: scale(0.5, 1);
+        }
+      }
+
+      @media (min-width: 720px) {
+        .wave {
+          transform: scale(0.75, 1);
+        }
+      }
+
+      @media (min-width: 1080px) {
+        .wave {
+          transform: initial;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .wave {
+          transform: scale(1.5, 1);
+        }
+      }
+
+      @media (min-width: 2160px) {
+        .wave {
+          transform: scale(2, 1);
+        }
+      }
+
+      @media (min-width: 2880px) {
+        .wave {
+          transform: scale(2.5, 1);
+        }
+      }
     `}
   />
 );

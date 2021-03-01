@@ -33,8 +33,8 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
     <ContainerIndex>
       <ul>
         {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
-          <li key={node.id}>
-            <ShelfPreview shelf={node} even={index % 2 === 0} />
+          <li key={node.slug}>
+            <ShelfPreview shelf={node} index={index} />
           </li>
         ))}
       </ul>

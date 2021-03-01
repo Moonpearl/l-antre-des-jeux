@@ -3,9 +3,12 @@ import styled from '@emotion/styled';
 
 import { BackgroundImageContainer, FlexContainer, MainContainer } from './styles';
 import { GraphcmsShelf } from '../models/graphcms/assets';
+import UpWaves from './styles/waves/up';
+import DownWaves from './styles/waves/down';
 
 interface ShelfFrameProps {
   backgroundColor?: string;
+  reverse: boolean;
 }
 
 const ShelfFrame = styled.div<ShelfFrameProps>`
@@ -13,8 +16,18 @@ const ShelfFrame = styled.div<ShelfFrameProps>`
   position: relative;
   top: 4em;
   border-radius: 2em;
+  margin-top: 16em;
   padding: 2em;
   max-width: 30em;
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: ${(props): string => (props.reverse ? 'left' : 'right')} center;
+  transform: perspective(1200px) rotateY(0);
+  &:hover {
+    -webkit-box-shadow: ${(props): string => (props.reverse ? '' : '-')}20px 0px 20px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: ${(props): string => (props.reverse ? '' : '-')}20px 0px 20px 10px rgba(0, 0, 0, 0.1);
+    transform: perspective(1200px) rotateY(${(props): string => (props.reverse ? '-' : '')}10deg);
+  }
 `;
 
 interface TitleProps {
@@ -57,28 +70,47 @@ const Button = styled.button`
   line-height: 0.7em;
 `;
 
+const Separator = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -24em;
+  transform: scale(1, 0.25);
+  z-index: 1;
+`;
+
 interface ShelfPreviewProps {
   shelf: GraphcmsShelf;
-  even: boolean;
+  index: number;
 }
 
-const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, even }) => (
-  <BackgroundImageContainer
-    backgroundImage={shelf.backgroundImage}
-    backgroundSize="cover"
-    backgroundPosition="center"
-    backgroundAttachment="fixed"
-  >
-    <MainContainer>
-      <FlexContainer reverse={even}>
-        <ShelfFrame backgroundColor={shelf.backgroundColor.css}>
-          <Title titleColor={shelf.titleColor.css}>{shelf.name}</Title>
-          <Text>{shelf.description}</Text>
-          <Button>En voir plus</Button>
-        </ShelfFrame>
-      </FlexContainer>
-    </MainContainer>
-  </BackgroundImageContainer>
-);
+const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, index }) => {
+  const UpWave = UpWaves[(index + 1) % UpWaves.length];
+  const DownWave = DownWaves[(index + 1) % DownWaves.length];
+
+  return (
+    <BackgroundImageContainer
+      backgroundImage={shelf.backgroundImage}
+      backgroundSize="cover"
+      backgroundPosition="center"
+      backgroundAttachment="fixed"
+    >
+      <MainContainer>
+        <FlexContainer reverse={index % 2 === 0}>
+          <ShelfFrame backgroundColor={shelf.backgroundColor.css} reverse={index % 2 === 0}>
+            <Title titleColor={shelf.titleColor.css}>{shelf.name}</Title>
+            <Text>{shelf.description}</Text>
+            <Button>En voir plus</Button>
+          </ShelfFrame>
+        </FlexContainer>
+      </MainContainer>
+      <Separator>
+        <UpWave color={shelf.backgroundColor.css || '#000'} />
+        <div style={{ backgroundColor: shelf.backgroundColor.css, height: '8em' }}></div>
+        <DownWave color={shelf.backgroundColor.css || '#000'} />
+      </Separator>
+    </BackgroundImageContainer>
+  );
+};
 
 export default ShelfPreview;

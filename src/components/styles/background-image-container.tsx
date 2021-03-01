@@ -10,6 +10,7 @@ interface BackgroundImageContainerProps {
 }
 
 const BackgroundImageContainer = styled.div<BackgroundImageContainerProps>`
+  position: relative;
   background-image: url(${({ backgroundImage }): string => backgroundImage.url});
   background-size: ${({ backgroundSize }): string => backgroundSize};
   background-position: ${({ backgroundPosition }): string => backgroundPosition};
