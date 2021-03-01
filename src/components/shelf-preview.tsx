@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
 
-import { BackgroundImageContainer, FlexContainer, MainContainer } from './styles';
+import { BackgroundImageContainer, Filler, FlexContainer, MainContainer } from './styles';
 import { GraphcmsShelf } from '../models/graphcms/assets';
 import UpWaves from './styles/waves/up';
 import DownWaves from './styles/waves/down';
@@ -35,7 +35,7 @@ interface TitleProps {
 }
 
 const Title = styled.h2<TitleProps>`
-  color: ${props => props.titleColor};
+  color: ${(props): string => props.titleColor || 'rgba(0, 0, 0, 0)'};
   text-transform: uppercase;
   font-size: 2em;
   font-family: 'Oswald', 'sans-serif';
@@ -46,25 +46,25 @@ const Title = styled.h2<TitleProps>`
 const Text = styled.p`
   color: white;
   padding: 0.5em 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans - serif;
   text-align: justify;
 `;
 
 const Button = styled.button`
   background-color: #0093e9;
-  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  background-image: linear - gradient(160deg, #0093e9 0%, #80d0c7 100%);
 
   border-radius: 2em;
   color: white;
   font-weight: bold;
-  display: inline-block;
+  display: inline - block;
   cursor: pointer;
   font-size: 1em;
   padding: 10px 20px;
   text-shadow: 0px 3px 0px #0093e9;
   box-shadow: inset 0px 1px 0px 0px #d9fbbe;
   border: none;
-  font-family: 'Ubuntu Condensed', sans-serif;
+  font-family: 'Ubuntu Condensed', sans - serif;
   font-style: italic;
   letter-spacing: 0.2em;
   line-height: 0.7em;
@@ -106,7 +106,7 @@ const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, index }) => {
       </MainContainer>
       <Separator>
         <UpWave color={shelf.backgroundColor.css || '#000'} />
-        <div style={{ backgroundColor: shelf.backgroundColor.css, height: '8em' }}></div>
+        <Filler color={shelf.backgroundColor.css} height="8em" />
         <DownWave color={shelf.backgroundColor.css || '#000'} />
       </Separator>
     </BackgroundImageContainer>

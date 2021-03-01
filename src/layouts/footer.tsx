@@ -1,13 +1,6 @@
-import * as React from 'react';
-import Helmet from 'react-helmet';
-import { StaticQuery, graphql } from 'gatsby';
-
+import styled from '@emotion/styled';
 import 'modern-normalize';
 import '../styles/normalize';
-
-import Header from '../components/Header';
-import LayoutRoot from '../components/LayoutRoot';
-import LayoutMain from '../components/LayoutMain';
 
 const Footer = styled.footer`
   z-index: 0;
@@ -18,6 +11,7 @@ const Footer = styled.footer`
   font-size: 1.2em;
   letter-spacing: 5px;
   margin: 2em;
+
   color: #989898;
   font-family: 'Indie Flower', cursive;
 `;
