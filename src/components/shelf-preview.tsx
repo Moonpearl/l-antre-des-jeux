@@ -1,46 +1,40 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
 
-import { BackgroundImageContainer } from './styles';
+import { BackgroundImageContainer, FlexContainer, MainContainer } from './styles';
 import { GraphcmsShelf } from '../models/graphcms/assets';
 
-interface OverlayProps {
+interface ShelfFrameProps {
   backgroundColor?: string;
-  height: string;
 }
 
-const Overlay = styled.div<OverlayProps>`
-  background-color: ${props => props.backgroundColor};
+const ShelfFrame = styled.div<ShelfFrameProps>`
+  background-color: ${(props): string => props.backgroundColor as string};
   position: relative;
-  top: 8em;
+  top: 4em;
   border-radius: 2em;
-  padding: 1em;
-  max-width: 40em;
-  z-index: 2;
-  transition: 1s;
-`;
-
-const TextContainer = styled.div`
-  padding: 1em;
+  padding: 2em;
+  max-width: 30em;
 `;
 
 interface TitleProps {
-  color: string;
+  titleColor?: string;
 }
 
 const Title = styled.h2<TitleProps>`
-  color: orange;
+  color: ${props => props.titleColor};
   text-transform: uppercase;
   font-size: 2em;
   font-family: 'Oswald', 'sans-serif';
   font-style: italic;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
 `;
 
 const Text = styled.p`
   color: white;
-  padding: 0.5em;
-  font-family: 'Ubuntu Condensed', sans-serif;
+  padding: 0.5em 0;
+  font-family: 'Open Sans', sans-serif;
+  text-align: justify;
 `;
 
 const Button = styled.button`
@@ -74,16 +68,16 @@ const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, even }) => (
     backgroundSize="cover"
     backgroundPosition="center"
     backgroundAttachment="fixed"
-    reverse={even}
   >
-    <Overlay backgroundColor={shelf.color.css}>
-      <TextContainer>
-        <Title>{shelf.name}</Title>
-        <Text>{shelf.description}</Text>
-        <Button>En voir plus</Button>
-      </TextContainer>
-      {/* <DiceTest src={Dice} alt="de" /> */}
-    </Overlay>
+    <MainContainer>
+      <FlexContainer reverse={even}>
+        <ShelfFrame backgroundColor={shelf.backgroundColor.css}>
+          <Title titleColor={shelf.titleColor.css}>{shelf.name}</Title>
+          <Text>{shelf.description}</Text>
+          <Button>En voir plus</Button>
+        </ShelfFrame>
+      </FlexContainer>
+    </MainContainer>
   </BackgroundImageContainer>
 );
 

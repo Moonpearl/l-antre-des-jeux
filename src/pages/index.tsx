@@ -49,7 +49,10 @@ export const query = graphql`
     allGraphCmsShelf {
       edges {
         node {
-          color {
+          backgroundColor {
+            css
+          }
+          titleColor {
             css
           }
           description

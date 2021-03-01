@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import { GiHouse, GiRollingDices, GiShop, GiRingingBell, GiPlainArrow } from 'react-icons/gi';
+import { GiHouse, GiRollingDices, GiShop, GiRingingBell } from 'react-icons/gi';
 import { FaChevronDown } from 'react-icons/fa';
 
-import { heights, dimensions, colors, fonts } from '../styles/variables';
+import { heights, dimensions, colors } from '../styles/variables';
 import Container from './Container';
 
 const Logo = styled.img`
@@ -59,21 +59,6 @@ interface HeaderProps {
   title: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ title }) => (
-  <StyledHeader>
-    <HeaderInner>
-      <Logo />
-      <HomepageLink to="/">{title}</HomepageLink>
-
-      <Icons>
-        <GiHouse size="40" />
-        <GiShop size="40" />
-        <GiRingingBell size="40" />
-        <GiRollingDices size="40" />
-        <FaChevronDown size="10" />
-      </Icons>
-    </HeaderInner>
-  </StyledHeader>
-);
+const Header: React.FC<HeaderProps> = ({ title }) => <div />;
 
 export default Header;
