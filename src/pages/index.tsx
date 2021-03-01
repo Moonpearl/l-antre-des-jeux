@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { graphql } from 'gatsby';
 import IndexLayout from '../layouts';
-import { ShelfPreview } from '../components';
+import { Selection, ShelfPreview } from '../components';
 import { PagePropsWithData } from '../models';
 import { Filler } from '../components/styles';
 import { Logo as LogoImage } from '../images';
@@ -34,6 +34,7 @@ const DownWave = DownWaves[0];
 
 const IndexPage: FC<PagePropsWithData> = ({ data }) => (
   <IndexLayout>
+    {/* Website logo */}
     <HeaderContainer>
       <Logo src={LogoImage} alt="Logo de l'antre des jeux" />
       <Filler color={headerColor} height="6em" />
@@ -42,10 +43,21 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
       </Separator>
     </HeaderContainer>
 
+    {/* Shelves sections */}
     <ul>
       {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
         <li key={node.slug}>
           <ShelfPreview shelf={node} index={index} />
+        </li>
+      ))}
+    </ul>
+
+    {/* Selections */}
+    <Filler height="6em" />
+    <ul>
+      {data.allGraphCmsSelection?.edges.map(({ node }) => (
+        <li key={node.slug}>
+          <Selection selection={node} />
         </li>
       ))}
     </ul>
@@ -68,6 +80,27 @@ export const query = graphql`
           slug
           backgroundImage {
             url
+          }
+        }
+      }
+    }
+    allGraphCmsSelection {
+      edges {
+        node {
+          name
+          slug
+          description
+          products {
+            slug
+            name
+            imageUrl
+            shelf {
+              slug
+              name
+              backgroundColor {
+                css
+              }
+            }
           }
         }
       }
