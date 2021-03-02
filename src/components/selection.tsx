@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
 import { GraphcmsSelection } from '../models/graphcms/assets';
+import { FaShoppingBasket, FaBookmark } from 'react-icons/fa';
+import '../models/graphcms/assets/shelf';
 
 interface SelectionProps {
   selection: GraphcmsSelection;
@@ -19,7 +21,7 @@ const SelectionContainer = styled.div`
 `;
 
 const StyledSelection = styled.div`
-  background-color: blue;
+  /* background-color: blue;*/
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -72,17 +74,53 @@ const BoardGamesImgSelection = styled.img`
   margin: 0 auto;
 `;
 
+const Button = styled.button`
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+
+  border-radius: 2em;
+  color: white;
+  font-weight: bold;
+  display: inline - block;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 10px 20px;
+  text-shadow: 0px 3px 0px #0093e9;
+  box-shadow: inset 0px 1px 0px 0px #d9fbbe;
+  border: none;
+  font-family: 'Ubuntu Condensed', 'sans - serif';
+  font-style: italic;
+  letter-spacing: 0.2em;
+  line-height: 0.7em;
+
+  margin: 0 auto;
+`;
+
+const ProductContainerItem = styled.div`
+  background-color: palegreen;
+  position: relative;
+  font-size: 2em;
+  margin-left: 8em;
+`;
+
 const Selection: FC<SelectionProps> = ({ selection }) => (
   <SelectionContainer>
     <StyledSelection />
+
     <TitleSelection>{selection.name}</TitleSelection>
 
     <BoardGamesSelection>
       {selection.products.map(product => (
         <>
           <Product>
+            <ProductContainerItem>
+              <FaShoppingBasket />
+              <FaBookmark color={product.shelf} />
+            </ProductContainerItem>
+
             <BoardGamesImgSelection src={product.imageUrl} alt="bg"></BoardGamesImgSelection>
             <BoardGamesNameSelection key={product.slug}>{product.name}</BoardGamesNameSelection>
+            <Button>En voir plus</Button>
           </Product>
         </>
       ))}
