@@ -9,7 +9,7 @@ interface SelectionProps {
 }
 
 const SelectionContainer = styled.div`
-  /*  background-color: pink;*/
+   background-color: pink;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -17,6 +17,8 @@ const SelectionContainer = styled.div`
 
   margin: 2em;
   border-radius: 2em;
+  box-sizing: border-box;
+}
 `;
 
 const StyledSelection = styled.div`
@@ -39,7 +41,7 @@ const TitleSelection = styled.h3`
 `;
 
 const BoardGamesSelection = styled.ol`
-  background-color: goldenrod;
+  /* background-color: goldenrod;*/
   position: relative;
   justify-content: center;
   border-radius: 2em;
@@ -50,28 +52,53 @@ const BoardGamesSelection = styled.ol`
 `;
 
 const Product = styled.div`
-  background-color: white;
-  border: double 1em teal;
   margin: 2em;
   padding: 1em;
   font-style: italic;
-  max-height: 30em;
-  border-radius: 2em;
+  max-height: 18em;
+  /* max-width: 15em;*/
+  position: relative;
 `;
 
 const BoardGamesNameSelection = styled.li`
-  /* background-color: purple;*/
-  color: teal;
-  font-size: 1.5em;
-  font-weight: bold;
-  text-align: center;
-  justify-content: center;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
 `;
 
 const BoardGamesImgSelection = styled.img`
   /* background-color: blue;*/
-  justify-content: center;
-  max-height: 20em;
+  /* justify-content: center;*/
+  position: relative;
+  /* margin: 0 auto;*/
+
+  max-height: 15em;
+  bottom: 70px;
+  opacity: 1;
+  width: 100%;
+
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+
+  &:hover {
+    opacity: 0.2;
+  }
+`;
+
+const Middle = styled.div`
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const Button = styled.button`
@@ -93,17 +120,16 @@ const Button = styled.button`
   letter-spacing: 0.2em;
   line-height: 0.7em;
 
-  margin: 0 auto;
+  margin: 1em auto;
   padding: 20px;
-  margin-bottom: 1em;
 `;
 
 const ProductContainerItem = styled.div`
   /*background-color: palegreen;*/
   position: relative;
   font-size: 2em;
-  margin-left: 8em;
-  bottom: 1.3em;
+  margin-left: 7.5em;
+  /*  bottom: 1.3em;*/
   z-index: 6;
   color: palegreen;
 `;
@@ -118,12 +144,13 @@ const Selection: FC<SelectionProps> = ({ selection }) => (
           <>
             <Product>
               <ProductContainerItem>
-                <FaShoppingBasket color="black" size="30" />
                 <FaBookmark size="70" color={product.shelf} />
               </ProductContainerItem>
 
               <BoardGamesImgSelection src={product.imageUrl} alt="bg"></BoardGamesImgSelection>
-              <BoardGamesNameSelection key={product.slug}>{product.name}</BoardGamesNameSelection>
+              <Middle>
+                <BoardGamesNameSelection key={product.slug}>{product.name}</BoardGamesNameSelection>
+              </Middle>
             </Product>
           </>
         ))}
