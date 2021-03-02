@@ -1,7 +1,5 @@
 /* eslint-disable max-len */
 
-import { FaBluetooth } from 'react-icons/fa';
-
 export const colors = {
   brand: '#663399',
   lilac: '#9d7cbf',
@@ -10,8 +8,6 @@ export const colors = {
   warning: '#ec1818',
   teal: '#03989E',
   ui: {
-    bright: '#e0d6eb',
-    light: '#f5f3f7',
     whisper: '#fbfafc',
 
     dark: '#154360',
