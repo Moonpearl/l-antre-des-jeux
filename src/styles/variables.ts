@@ -6,6 +6,7 @@ export const colors = {
   accent: '#ffb238',
   success: '#37b635',
   warning: '#ec1818',
+  teal: '#03989E',
   ui: {
     bright: '#e0d6eb',
     light: '#f5f3f7',
@@ -18,14 +19,16 @@ export const colors = {
     calm: 'rgba(0, 0, 0, 0.54)'
   },
   white: '#fff',
-  black: '#000'
+  black: '#000',
+
 }
 
 export const fonts = {
   sansSerif:
     '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif',
   serif: 'Georgia, "Times New Roman", Times, serif',
-  monospace: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace, monospace'
+  monospace: 'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace, monospace',
+  lobster: ' Lobster, cursive'
 }
 
 export const breakpoints = {
@@ -61,5 +64,5 @@ export const dimensions = {
 }
 
 export const heights = {
-  header: 60
+  header: 70
 }
