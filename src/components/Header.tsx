@@ -1,56 +1,69 @@
-import * as React from 'react';
+import React, { FC, useState } from 'react';
 import styled from '@emotion/styled';
+import { Filler } from './styles';
+import { colors } from '../styles/variables';
+import { FaHome, FaQuestionCircle, FaStore } from 'react-icons/fa';
+import { IconType } from 'react-icons';
 import { Link } from 'gatsby';
-import { FcHome, FcShop, FcInfo } from 'react-icons/fc';
-import { GiRollingDices } from 'react-icons/gi';
-import { FaChevronDown } from 'react-icons/fa';
+import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
-import { heights, dimensions, colors, fonts } from '../styles/variables';
-import Container from './Container';
+interface Hyperlink {
+  Icon: IconType;
+  path: string;
+  caption?: string;
+}
 
-const Logo = styled.img`
-  width: 3em;
-  height: 3em;
-  background-color: green;
-  margin-right: 2em;
-  border-radius: 1em;
+const links: Hyperlink[] = [
+  { Icon: FaHome, path: '/', caption: 'Accueil' },
+  { Icon: FaStore, path: '/' },
+  { Icon: FaQuestionCircle, path: '/' },
+];
+
+const HeaderContainer = styled.header`
+  background-color: ${colors.ui.dark};
+  position: 'relative';
 `;
 
-/* ICONS HEADER */
+interface NavbarProps {
+  transparent: boolean;
+}
 
-const Icons = styled.div`
-  cursor: pointer;
-  margin-left: 1em;
+const Navbar = styled.ul<NavbarProps>`
+  ${({ transparent }): string =>
+    transparent
+      ? ''
+      : `background-color: ${colors.ui.dark};
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;`};
+  transition: background-color 0.3s ease;
   display: flex;
   flex-direction: row;
-  vertical-align: center;
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+  color: white;
+  position: fixed;
+  top: 0;
+  z-index: 10;
 `;
 
-const StyledHeader = styled.header`
-  height: ${heights.header}px;
-  padding: 0 ${dimensions.containerPadding}rem;
-  background-color: ${colors.white};
-  color: ${colors.teal};
-  width: 50em;
+const IconContainer = styled.div`
+  font-size: 1.75em;
+  padding: 0 0.5rem;
 `;
 
-const HeaderInner = styled(Container)`
+const LinkContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 100%;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: ${colors.ui.normal};
+  }
 `;
 
-const HomepageLink = styled(Link)`
-  color: ${colors.teal};
-  font-size: 1.5rem;
-  font-weight: 600;
-  /* font-family: 'Satisfy', cursive; */
-  font-family: 'Patrick Hand SC', cursive;
+const LinkCaption = styled.span`
+  padding-right: 0.5rem;
 
-  &:hover,
-  &:focus {
-    text-decoration: none;
+  @media (max-width: 639px) {
+    display: none;
   }
 `;
 
@@ -58,21 +71,30 @@ interface HeaderProps {
   title: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ title }) => (
-  <StyledHeader>
-    <HeaderInner>
-      <Logo />
-      <HomepageLink to="/">{title}</HomepageLink>
+const Header: FC<HeaderProps> = () => {
+  const [transparent, setTransparent] = useState(true);
 
-      <Icons>
-        <FcHome size="40" />
-        <FcShop size="40" />
-        <FcInfo size="40" />
-        <GiRollingDices size="40" />
-        <FaChevronDown size="10" />
-      </Icons>
-    </HeaderInner>
-  </StyledHeader>
-);
+  useScrollPosition(({ currPos }) => setTransparent(currPos.y === 0));
+
+  return (
+    <HeaderContainer>
+      <Navbar transparent={transparent}>
+        {links.map(link => (
+          <li key={link.path}>
+            <Link to={link.path}>
+              <LinkContainer>
+                <IconContainer>
+                  <link.Icon />
+                </IconContainer>
+                {link.caption && <LinkCaption>{link.caption}</LinkCaption>}
+              </LinkContainer>
+            </Link>
+          </li>
+        ))}
+      </Navbar>
+      <Filler color={colors.ui.dark} height="3em" marginTop="3em" />
+    </HeaderContainer>
+  );
+};
 
 export default Header;

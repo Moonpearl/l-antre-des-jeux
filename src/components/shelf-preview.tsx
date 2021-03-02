@@ -1,110 +1,116 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
 
-import { BackgroundImageContainer } from './styles';
+import { BackgroundImageContainer, Filler, FlexContainer, MainContainer } from './styles';
 import { GraphcmsShelf } from '../models/graphcms/assets';
+import UpWaves from './styles/waves/up';
+import DownWaves from './styles/waves/down';
 
-interface OverlayProps {
+interface ShelfFrameProps {
   backgroundColor?: string;
-  height: string;
+  reverse: boolean;
 }
 
-const Overlay = styled.div<OverlayProps>`
-  background-color: ${props => props.backgroundColor};
-  /* background-color: background-color: #4158D0;
-background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-; */
+const ShelfFrame = styled.div<ShelfFrameProps>`
+  background-color: ${(props): string => props.backgroundColor as string};
   position: relative;
   top: 8em;
   border-radius: 2em;
-  /* border-top-left-radius: 1em;
-  border-bottom-right-radius: 1em; */
-  /* border: white 10px double; */
-  padding: 1em;
-  max-width: 40em;
+  margin: 16em 0.5em 0;
+  padding: 2em;
+  max-width: 30em;
   z-index: 2;
-  /* filter: hue-rotate(-30deg); */
-  transition: 1s;
-
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: ${(props): string => (props.reverse ? 'left' : 'right')} center;
+  transform: perspective(1200px) rotateY(0);
   &:hover {
-    filter: hue-rotate(0deg);
+    -webkit-box-shadow: ${(props): string => (props.reverse ? '' : '-')}20px 0px 20px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: ${(props): string => (props.reverse ? '' : '-')}20px 0px 20px 10px rgba(0, 0, 0, 0.1);
+    transform: perspective(1200px) rotateY(${(props): string => (props.reverse ? '-' : '')}10deg);
   }
 `;
-const DiceTest = styled.img`
-  position: relative;
-  margin: 1em;
-  height: 7em;
-  width: 15em;
-  margin-left: -8.5em;
-  margin-bottom: -8.2em;
-  transform: rotate(55deg);
-  filter: hue-rotate(90deg);
-`;
 
-const TextContainer = styled.div`
-  /*margin-left: 2em;*/
-  padding: 1em;
-`;
+interface TitleProps {
+  titleColor?: string;
+}
 
-const Title = styled.h2`
-  color: white;
+const Title = styled.h2<TitleProps>`
+  color: ${(props): string => props.titleColor || 'rgba(0, 0, 0, 0)'};
   text-transform: uppercase;
-  font-size: 3em;
-  /* font-family: 'Fredericka the Great', cursive;*/
-  /* font-family: 'Sriracha', cursive; */
-  font-family: 'Cabin Sketch', cursive;
-  /* border-bottom: 3px dotted white; */
+  font-size: 2em;
+  font-family: 'Oswald', 'sans-serif';
+  font-style: italic;
+  letter-spacing: 0.1em;
 `;
 
 const Text = styled.p`
   color: white;
-  padding: 0.5em;
-  font-family: 'Neucha', cursive;
-  /* font-family: 'Architects Daughter', cursive; */
-  /* font-family: 'Indie Flower', cursive; */
+  padding: 0.5em 0;
+  font-family: 'Open Sans', sans - serif;
+  text-align: justify;
 `;
 
 const Button = styled.button`
   background-color: #0093e9;
-  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  background-image: linear - gradient(160deg, #0093e9 0%, #80d0c7 100%);
 
   border-radius: 2em;
   color: white;
   font-weight: bold;
-  display: inline-block;
+  display: inline - block;
   cursor: pointer;
   font-size: 1em;
   padding: 10px 20px;
   text-shadow: 0px 3px 0px #0093e9;
   box-shadow: inset 0px 1px 0px 0px #d9fbbe;
   border: none;
-  font-family: 'Patrick Hand SC', cursive;
-  /* letter-spacing: 0.2em;
-  line-height: 0.7em; */
+  font-family: 'Ubuntu Condensed', sans - serif;
+  font-style: italic;
+  letter-spacing: 0.2em;
+  line-height: 0.7em;
+`;
+
+const Separator = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -24em;
+  transform: scale(1, 0.35);
+  z-index: 1;
 `;
 
 interface ShelfPreviewProps {
   shelf: GraphcmsShelf;
-  even: boolean;
+  index: number;
 }
 
-const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, even }) => (
-  <BackgroundImageContainer
-    backgroundImage={shelf.backgroundImage}
-    backgroundSize="cover"
-    backgroundPosition="center"
-    backgroundAttachment="fixed"
-    reverse={even}
-  >
-    <Overlay backgroundColor={shelf.color.css}>
-      <TextContainer>
-        <Title>{shelf.name}</Title>
-        <Text>{shelf.description}</Text>
-        <Button>En voir plus</Button>
-      </TextContainer>
-      {/* <DiceTest src={Dice} alt="de" /> */}
-    </Overlay>
-  </BackgroundImageContainer>
-);
+const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, index }) => {
+  const UpWave = UpWaves[(index + 1) % UpWaves.length];
+  const DownWave = DownWaves[(index + 1) % DownWaves.length];
+
+  return (
+    <BackgroundImageContainer
+      backgroundImage={shelf.backgroundImage}
+      backgroundSize="cover"
+      backgroundPosition="center"
+      backgroundAttachment="fixed"
+    >
+      <MainContainer>
+        <FlexContainer reverse={index % 2 === 0}>
+          <ShelfFrame backgroundColor={shelf.backgroundColor.css} reverse={index % 2 === 0}>
+            <Title titleColor={shelf.titleColor.css}>{shelf.name}</Title>
+            <Text>{shelf.description}</Text>
+            <Button>En voir plus</Button>
+          </ShelfFrame>
+        </FlexContainer>
+      </MainContainer>
+      <Separator>
+        <UpWave color={shelf.backgroundColor.css || '#000'} />
+        <Filler color={shelf.backgroundColor.css} height="8em" />
+        <DownWave color={shelf.backgroundColor.css || '#000'} />
+      </Separator>
+    </BackgroundImageContainer>
+  );
+};
 
 export default ShelfPreview;

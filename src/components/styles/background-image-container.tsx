@@ -7,17 +7,14 @@ interface BackgroundImageContainerProps {
   backgroundSize: 'cover' | 'contain' | 'auto';
   backgroundPosition: string;
   backgroundAttachment: 'fixed' | 'local' | 'scroll';
-  reverse: boolean;
 }
 
 const BackgroundImageContainer = styled.div<BackgroundImageContainerProps>`
-  padding: 4em;
+  position: relative;
   background-image: url(${({ backgroundImage }): string => backgroundImage.url});
   background-size: ${({ backgroundSize }): string => backgroundSize};
   background-position: ${({ backgroundPosition }): string => backgroundPosition};
   background-attachment: ${({ backgroundAttachment }): string => backgroundAttachment};
-  display: flex;
-  flex-direction: ${({ reverse }): string => (reverse ? 'row-reverse' : 'row')};
 `;
 
 export default BackgroundImageContainer;
