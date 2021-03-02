@@ -9,7 +9,7 @@ interface SelectionProps {
 }
 
 const SelectionContainer = styled.div`
- /*  background-color: pink;*/
+  /*  background-color: pink;*/
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -20,10 +20,10 @@ const SelectionContainer = styled.div`
   box-sizing: border-box;
   overflow: hidden;
 
-
-  max-width: 30em;
-  margin: 0 auto;
-}
+  @media only screen and (min-width: 268px) (max-width: 600px) {
+    max-width: 30em;
+    margin: 0 auto;
+  }
 `;
 
 const StyledSelection = styled.div`
@@ -32,8 +32,10 @@ const StyledSelection = styled.div`
   flex-direction: column;
   flex-wrap: nowrap;
 
-  max-width: 30em;
-  margin: 0 auto;
+  @media only screen and (min-width: 268px) (max-width: 600px) {
+    max-width: 30em;
+    margin: 0 auto;
+  }
 `;
 
 const TitleSelection = styled.h3`
