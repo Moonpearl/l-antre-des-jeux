@@ -43,14 +43,14 @@ export const query = graphql`
     allGraphCmsShelf {
       edges {
         node {
-          color {
+          backgroundColor {
             css
           }
           description
           name
           slug
-          backgroundImage {
-            url
+          titleColor {
+            css
           }
         }
       }

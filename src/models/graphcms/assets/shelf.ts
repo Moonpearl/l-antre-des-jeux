@@ -8,7 +8,17 @@ export default interface Shelf extends Asset {
   backgroundImage: {
     url: string;
   };
-  color: {
+  BackgroundColor: {
+    css?: string;
+    hex?: string;
+    rgba?: {
+      a: number;
+      b: number;
+      g: number;
+      r: number;
+    };
+  };
+  TitleColor: {
     css?: string;
     hex?: string;
     rgba?: {
