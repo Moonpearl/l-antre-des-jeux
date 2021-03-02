@@ -65,7 +65,7 @@ const Product = styled.div`
   padding: 1em;
   font-style: italic;
   max-height: 18em;
-  /* max-width: 15em;*/
+  max-width: 22em;
   position: relative;
 `;
 
