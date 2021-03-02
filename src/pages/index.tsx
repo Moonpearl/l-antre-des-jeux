@@ -7,8 +7,7 @@ import { Filler } from '../components/styles';
 import { Logo as LogoImage } from '../images';
 import styled from '@emotion/styled';
 import DownWaves from '../components/styles/waves/down';
-
-const headerColor = '#666';
+import { colors } from '../styles/variables';
 
 const HeaderContainer = styled.div`
   position: 'relative';
@@ -36,9 +35,9 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
   <IndexLayout>
     <HeaderContainer>
       <Logo src={LogoImage} alt="Logo de l'antre des jeux" />
-      <Filler color={headerColor} height="6em" />
+      <Filler color={colors.ui.dark} height="6em" />
       <Separator>
-        <DownWave color="#666" />
+        <DownWave color={colors.ui.dark} />
       </Separator>
     </HeaderContainer>
 
