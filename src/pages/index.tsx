@@ -1,40 +1,54 @@
 import React, { FC } from 'react';
-import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import IndexLayout from '../layouts';
 import { ShelfPreview } from '../components';
 import { PagePropsWithData } from '../models';
+import { Filler } from '../components/styles';
+import { Logo as LogoImage } from '../images';
+import styled from '@emotion/styled';
+import DownWaves from '../components/styles/waves/down';
 
-const ContainerIndex = styled.div`
-  background-color: #555455;
+const headerColor = '#666';
+
+const HeaderContainer = styled.div`
+  position: 'relative';
 `;
 
-const FooterStyled = styled.footer`
-  z-index: 0;
-  position: relative;
-  text-align: center;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 1.2em;
-  letter-spacing: 5px;
-  margin: 2em;
-  color: #989898;
-  font-family: 'Indie Flower', cursive;
+const Logo = styled.img`
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 2;
+  filter: drop-shadow(5px 5px 5px #333);
 `;
+
+const Separator = styled.div`
+  position: absolute;
+  z-index: 1;
+  transform: scale(1, 0.5);
+  transform-origin: top center;
+`;
+
+const DownWave = DownWaves[0];
 
 const IndexPage: FC<PagePropsWithData> = ({ data }) => (
   <IndexLayout>
-    <ContainerIndex>
-      <ul>
-        {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
-          <li key={node.id}>
-            <ShelfPreview shelf={node} even={index % 2 === 0} />
-          </li>
-        ))}
-      </ul>
+    <HeaderContainer>
+      <Logo src={LogoImage} alt="Logo de l'antre des jeux" />
+      <Filler color={headerColor} height="6em" />
+      <Separator>
+        <DownWave color="#666" />
+      </Separator>
+    </HeaderContainer>
 
-      <FooterStyled>Copyright 2021 - L&apos;Antre des jeux</FooterStyled>
-    </ContainerIndex>
+    <ul>
+      {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
+        <li key={node.slug}>
+          <ShelfPreview shelf={node} index={index} />
+        </li>
+      ))}
+    </ul>
   </IndexLayout>
 );
 
@@ -43,7 +57,10 @@ export const query = graphql`
     allGraphCmsShelf {
       edges {
         node {
-          color {
+          backgroundColor {
+            css
+          }
+          titleColor {
             css
           }
           description
