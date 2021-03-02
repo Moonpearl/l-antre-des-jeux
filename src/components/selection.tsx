@@ -9,7 +9,7 @@ interface SelectionProps {
 }
 
 const SelectionContainer = styled.div`
-   background-color: pink;
+ /*  background-color: pink;*/
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -18,6 +18,11 @@ const SelectionContainer = styled.div`
   margin: 2em;
   border-radius: 2em;
   box-sizing: border-box;
+  overflow: hidden;
+
+
+  max-width: 30em;
+  margin: 0 auto;
 }
 `;
 
@@ -26,6 +31,8 @@ const StyledSelection = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+
+  max-width: 30em;
   margin: 0 auto;
 `;
 
@@ -52,7 +59,7 @@ const BoardGamesSelection = styled.ol`
 `;
 
 const Product = styled.div`
-  margin: 2em;
+  /* margin: 2em;*/
   padding: 1em;
   font-style: italic;
   max-height: 18em;
@@ -80,6 +87,9 @@ const BoardGamesImgSelection = styled.img`
 
   transition: 0.5s ease;
   backface-visibility: hidden;
+
+  max-width: 30em;
+  margin: 0 auto;
 
   &:hover {
     opacity: 0.2;
