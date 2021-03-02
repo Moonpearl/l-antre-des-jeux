@@ -16,7 +16,6 @@ const SelectionContainer = styled.div`
   position: relative;
 
   margin: 2em;
-  /* border: 3px teal dashed;*/
   border-radius: 2em;
 `;
 
@@ -33,28 +32,31 @@ const TitleSelection = styled.h3`
   color: teal;
   font-weight: bold;
   text-transform: uppercase;
-  margin-left: 1em;
-  margin-bottom: 2em;
+  font-style: italic;
   font-size: 2em;
+  margin: 0 auto;
+  margin-bottom: 0.2em;
 `;
 
 const BoardGamesSelection = styled.ol`
-  /*  background-color: green;*/
-  margin-left: 1em;
-
+  background-color: goldenrod;
   position: relative;
   justify-content: center;
+  border-radius: 2em;
 
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 `;
 
 const Product = styled.div`
-  /* background-color: paleturquoise;*/
-  margin: 1em;
-  margin: 0 auto;
+  background-color: white;
+  border: double 1em teal;
+  margin: 2em;
+  padding: 1em;
   font-style: italic;
+  max-height: 30em;
+  border-radius: 2em;
 `;
 
 const BoardGamesNameSelection = styled.li`
@@ -70,8 +72,6 @@ const BoardGamesImgSelection = styled.img`
   /* background-color: blue;*/
   justify-content: center;
   max-height: 20em;
-
-  margin: 0 auto;
 `;
 
 const Button = styled.button`
@@ -94,37 +94,42 @@ const Button = styled.button`
   line-height: 0.7em;
 
   margin: 0 auto;
+  padding: 20px;
+  margin-bottom: 1em;
 `;
 
 const ProductContainerItem = styled.div`
-  background-color: palegreen;
+  /*background-color: palegreen;*/
   position: relative;
   font-size: 2em;
   margin-left: 8em;
+  bottom: 1.3em;
+  z-index: 6;
+  color: palegreen;
 `;
 
 const Selection: FC<SelectionProps> = ({ selection }) => (
   <SelectionContainer>
-    <StyledSelection />
+    <StyledSelection>
+      <TitleSelection>{selection.name}</TitleSelection>
 
-    <TitleSelection>{selection.name}</TitleSelection>
+      <BoardGamesSelection>
+        {selection.products.map(product => (
+          <>
+            <Product>
+              <ProductContainerItem>
+                <FaShoppingBasket color="black" size="30" />
+                <FaBookmark size="70" color={product.shelf} />
+              </ProductContainerItem>
 
-    <BoardGamesSelection>
-      {selection.products.map(product => (
-        <>
-          <Product>
-            <ProductContainerItem>
-              <FaShoppingBasket />
-              <FaBookmark color={product.shelf} />
-            </ProductContainerItem>
-
-            <BoardGamesImgSelection src={product.imageUrl} alt="bg"></BoardGamesImgSelection>
-            <BoardGamesNameSelection key={product.slug}>{product.name}</BoardGamesNameSelection>
-            <Button>En voir plus</Button>
-          </Product>
-        </>
-      ))}
-    </BoardGamesSelection>
+              <BoardGamesImgSelection src={product.imageUrl} alt="bg"></BoardGamesImgSelection>
+              <BoardGamesNameSelection key={product.slug}>{product.name}</BoardGamesNameSelection>
+            </Product>
+          </>
+        ))}
+      </BoardGamesSelection>
+      <Button>En voir plus</Button>
+    </StyledSelection>
   </SelectionContainer>
 );
 
