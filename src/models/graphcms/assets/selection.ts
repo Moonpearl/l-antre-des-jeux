@@ -1,8 +1,8 @@
+import Asset from './asset';
 import Product from './product';
 
-export default interface Selection {
+export default interface Selection extends Asset {
   name: string;
-  slug: string;
   description: string;
   products: Product[];
 }
