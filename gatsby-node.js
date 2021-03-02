@@ -1,9 +1,11 @@
-'use strict'
+'use strict';
 
-const path = require('path')
+const path = require('path');
+
+const resources = [{ uri: 'shelf', node: 'allGraphCmsShelf', filename: 'shelf.tsx' }];
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
+  const { createNodeField } = actions;
 
   // Sometimes, optional fields tend to get not picked up by the GraphQL
   // interpreter if not a single content uses it. Therefore, we're putting them
@@ -12,74 +14,64 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   switch (node.internal.type) {
     case 'MarkdownRemark': {
-      const { permalink, layout } = node.frontmatter
-      const { relativePath } = getNode(node.parent)
+      const { permalink, layout } = node.frontmatter;
+      const { relativePath } = getNode(node.parent);
 
-      let slug = permalink
+      let slug = permalink;
 
       if (!slug) {
-        slug = `/${relativePath.replace('.md', '')}/`
+        slug = `/${relativePath.replace('.md', '')}/`;
       }
 
       // Used to generate URL to view this content.
       createNodeField({
         node,
         name: 'slug',
-        value: slug || ''
-      })
+        value: slug || '',
+      });
 
       // Used to determine a page layout.
       createNodeField({
         node,
         name: 'layout',
-        value: layout || ''
-      })
+        value: layout || '',
+      });
     }
   }
-}
+};
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
-  const allMarkdown = await graphql(`
-    {
-      allMarkdownRemark(limit: 1000) {
-        edges {
-          node {
-            fields {
-              layout
+  for (const resource of resources) {
+    const allAssets = await graphql(`
+      {
+        ${resource.node}(limit: 1000) {
+          edges {
+            node {
               slug
             }
           }
         }
       }
+    `);
+
+    if (allAssets.errors) {
+      console.error(allAssets.errors);
+      throw new Error(allAssets.errors);
     }
-  `)
 
-  if (allMarkdown.errors) {
-    console.error(allMarkdown.errors)
-    throw new Error(allMarkdown.errors)
+    allAssets.data[resource.node].edges.forEach(({ node }) => {
+      const { slug } = node;
+
+      createPage({
+        path: `/${resource.uri}/${slug}`,
+        component: path.resolve(`./src/templates/${resource.filename}`),
+        context: {
+          // Data passed to context is available in page queries as GraphQL variables.
+          slug,
+        },
+      });
+    });
   }
-
-  allMarkdown.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    const { slug, layout } = node.fields
-
-    createPage({
-      path: slug,
-      // This will automatically resolve the template to a corresponding
-      // `layout` frontmatter in the Markdown.
-      //
-      // Feel free to set any `layout` as you'd like in the frontmatter, as
-      // long as the corresponding template file exists in src/templates.
-      // If no template is set, it will fall back to the default `page`
-      // template.
-      //
-      // Note that the template has to exist first, or else the build will fail.
-      component: path.resolve(`./src/templates/${layout || 'page'}.tsx`),
-      context: {
-        // Data passed to context is available in page queries as GraphQL variables.
-        slug
-      }
-    })
-  })
-}
+};
