@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 import styled from '@emotion/styled';
-import { Filler } from './styles';
 import { colors } from '../styles/variables';
 import { FaHome, FaQuestionCircle, FaStore } from 'react-icons/fa';
 import { IconType } from 'react-icons';
@@ -92,7 +91,6 @@ const Header: FC<HeaderProps> = () => {
           </li>
         ))}
       </Navbar>
-      <Filler color={colors.ui.dark} height="3em" marginTop="3em" />
     </HeaderContainer>
   );
 };

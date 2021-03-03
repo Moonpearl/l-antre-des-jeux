@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
-
-import { BackgroundImageContainer, Filler, FlexContainer, MainContainer } from './styles';
+import Markdown from 'markdown-to-jsx';
+import { BackgroundImageContainer, Filler, FlexContainer, MainContainer, Title } from './styles';
 import { GraphcmsShelf } from '../models/graphcms/assets';
 import UpWaves from './styles/waves/up';
 import DownWaves from './styles/waves/down';
+import { Link } from 'gatsby';
 
 interface ShelfFrameProps {
   backgroundColor?: string;
@@ -28,26 +29,6 @@ const ShelfFrame = styled.div<ShelfFrameProps>`
     box-shadow: ${(props): string => (props.reverse ? '' : '-')}20px 0px 20px 10px rgba(0, 0, 0, 0.1);
     transform: perspective(1200px) rotateY(${(props): string => (props.reverse ? '-' : '')}10deg);
   }
-`;
-
-interface TitleProps {
-  titleColor?: string;
-}
-
-const Title = styled.h2<TitleProps>`
-  color: ${(props): string => props.titleColor || 'rgba(0, 0, 0, 0)'};
-  text-transform: uppercase;
-  font-size: 2em;
-  font-family: 'Oswald', 'sans-serif';
-  font-style: italic;
-  letter-spacing: 0.1em;
-`;
-
-const Text = styled.p`
-  color: white;
-  padding: 0.5em 0;
-  font-family: 'Open Sans', sans - serif;
-  text-align: justify;
 `;
 
 const Button = styled.button`
@@ -79,6 +60,12 @@ const Separator = styled.div`
   z-index: 1;
 `;
 
+const Text = styled.div`
+  color: white;
+  text-align: justify;
+  margin: 1em 0;
+`;
+
 interface ShelfPreviewProps {
   shelf: GraphcmsShelf;
   index: number;
@@ -98,9 +85,15 @@ const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, index }) => {
       <MainContainer>
         <FlexContainer reverse={index % 2 === 0}>
           <ShelfFrame backgroundColor={shelf.backgroundColor.css} reverse={index % 2 === 0}>
-            <Title titleColor={shelf.titleColor.css}>{shelf.name}</Title>
-            <Text>{shelf.description}</Text>
-            <Button>En voir plus</Button>
+            <Title level={3} color={shelf.titleColor.css}>
+              {shelf.name}
+            </Title>
+            <Text>
+              <Markdown>{shelf.description}</Markdown>
+            </Text>
+            <Link to={`/shelf/${shelf.slug}`}>
+              <Button>En voir plus</Button>
+            </Link>
           </ShelfFrame>
         </FlexContainer>
       </MainContainer>

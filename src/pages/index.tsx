@@ -3,11 +3,12 @@ import { graphql } from 'gatsby';
 import IndexLayout from '../layouts';
 import { ShelfPreview } from '../components';
 import { PagePropsWithData } from '../models';
-import { Filler } from '../components/styles';
+import { Filler, Title } from '../components/styles';
 import { Logo as LogoImage } from '../images';
 import styled from '@emotion/styled';
 import DownWaves from '../components/styles/waves/down';
 import { colors } from '../styles/variables';
+import Invisible from '../components/styles/invisible';
 
 const HeaderContainer = styled.div`
   position: 'relative';
@@ -34,6 +35,7 @@ const DownWave = DownWaves[0];
 const IndexPage: FC<PagePropsWithData> = ({ data }) => (
   <IndexLayout>
     <HeaderContainer>
+      <Filler color={colors.ui.dark} height="6em" />
       <Logo src={LogoImage} alt="Logo de l'antre des jeux" />
       <Filler color={colors.ui.dark} height="6em" />
       <Separator>
@@ -41,6 +43,9 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
       </Separator>
     </HeaderContainer>
 
+    <Invisible>
+      <Title level={2}>Rayons</Title>
+    </Invisible>
     <ul>
       {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
         <li key={node.slug}>
