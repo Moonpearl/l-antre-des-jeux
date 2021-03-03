@@ -2,7 +2,8 @@ import React, { FC } from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { GraphcmsProduct } from '../models/graphcms/assets';
-import { FaBookmark } from 'react-icons/fa';
+import { FaBookmark, FaSearch } from 'react-icons/fa';
+import { Button } from './styles';
 
 const Product = styled.div`
   position: relative;
@@ -39,6 +40,7 @@ const Overlay = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  row-gap: 1em;
   border-radius: 0.5em;
 `;
 
@@ -59,7 +61,12 @@ const ProductPreview: FC<ProductPreviewProps> = ({ product }) => (
   <Product>
     <Overlay className="ProductPreview-overlay">
       <ProductName>{product.name}</ProductName>
-      <button>Voir</button>
+      <Link to={`/product/${product.slug}`}>
+        <Button>
+          <FaSearch />
+          &nbsp; Voir
+        </Button>
+      </Link>
     </Overlay>
 
     {product.shelf && (

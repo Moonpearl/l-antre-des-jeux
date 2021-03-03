@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
 import Markdown from 'markdown-to-jsx';
-import { BackgroundImageContainer, Filler, FlexContainer, MainContainer, Title } from './styles';
+import { BackgroundImageContainer, Button, Filler, FlexContainer, MainContainer, Title } from './styles';
 import { GraphcmsShelf } from '../models/graphcms/assets';
 import UpWaves from './styles/waves/up';
 import DownWaves from './styles/waves/down';
@@ -29,26 +29,6 @@ const ShelfFrame = styled.div<ShelfFrameProps>`
     box-shadow: ${(props): string => (props.reverse ? '' : '-')}20px 0px 20px 10px rgba(0, 0, 0, 0.1);
     transform: perspective(1200px) rotateY(${(props): string => (props.reverse ? '-' : '')}10deg);
   }
-`;
-
-const Button = styled.button`
-  background-color: #0093e9;
-  background-image: linear - gradient(160deg, #0093e9 0%, #80d0c7 100%);
-
-  border-radius: 2em;
-  color: white;
-  font-weight: bold;
-  display: inline - block;
-  cursor: pointer;
-  font-size: 1em;
-  padding: 10px 20px;
-  text-shadow: 0px 3px 0px #0093e9;
-  box-shadow: inset 0px 1px 0px 0px #d9fbbe;
-  border: none;
-  font-family: 'Ubuntu Condensed', sans - serif;
-  font-style: italic;
-  letter-spacing: 0.2em;
-  line-height: 0.7em;
 `;
 
 const Separator = styled.div`
@@ -92,7 +72,7 @@ const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, index }) => {
               <Markdown>{shelf.description}</Markdown>
             </Text>
             <Link to={`/shelf/${shelf.slug}`}>
-              <Button>En voir plus</Button>
+              <Button>Découvrir</Button>
             </Link>
           </ShelfFrame>
         </FlexContainer>
