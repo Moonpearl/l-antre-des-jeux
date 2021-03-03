@@ -8,12 +8,12 @@ const Product = styled.div`
   position: relative;
   height: 100%;
 
-  &:hover *:first-child {
+  &:hover .ProductPreview-overlay {
     opacity: 1;
   }
 `;
 
-const ProductName = styled.li`
+const ProductName = styled.h4`
   color: white;
 `;
 
@@ -57,7 +57,7 @@ interface ProductPreviewProps {
 
 const ProductPreview: FC<ProductPreviewProps> = ({ product }) => (
   <Product>
-    <Overlay>
+    <Overlay className="ProductPreview-overlay">
       <ProductName>{product.name}</ProductName>
       <button>Voir</button>
     </Overlay>
