@@ -48,15 +48,20 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
       <Title level={2}>Rayons</Title>
     </Invisible>
     <ul>
-      {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
-        <li key={node.slug}>
-          <ShelfPreview shelf={node} index={index} />
-        </li>
-      ))}
+      {data.allGraphCmsShelf?.edges.map(({ node }, index) => {
+        console.log(node);
+        return (
+          <li key={node.slug}>
+            <ShelfPreview shelf={node} index={index} />
+          </li>
+        );
+      })}
     </ul>
 
-    {/* Selections */}
-    <Filler height="6em" />
+    <Invisible>
+      <Title level={2}>Sélections</Title>
+    </Invisible>
+    <Filler height="12em" />
     <ul>
       {data.allGraphCmsSelection?.edges.map(({ node }) => (
         <li key={node.slug}>
@@ -72,6 +77,9 @@ export const query = graphql`
     allGraphCmsShelf {
       edges {
         node {
+          backgroundImage {
+            url
+          }
           backgroundColor {
             css
           }
