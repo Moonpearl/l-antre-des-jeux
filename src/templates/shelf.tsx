@@ -5,12 +5,20 @@ import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContain
 import DownWaves from '../components/styles/waves/down';
 import IndexLayout from '../layouts';
 import { PagePropsWithData } from '../models';
+import { ProductList } from '../components';
 
 const Separator = styled.div`
   position: absolute;
   z-index: 1;
   transform: scale(1, 0.5);
   transform-origin: top center;
+`;
+
+const ProductListContainer = styled.div`
+  background-color: white;
+  border-radius: 1em;
+  padding: 2em;
+  margin-bottom: 2em;
 `;
 
 const DownWave = DownWaves[1];
@@ -44,11 +52,9 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
         <Filler height="12em" />
 
         <MainContainer>
-          <ul>
-            {shelf.products.map(product => (
-              <li key={product.slug}>{product.name}</li>
-            ))}
-          </ul>
+          <ProductListContainer>
+            <ProductList products={shelf.products} />
+          </ProductListContainer>
         </MainContainer>
       </BackgroundImageContainer>
     </IndexLayout>
@@ -72,6 +78,14 @@ export const query = graphql`
       products {
         slug
         name
+        imageUrl
+        shelf {
+          slug
+          name
+          backgroundColor {
+            css
+          }
+        }
       }
     }
   }

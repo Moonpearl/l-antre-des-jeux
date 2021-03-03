@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { GraphcmsProduct } from '../models/graphcms/assets';
 import { FaBookmark } from 'react-icons/fa';
@@ -62,9 +63,11 @@ const ProductPreview: FC<ProductPreviewProps> = ({ product }) => (
     </Overlay>
 
     {product.shelf && (
-      <ProductShelf>
-        <FaBookmark color={product.shelf.backgroundColor.css} />
-      </ProductShelf>
+      <Link to={`/shelf/${product.shelf.slug}`}>
+        <ProductShelf>
+          <FaBookmark color={product.shelf.backgroundColor.css} />
+        </ProductShelf>
+      </Link>
     )}
 
     <ProductImage src={product.imageUrl} alt={product.name} />
