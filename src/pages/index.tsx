@@ -3,11 +3,12 @@ import { graphql } from 'gatsby';
 import IndexLayout from '../layouts';
 import { Selection, ShelfPreview } from '../components';
 import { PagePropsWithData } from '../models';
-import { Filler } from '../components/styles';
+import { Filler, Title } from '../components/styles';
 import { Logo as LogoImage } from '../images';
 import styled from '@emotion/styled';
 import DownWaves from '../components/styles/waves/down';
 import { colors } from '../styles/variables';
+import Invisible from '../components/styles/invisible';
 
 const HeaderContainer = styled.div`
   position: 'relative';
@@ -35,6 +36,7 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
   <IndexLayout>
     {/* Website logo */}
     <HeaderContainer>
+      <Filler color={colors.ui.dark} height="6em" />
       <Logo src={LogoImage} alt="Logo de l'antre des jeux" />
       <Filler color={colors.ui.dark} height="6em" />
       <Separator>
@@ -42,7 +44,9 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
       </Separator>
     </HeaderContainer>
 
-    {/* Shelves sections */}
+    <Invisible>
+      <Title level={2}>Rayons</Title>
+    </Invisible>
     <ul>
       {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
         <li key={node.slug}>
@@ -51,8 +55,10 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
       ))}
     </ul>
 
-    {/* Selections */}
-    <Filler height="6em" />
+    <Invisible>
+      <Title level={2}>Sélections</Title>
+    </Invisible>
+    <Filler height="12em" />
     <ul>
       {data.allGraphCmsSelection?.edges.map(({ node }) => (
         <li key={node.slug}>
@@ -68,17 +74,17 @@ export const query = graphql`
     allGraphCmsShelf {
       edges {
         node {
-          backgroundColor {
-            css
+          backgroundImage {
+            url
           }
-          titleColor {
+          backgroundColor {
             css
           }
           description
           name
           slug
-          backgroundImage {
-            url
+          titleColor {
+            css
           }
         }
       }
