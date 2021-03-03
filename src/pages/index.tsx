@@ -48,14 +48,11 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
       <Title level={2}>Rayons</Title>
     </Invisible>
     <ul>
-      {data.allGraphCmsShelf?.edges.map(({ node }, index) => {
-        console.log(node);
-        return (
-          <li key={node.slug}>
-            <ShelfPreview shelf={node} index={index} />
-          </li>
-        );
-      })}
+      {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
+        <li key={node.slug}>
+          <ShelfPreview shelf={node} index={index} />
+        </li>
+      ))}
     </ul>
 
     <Invisible>
