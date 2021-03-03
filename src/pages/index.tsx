@@ -64,14 +64,11 @@ export const query = graphql`
           backgroundColor {
             css
           }
-          titleColor {
-            css
-          }
           description
           name
           slug
-          backgroundImage {
-            url
+          titleColor {
+            css
           }
         }
       }
