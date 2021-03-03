@@ -2,7 +2,10 @@
 
 const path = require('path');
 
-const resources = [{ uri: 'shelf', node: 'allGraphCmsShelf', filename: 'shelf.tsx' }];
+const resources = [
+  { uri: 'shelf', node: 'allGraphCmsShelf', filename: 'shelf.tsx' },
+  { uri: 'product', node: 'allGraphCmsProduct', filename: 'product.tsx' },
+];
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;

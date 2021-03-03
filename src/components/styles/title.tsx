@@ -16,7 +16,7 @@ interface TitleProps {
 }
 
 const TitleStyle = styled.span<TitleProps>`
-  color: ${({ color }): string => color || 'rgba(0, 0, 0, 0)'};
+  color: ${({ color }): string => color || 'initial'};
   text-transform: uppercase;
   font-size: ${({ level }): number => sizes[level]}em;
   font-family: 'Oswald', 'sans-serif';

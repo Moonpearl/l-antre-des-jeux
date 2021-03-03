@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { GraphcmsProduct } from '../models/graphcms/assets';
 import { FaBookmark, FaSearch } from 'react-icons/fa';
-import { Button, Title } from './styles';
+import { Button } from './styles';
 
 const Product = styled.div`
   position: relative;
@@ -61,12 +61,12 @@ const ProductPreview: FC<ProductPreviewProps> = ({ product }) => (
   <Product>
     <Overlay className="ProductPreview-overlay">
       <ProductName>{product.name}</ProductName>
-      <span>
+      <Link to={`/product/${product.slug}`}>
         <Button>
           <FaSearch />
           &nbsp; Voir
         </Button>
-      </span>
+      </Link>
     </Overlay>
 
     {product.shelf && (
