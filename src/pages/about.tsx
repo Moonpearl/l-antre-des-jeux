@@ -11,11 +11,13 @@ const ContainerAbout = styled.div`
   display: flex;
   flex-direction: column;
   background-color: palegoldenrod;
+  justify-content: center;
 `;
 
 const BgImage = styled.img`
   position: absolute;
   opacity: 0.2;
+
   background-size: contain;
 `;
 
@@ -40,11 +42,9 @@ const AboutTitle = styled.h1`
 `;
 
 /* A voir + tard*/
-const Diaporama = styled.div`
-  background-color: teal;
-  margin: 0 2em;
-  border-radius: 1em;
+const Diaporama = styled.img`
   position: relative;
+  margin-bottom: 1em;
 `;
 
 const UnderlayCenter = styled.div`
@@ -96,6 +96,11 @@ const Bubble = styled.div`
   bottom: 32em;
   right: 6em;
   margin-bottom: 10em;
+  @media only screen and (max-width: 600px) {
+    bottom: 15em;
+    left: 0;
+    right: 0;
+  }
 `;
 
 const TextFrame = styled.div`
@@ -154,6 +159,7 @@ const ContactTitle = styled.h2`
 const ContactContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
 `;
 
 const ContactText = styled.p`
@@ -169,6 +175,7 @@ const IconsContact = styled.div`
   position: relative;
 
   justify-content: center;
+
   color: grey;
 `;
 
@@ -180,7 +187,7 @@ const Icon = styled.div`
 
 const Map = styled.div`
   background-color: palegoldenrod;
-  height: 20em;
+
   margin: 1em;
 `;
 
@@ -191,9 +198,7 @@ const ShopPage = () => (
       <MainContainer>
         <AboutTitle>La boutique</AboutTitle>
         <UnderlayCenter>
-          <section className="AboutImg">
-            <Diaporama />
-          </section>
+          <Diaporama src={BgImg} alt="Placeholder" />
 
           <StaffTitle>Le staff !</StaffTitle>
           <ImgBubble>
