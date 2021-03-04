@@ -12,6 +12,7 @@ const ContainerAbout = styled.div`
   flex-direction: column;
   background-color: palegoldenrod;
   justify-content: center;
+  align-items: center;
 `;
 
 const BgImage = styled.img`
@@ -69,8 +70,6 @@ const StaffTitle = styled.h2`
   font-size: 2em;
   padding: 0.5em;
   background-color: gold;
-  border-top-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
   margin-bottom: 2em;
 `;
 
@@ -87,7 +86,7 @@ const ImgMember = styled.img`
   justify-content: center;
   position: relative;
   border-radius: 50%;
-  border: 1em solid green;
+  border: 1em solid teal;
   margin: 2em auto;
 `;
 
@@ -97,9 +96,13 @@ const Bubble = styled.div`
   right: 6em;
   margin-bottom: 10em;
   @media only screen and (max-width: 600px) {
-    bottom: 15em;
-    left: 0;
+    bottom: 0;
     right: 0;
+    margin: 1em auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -120,6 +123,9 @@ const Triangle = styled.div`
   position: absolute;
   left: 20em;
   top: 9em;
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const NameMember = styled.div`
@@ -154,11 +160,14 @@ const ContactTitle = styled.h2`
   font-size: 2em;
   padding: 0.5em;
   background-color: gold;
+  @media only screen and (max-width: 600px) {
+    margin-top: 20em;
+  }
 `;
 
 const ContactContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
 `;
 
@@ -215,8 +224,8 @@ const ShopPage = () => (
             </Bubble>
           </ImgBubble>
 
-          <section className="ShopContact">
-            <ContactTitle>Comment nous trouver ?</ContactTitle>
+          <ContactTitle>Comment nous trouver ?</ContactTitle>
+          {
             <ContactContainer>
               <ContactText>
                 {' '}
@@ -240,21 +249,20 @@ const ShopPage = () => (
                 +33 61520754565
               </ContactText>
             </ContactContainer>
+          }
+          <Map />
 
-            <Map />
-
-            <IconsContact>
-              <Icon>
-                <FaFacebook />
-              </Icon>
-              <Icon>
-                <FaTwitter />
-              </Icon>
-              <Icon>
-                <FaInstagramSquare />
-              </Icon>
-            </IconsContact>
-          </section>
+          <IconsContact>
+            <Icon>
+              <FaFacebook />
+            </Icon>
+            <Icon>
+              <FaTwitter />
+            </Icon>
+            <Icon>
+              <FaInstagramSquare />
+            </Icon>
+          </IconsContact>
         </UnderlayCenter>
       </MainContainer>
     </ContainerAbout>
