@@ -13,6 +13,12 @@ const ContainerAbout = styled.div`
   background-color: palegoldenrod;
 `;
 
+const BgImage = styled.img`
+  position: absolute;
+  opacity: 0.2;
+  background-size: contain;
+`;
+
 const AboutTitle = styled.h1`
   position: relative;
 
@@ -181,6 +187,7 @@ const Map = styled.div`
 const ShopPage = () => (
   <IndexLayout>
     <ContainerAbout>
+      <BgImage src={BgImg} alt="Image de fond" />
       <MainContainer>
         <AboutTitle>La boutique</AboutTitle>
         <UnderlayCenter>
