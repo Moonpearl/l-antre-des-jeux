@@ -1,6 +1,6 @@
 import { PageProps } from 'gatsby';
 import { GraphcmsCollection } from './graphcms';
-import { GraphcmsArticle, GraphcmsProduct, GraphcmsSelection, GraphcmsShelf } from './graphcms/assets';
+import { GraphcmsArticle, GraphcmsGlobalContent, GraphcmsProduct, GraphcmsSelection, GraphcmsShelf } from './graphcms/assets';
 
 interface PageData {
   allGraphCmsArticle?: GraphcmsCollection<GraphcmsArticle>;
@@ -8,6 +8,7 @@ interface PageData {
   allGraphCmsSelection?: GraphcmsCollection<GraphcmsSelection>;
   allGraphCmsShelf?: GraphcmsCollection<GraphcmsShelf>;
   graphCmsArticle?: GraphcmsArticle;
+  graphCmsGlobalContent?: GraphcmsGlobalContent;
   graphCmsProduct?: GraphcmsProduct;
   graphCmsSelection?: GraphcmsSelection;
   graphCmsShelf?: GraphcmsShelf;

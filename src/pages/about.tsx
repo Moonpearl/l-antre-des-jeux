@@ -6,6 +6,9 @@ import IndexLayout from '../layouts/index';
 import MainContainer from '../components/styles/main-container';
 import BgImg from '../images/bg.jpg';
 import MemberImg from '../images/mistery-character.png';
+import { graphql } from 'gatsby';
+import { PagePropsWithData } from '../models';
+import Markdown from 'markdown-to-jsx';
 
 const ContainerAbout = styled.div`
   display: flex;
@@ -18,8 +21,6 @@ const ContainerAbout = styled.div`
 const BgImage = styled.img`
   position: absolute;
   opacity: 0.2;
-
-  background-size: contain;
 `;
 
 const AboutTitle = styled.h1`
@@ -58,6 +59,14 @@ const UnderlayCenter = styled.div`
   flex-direction: column;
 `;
 
+const Description = styled.p`
+  text-align: center;
+  margin: 1em;
+  color: gold;
+  margin-bottom: 2em;
+  text-align: justify;
+`;
+
 const StaffTitle = styled.h2`
   position: relative;
   text-align: center;
@@ -76,8 +85,9 @@ const StaffTitle = styled.h2`
 /* MEMBER */
 
 const ImgBubble = styled.div`
-  /*  background-color: pink;*/
   justify-content: center;
+  position: relative;
+  margin-bottom: -15em;
 `;
 
 const ImgMember = styled.img`
@@ -92,9 +102,8 @@ const ImgMember = styled.img`
 
 const Bubble = styled.div`
   position: relative;
-  bottom: 32em;
+  bottom: 20em;
   right: 6em;
-  margin-bottom: 10em;
   @media only screen and (max-width: 600px) {
     bottom: 0;
     right: 0;
@@ -107,10 +116,9 @@ const Bubble = styled.div`
 `;
 
 const TextFrame = styled.div`
-  position: absolute;
+  position: relative;
   background-color: teal;
   border-radius: 2em;
-  margin: 16em 0.5em 0;
   padding: 2em;
   max-width: 20em;
 `;
@@ -160,9 +168,6 @@ const ContactTitle = styled.h2`
   font-size: 2em;
   padding: 0.5em;
   background-color: gold;
-  @media only screen and (max-width: 600px) {
-    margin-top: 20em;
-  }
 `;
 
 const ContactContainer = styled.div`
@@ -200,73 +205,105 @@ const Map = styled.div`
   margin: 1em;
 `;
 
-const ShopPage = () => (
-  <IndexLayout>
-    <ContainerAbout>
-      <BgImage src={BgImg} alt="Image de fond" />
-      <MainContainer>
-        <AboutTitle>La boutique</AboutTitle>
-        <UnderlayCenter>
-          <Diaporama src={BgImg} alt="Placeholder" />
+const AboutPage: FC<PagePropsWithData> = ({ data }) => {
+  const { graphCmsGlobalContent: globalContent } = data;
 
-          <StaffTitle>Le staff !</StaffTitle>
-          <ImgBubble>
-            <ImgMember src={MemberImg} alt="Image du gérant" />
-            <Bubble>
-              <TextFrame>
-                <Triangle />
-                <NameMember>Mr. le gérant</NameMember>
-                <DescriptionMember>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur possimus velit voluptatibus porro quo fugit quam, ea
-                  consequatur, asperiores vitae doloribus magnam temporibus repellat ut eveniet reprehenderit eaque? Voluptates, at.
-                </DescriptionMember>
-              </TextFrame>
-            </Bubble>
-          </ImgBubble>
+  return (
+    <IndexLayout>
+      <ContainerAbout>
+        <BgImage src={BgImg} alt="Image de fond" />
+        <MainContainer>
+          <AboutTitle>La boutique</AboutTitle>
+          <UnderlayCenter>
+            <Diaporama src={BgImg} alt="Placeholder" />
+            <Description>
+              <Markdown>{globalContent.shopDescription}</Markdown>
+            </Description>
 
-          <ContactTitle>Comment nous trouver ?</ContactTitle>
-          {
-            <ContactContainer>
-              <ContactText>
-                {' '}
-                <Icon>
-                  <GiShop />
-                </Icon>
-                15 rue de la Belette, 68900 Ville
-              </ContactText>
-              <ContactText>
-                {' '}
-                <Icon>
-                  <FaPhoneSquareAlt />
-                </Icon>
-                antredesjeux@gmail.com
-              </ContactText>
-              <ContactText>
-                <Icon>
+            <StaffTitle>Le staff !</StaffTitle>
+
+            {globalContent.employees.map(employee => (
+              <ImgBubble key={employee.slug}>
+                <ImgMember src={MemberImg} alt="Image du gérant" />
+                <Bubble>
+                  <TextFrame>
+                    <Triangle />
+                    <NameMember>{employee.name}</NameMember>
+                    <DescriptionMember>
+                      <Markdown>{employee.bio}</Markdown>
+                    </DescriptionMember>
+                  </TextFrame>
+                </Bubble>
+              </ImgBubble>
+            ))}
+
+            <ContactTitle>Comment nous trouver ?</ContactTitle>
+            {
+              <ContactContainer>
+                <ContactText>
                   {' '}
-                  <FaEnvelopeOpenText />
-                </Icon>
-                +33 61520754565
-              </ContactText>
-            </ContactContainer>
-          }
-          <Map />
+                  <Icon>
+                    <GiShop />
+                  </Icon>
+                  {globalContent.shopAddress}
+                </ContactText>
+                <ContactText>
+                  {' '}
+                  <Icon>
+                    <FaPhoneSquareAlt />
+                  </Icon>
+                  {globalContent.shopPhone}
+                </ContactText>
+                <ContactText>
+                  <Icon>
+                    {' '}
+                    <FaEnvelopeOpenText />
+                  </Icon>
+                  {globalContent.shopEmail}
+                </ContactText>
+              </ContactContainer>
+            }
 
-          <IconsContact>
-            <Icon>
-              <FaFacebook />
-            </Icon>
-            <Icon>
-              <FaTwitter />
-            </Icon>
-            <Icon>
-              <FaInstagramSquare />
-            </Icon>
-          </IconsContact>
-        </UnderlayCenter>
-      </MainContainer>
-    </ContainerAbout>
-  </IndexLayout>
-);
+            <IconsContact>
+              <Icon>
+                <FaFacebook />
+              </Icon>
+              <Icon>
+                <FaTwitter />
+              </Icon>
+              <Icon>
+                <FaInstagramSquare />
+              </Icon>
+            </IconsContact>
+          </UnderlayCenter>
+        </MainContainer>
+      </ContainerAbout>
+    </IndexLayout>
+  );
+};
 
-export default ShopPage;
+export const query = graphql`
+  query AboutPageQuery {
+    graphCmsGlobalContent {
+      employees {
+        bio
+        name
+        slug
+      }
+      shopAddress
+      shopDescription
+      shopEmail
+      shopLocation {
+        latitude
+        longitude
+        remoteTypeName
+      }
+      shopPhone
+      socialFacebook
+      socialInstagram
+      socialTwitter
+    }
+  }
+`;
+
+export default AboutPage;
