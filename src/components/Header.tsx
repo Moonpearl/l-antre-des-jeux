@@ -3,12 +3,14 @@ import styled from '@emotion/styled';
 import { colors } from '../styles/variables';
 import { FaHome, FaQuestionCircle, FaStore } from 'react-icons/fa';
 import { IconType } from 'react-icons';
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
+import { GraphcmsShelf } from '../models/graphcms/assets';
+import { GraphcmsCollection } from '../models/graphcms';
 
-interface Hyperlink {
-  Icon: IconType;
-  path: string;
+interface NavItemInterface {
+  Icon?: IconType;
+  action: string | NavItemInterface[];
   caption?: string;
 }
 
@@ -23,19 +25,20 @@ const HeaderContainer = styled.header`
   position: 'relative';
 `;
 
-interface NavbarProps {
+interface NavFrameProps {
   transparent: boolean;
 }
 
-const Navbar = styled.ul<NavbarProps>`
+const NavFrame = styled.div<NavFrameProps>`
   ${({ transparent }): string =>
     transparent
       ? ''
       : `background-color: ${colors.ui.dark};
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;`};
   transition: background-color 0.3s ease;
-  display: flex;
-  flex-direction: row;
+`;
+
+const Navbar = styled.div`
   width: 100%;
   height: 3rem;
   line-height: 3rem;
@@ -45,26 +48,84 @@ const Navbar = styled.ul<NavbarProps>`
   z-index: 10;
 `;
 
+const NavList = styled.ul`
+  display: flex;
+  flex-direction: row;
+`;
+
 const IconContainer = styled.div`
   font-size: 1.75em;
-  padding: 0 0.5rem;
 `;
 
 const LinkContainer = styled.div`
+  padding: 0 0.5rem;
+  position: relative;
   display: flex;
   transition: background-color 0.3s ease;
   &:hover {
     background-color: ${colors.ui.normal};
+
+    & > .dropdown {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 `;
 
 const LinkCaption = styled.span`
-  padding-right: 0.5rem;
+  padding-left: 0.5rem;
 
   @media (max-width: 639px) {
     display: none;
   }
 `;
+
+const Dropdown = styled.div`
+  min-width: 10rem;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  top: 100%;
+  transition: opacity 0.3s ease;
+`;
+
+interface NavItemProps {
+  item: NavItemInterface;
+}
+
+const NavItem: FC<NavItemProps> = ({ item }) => {
+  const jsx = (
+    <LinkContainer>
+      {item.Icon && (
+        <IconContainer>
+          <item.Icon />
+        </IconContainer>
+      )}
+      {item.caption && <LinkCaption>{item.caption}</LinkCaption>}
+      {typeof item.action !== 'string' && (
+        <Dropdown className="dropdown">
+          <NavFrame transparent={false}>
+            <ul>
+              {item.action.map((subitem, index) => (
+                <li key={index}>
+                  <NavItem item={subitem} />
+                </li>
+              ))}
+            </ul>
+          </NavFrame>
+        </Dropdown>
+      )}
+    </LinkContainer>
+  );
+
+  switch (typeof item.action) {
+    case 'string':
+      return <Link to={item.action}>{jsx}</Link>;
+
+    default:
+      return jsx;
+  }
+};
 
 interface HeaderProps {
   title: string;
@@ -75,21 +136,39 @@ const Header: FC<HeaderProps> = () => {
 
   useScrollPosition(({ currPos }) => setTransparent(currPos.y === 0));
 
+  const { allGraphCmsShelf: shelves } = useStaticQuery<{ allGraphCmsShelf: GraphcmsCollection<GraphcmsShelf> }>(graphql`
+    query HeaderQuery {
+      allGraphCmsShelf {
+        edges {
+          node {
+            slug
+            name
+          }
+        }
+      }
+    }
+  `);
+
+  const items: NavItemInterface[] = [
+    { Icon: FaHome, action: '/', caption: 'Accueil' },
+    { Icon: FaStore, action: shelves.edges.map(({ node }) => ({ action: `/shelf/${node.slug}`, caption: node.name })) },
+    { Icon: FaQuestionCircle, action: '/' },
+  ];
+
+  console.log(shelves);
+
   return (
     <HeaderContainer>
-      <Navbar transparent={transparent}>
-        {links.map(link => (
-          <li key={link.path}>
-            <Link to={link.path}>
-              <LinkContainer>
-                <IconContainer>
-                  <link.Icon />
-                </IconContainer>
-                {link.caption && <LinkCaption>{link.caption}</LinkCaption>}
-              </LinkContainer>
-            </Link>
-          </li>
-        ))}
+      <Navbar>
+        <NavFrame transparent={transparent}>
+          <NavList>
+            {items.map((item, index) => (
+              <li key={index}>
+                <NavItem item={item} />
+              </li>
+            ))}
+          </NavList>
+        </NavFrame>
       </Navbar>
     </HeaderContainer>
   );

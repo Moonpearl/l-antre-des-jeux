@@ -1,4 +1,6 @@
 import Asset from './asset';
+import Category from './category';
+import Mechanic from './mechanic';
 import Selection from './selection';
 import Shelf from './shelf';
 
@@ -14,4 +16,6 @@ export default interface Product extends Asset {
   minAge: number;
   shelf?: Shelf;
   selections: Selection[];
+  categories?: Category[];
+  mechanics?: Mechanic[];
 }
