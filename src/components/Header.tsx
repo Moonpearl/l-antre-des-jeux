@@ -14,12 +14,6 @@ interface NavItemInterface {
   caption?: string;
 }
 
-const links: Hyperlink[] = [
-  { Icon: FaHome, path: '/', caption: 'Accueil' },
-  { Icon: FaStore, path: '/' },
-  { Icon: FaQuestionCircle, path: '/about' },
-];
-
 const HeaderContainer = styled.header`
   background-color: ${colors.ui.dark};
   position: 'relative';
@@ -152,7 +146,7 @@ const Header: FC<HeaderProps> = () => {
   const items: NavItemInterface[] = [
     { Icon: FaHome, action: '/', caption: 'Accueil' },
     { Icon: FaStore, action: shelves.edges.map(({ node }) => ({ action: `/shelf/${node.slug}`, caption: node.name })) },
-    { Icon: FaQuestionCircle, action: '/' },
+    { Icon: FaQuestionCircle, action: '/about' },
   ];
 
   console.log(shelves);
