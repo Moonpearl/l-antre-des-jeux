@@ -10,13 +10,12 @@ import Header from '../components/Header';
 import LayoutRoot from '../components/LayoutRoot';
 import LayoutMain from '../components/LayoutMain';
 import { Footer } from '../components';
-import { Filler } from '../components/styles';
 
 const GlobalStyles: React.FC = () => (
   <Global
     styles={css`
       @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
-      @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap');
 
       .wave {
         transform-origin: left center;
@@ -101,7 +100,6 @@ const IndexLayout: React.FC = ({ children }) => (
         />
         <Header title={data.site.siteMetadata.title} />
         <LayoutMain>{children}</LayoutMain>
-        <Filler color="#555455" height="10em" />
         <Footer />
       </LayoutRoot>
     )}
