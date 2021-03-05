@@ -1,17 +1,14 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
-import { FaFacebook, FaTwitter, FaInstagramSquare, FaPhoneSquareAlt, FaEnvelopeOpenText } from 'react-icons/fa';
+import { FaPhoneSquareAlt, FaEnvelopeOpenText } from 'react-icons/fa';
 import { GiShop } from 'react-icons/gi';
 import IndexLayout from '../layouts/index';
 import MainContainer from '../components/styles/main-container';
-import BgImg from '../images/bg.jpg';
-import MemberImg from '../images/mistery-character.png';
 import { graphql } from 'gatsby';
 import { PagePropsWithData } from '../models';
 import Markdown from 'markdown-to-jsx';
 import { Filler, BackgroundImageContainer, BackgroundColorContainer, Title } from '../components/styles';
 import DownWaves from '../components/styles/waves/down';
-import { colors } from '../styles/variables';
 
 const UnderlayCenter = styled.div`
   position: relative;
@@ -58,10 +55,6 @@ const Bubble = styled.div`
     bottom: 0;
     right: 0;
     margin: 1em auto;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
   }
 `;
 
@@ -72,7 +65,6 @@ const TextFrame = styled.div`
   padding: 2em;
   max-width: 20em;
   margin: 0 auto;
-  /* box-shadow: 10px 5px 5px black;*/
 `;
 
 const Triangle = styled.div`
@@ -83,7 +75,7 @@ const Triangle = styled.div`
   position: absolute;
   left: 20em;
   top: 9em;
-  @media only screen and(max - width: 600px) {
+  @media only screen and(max-width: 600px) {
     display: none;
   }
 `;
@@ -120,8 +112,6 @@ const SectionTitle = styled.h2`
   font-size: 2em;
   padding: 0.5em;
   background-color: #0e4d63;
-  /*  border-radius: 20em;
-  margin: 0 10em;*/
   margin-bottom: 1em;
 `;
 
@@ -159,7 +149,7 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
   return (
     <IndexLayout>
       <BackgroundImageContainer
-        backgroundImage={globalContent?.shopBackgroundImage}
+        backgroundImage={globalContent?.shopBackgroundImage || { url: '' }}
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundAttachment="fixed"
@@ -173,7 +163,7 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
           </MainContainer>
         </BackgroundColorContainer>
         <Separator>
-          <DownWave color={globalContent?.shopBackgroundColor.css} />
+          <DownWave color={globalContent?.shopBackgroundColor.css || '#000'} />
         </Separator>
         <MainContainer>
           <UnderlayCenter>

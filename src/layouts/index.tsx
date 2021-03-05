@@ -10,7 +10,6 @@ import Header from '../components/Header';
 import LayoutRoot from '../components/LayoutRoot';
 import LayoutMain from '../components/LayoutMain';
 import { Footer } from '../components';
-import { Filler } from '../components/styles';
 
 const GlobalStyles: React.FC = () => (
   <Global
