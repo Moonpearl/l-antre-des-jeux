@@ -1,5 +1,5 @@
-import { dimensions, fonts, colors, breakpoints } from './variables'
-import { getEmSize } from './mixins'
+import { dimensions, fonts, colors, breakpoints } from './variables';
+import { getEmSize } from './mixins';
 
 export default `
   html {
@@ -149,7 +149,7 @@ export default `
     margin: .8rem 0;
     padding: .5rem 1rem;
     border-left: .25rem solid ${colors.ui.light};
-    color: ${colors.gray.calm};
+    color: inherit;
 
     p {
       &:last-child {
@@ -162,4 +162,4 @@ export default `
       padding-left: 1.25rem;
     }
   }
-`
+`;
