@@ -27,8 +27,6 @@ const Description = styled.p`
   text-align: justify;
 `;
 
-/* MEMBER */
-
 const ImgBubble = styled.div`
   justify-content: center;
   position: relative;
@@ -68,14 +66,14 @@ const TextFrame = styled.div`
 `;
 
 const Triangle = styled.div`
-  display: inline - block;
+  display: inline-block;
   border-top: 1em solid transparent;
   border-bottom: 2em solid transparent;
   border-left: 4em solid #fff2df;
   position: absolute;
   left: 20em;
   top: 9em;
-  @media only screen and(max-width: 600px) {
+  @media (max-width: 600px) {
     display: none;
   }
 `;
@@ -97,8 +95,6 @@ const DescriptionMember = styled.div`
   color: #004965;
   text-align: justify;
 `;
-
-/* ---------------------- */
 
 const SectionTitle = styled.h2`
   position: relative;
