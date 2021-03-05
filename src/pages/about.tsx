@@ -9,51 +9,14 @@ import MemberImg from '../images/mistery-character.png';
 import { graphql } from 'gatsby';
 import { PagePropsWithData } from '../models';
 import Markdown from 'markdown-to-jsx';
-
-const ContainerAbout = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: palegoldenrod;
-  justify-content: center;
-  align-items: center;
-`;
-
-const BgImage = styled.img`
-  position: absolute;
-  opacity: 0.2;
-`;
-
-const AboutTitle = styled.h1`
-  position: relative;
-
-  color: gold;
-  background-color: teal;
-  border-radius: 1em;
-  padding: 0.5em;
-
-  margin: 0.5em auto;
-
-  text-align: center;
-  font-family: 'Oswald', sans-serif;
-  letter-spacing: 0.05em;
-
-  font-weight: bold;
-  text-transform: uppercase;
-  font-style: italic;
-  font-size: 2em;
-`;
-
-/* A voir + tard*/
-const Diaporama = styled.img`
-  position: relative;
-  margin-bottom: 1em;
-`;
+import { Filler, BackgroundImageContainer, BackgroundColorContainer, Title } from '../components/styles';
+import DownWaves from '../components/styles/waves/down';
+import { colors } from '../styles/variables';
 
 const UnderlayCenter = styled.div`
   position: relative;
-  background-color: #545454;
-  border-radius: 1em;
-  margin: 1em auto;
+  background-color: #fff;
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;
@@ -62,24 +25,9 @@ const UnderlayCenter = styled.div`
 const Description = styled.p`
   text-align: center;
   margin: 1em;
-  color: gold;
+  color: #004965;
   margin-bottom: 2em;
   text-align: justify;
-`;
-
-const StaffTitle = styled.h2`
-  position: relative;
-  text-align: center;
-  font-family: 'Oswald', sans-serif;
-  letter-spacing: 0.05em;
-  color: teal;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-style: italic;
-  font-size: 2em;
-  padding: 0.5em;
-  background-color: gold;
-  margin-bottom: 2em;
 `;
 
 /* MEMBER */
@@ -93,20 +41,19 @@ const ImgBubble = styled.div`
 `;
 
 const ImgMember = styled.img`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  width: 12em;
+  height: 12em;
   position: relative;
   border-radius: 50%;
-  border: 1em solid teal;
-  margin: 2em auto;
+  border: 1em solid #fff2df;
+  margin: 4em auto;
 `;
 
 const Bubble = styled.div`
   position: relative;
   bottom: 20em;
-  right: -1em;
-  /* right: 6em; */
+  right: 20em;
   @media (max-width: 600px) {
     bottom: 0;
     right: 0;
@@ -120,27 +67,29 @@ const Bubble = styled.div`
 
 const TextFrame = styled.div`
   position: relative;
-  background-color: teal;
+  background-color: #fff2df;
   border-radius: 2em;
   padding: 2em;
   max-width: 20em;
+  margin: 0 auto;
+  /* box-shadow: 10px 5px 5px black;*/
 `;
 
 const Triangle = styled.div`
-  display: inline-block;
+  display: inline - block;
   border-top: 1em solid transparent;
   border-bottom: 2em solid transparent;
-  border-left: 4em solid teal;
+  border-left: 4em solid #fff2df;
   position: absolute;
   left: 20em;
   top: 9em;
-  @media only screen and (max-width: 600px) {
+  @media only screen and(max - width: 600px) {
     display: none;
   }
 `;
 
 const NameMember = styled.div`
-  color: gold;
+  color: #c61c41;
   position: relative;
   text-align: center;
   font-family: 'Oswald', sans-serif;
@@ -153,74 +102,91 @@ const NameMember = styled.div`
 `;
 
 const DescriptionMember = styled.div`
-  color: gold;
+  color: #004965;
   text-align: justify;
 `;
 
 /* ---------------------- */
 
-const ContactTitle = styled.h2`
+const SectionTitle = styled.h2`
   position: relative;
   text-align: center;
   font-family: 'Oswald', sans-serif;
   letter-spacing: 0.05em;
-  color: teal;
+  color: #bddcef;
   font-weight: bold;
   text-transform: uppercase;
   font-style: italic;
   font-size: 2em;
   padding: 0.5em;
-  background-color: gold;
+  background-color: #0e4d63;
+  /*  border-radius: 20em;
+  margin: 0 10em;*/
+  margin-bottom: 1em;
 `;
 
 const ContactContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 `;
 
 const ContactText = styled.p`
-  color: gold;
+  color: #0e4d63;
   text-align: center;
   font-size: 1.2em;
   font-style: italic;
   margin: 1em 2em;
 `;
 
-const IconsContact = styled.div`
-  display: flex;
-  position: relative;
-
-  justify-content: center;
-
-  color: grey;
-`;
-
 const Icon = styled.div`
-  color: grey;
+  color: #c82446;
   font-size: 2em;
   margin: 1em;
 `;
+
+const Separator = styled.div`
+  position: absolute;
+  z-index: 1;
+  transform: scale(1, 0.5);
+  transform-origin: top center;
+`;
+
+const DownWave = DownWaves[1];
 
 const AboutPage: FC<PagePropsWithData> = ({ data }) => {
   const { graphCmsGlobalContent: globalContent } = data;
 
   return (
     <IndexLayout>
-      <ContainerAbout>
-        <BgImage src={BgImg} alt="Image de fond" />
+      <BackgroundImageContainer
+        backgroundImage={globalContent?.shopBackgroundImage}
+        backgroundSize="cover"
+        backgroundPosition="center"
+        backgroundAttachment="fixed"
+      >
+        <Filler color={globalContent?.shopBackgroundColor.css} height="6em" />
+        <BackgroundColorContainer color={globalContent?.shopBackgroundColor.css}>
+          <MainContainer>
+            <Title level={1} color={globalContent?.shopTitleColor.css}>
+              La boutique
+            </Title>
+          </MainContainer>
+        </BackgroundColorContainer>
+        <Separator>
+          <DownWave color={globalContent?.shopBackgroundColor.css} />
+        </Separator>
         <MainContainer>
-          <AboutTitle>La boutique</AboutTitle>
           <UnderlayCenter>
+            <Filler height="8em" />
             <Description>
               <Markdown>{globalContent?.shopDescription as string}</Markdown>
             </Description>
 
-            <StaffTitle>Le staff !</StaffTitle>
+            <SectionTitle>Le staff !</SectionTitle>
 
             {globalContent?.employees.map(employee => (
               <ImgBubble key={employee.slug}>
-                <ImgMember src={MemberImg} alt="Image du gérant" />
+                <ImgMember src={employee.picture.url} alt="Image du gérant" />
                 <Bubble>
                   <TextFrame>
                     <Triangle />
@@ -233,7 +199,7 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
               </ImgBubble>
             ))}
 
-            <ContactTitle>Comment nous trouver ?</ContactTitle>
+            <SectionTitle>Comment nous trouver ?</SectionTitle>
             {
               <ContactContainer>
                 <ContactText>
@@ -259,21 +225,9 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
                 </ContactText>
               </ContactContainer>
             }
-
-            <IconsContact>
-              <Icon>
-                <FaFacebook />
-              </Icon>
-              <Icon>
-                <FaTwitter />
-              </Icon>
-              <Icon>
-                <FaInstagramSquare />
-              </Icon>
-            </IconsContact>
           </UnderlayCenter>
         </MainContainer>
-      </ContainerAbout>
+      </BackgroundImageContainer>
     </IndexLayout>
   );
 };
@@ -282,9 +236,12 @@ export const query = graphql`
   query AboutPageQuery {
     graphCmsGlobalContent {
       employees {
+        slug
         bio
         name
-        slug
+        picture {
+          url
+        }
       }
       shopAddress
       shopDescription
@@ -295,9 +252,15 @@ export const query = graphql`
         remoteTypeName
       }
       shopPhone
-      socialFacebook
-      socialInstagram
-      socialTwitter
+      shopBackgroundColor {
+        css
+      }
+      shopTitleColor {
+        css
+      }
+      shopBackgroundImage {
+        url
+      }
     }
   }
 `;

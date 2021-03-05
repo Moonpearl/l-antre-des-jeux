@@ -15,7 +15,7 @@ interface Hyperlink {
 const links: Hyperlink[] = [
   { Icon: FaHome, path: '/', caption: 'Accueil' },
   { Icon: FaStore, path: '/' },
-  { Icon: FaQuestionCircle, path: '/' },
+  { Icon: FaQuestionCircle, path: '/about' },
 ];
 
 const HeaderContainer = styled.header`

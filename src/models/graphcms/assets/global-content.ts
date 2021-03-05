@@ -10,6 +10,15 @@ export default interface GlobalContent extends Asset {
     latitude: number;
     longitude: number;
   };
+  shopBackgroundColor: {
+    css?: string;
+  };
+  shopTitleColor: {
+    css?: string;
+  };
+  shopBackgroundImage: {
+    url: string;
+  };
   socialFacebook: string;
   socialTwitter: string;
   socialInstagram: string;
