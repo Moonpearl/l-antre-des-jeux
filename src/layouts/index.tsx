@@ -10,7 +10,6 @@ import Header from '../components/Header';
 import LayoutRoot from '../components/LayoutRoot';
 import LayoutMain from '../components/LayoutMain';
 import { Footer } from '../components';
-import { Filler } from '../components/styles';
 
 const GlobalStyles: React.FC = () => (
   <Global
@@ -101,7 +100,6 @@ const IndexLayout: React.FC = ({ children }) => (
         />
         <Header title={data.site.siteMetadata.title} />
         <LayoutMain>{children}</LayoutMain>
-        <Filler color="#555455" height="10em" />
         <Footer />
       </LayoutRoot>
     )}

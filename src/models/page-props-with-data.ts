@@ -10,6 +10,7 @@ interface PageData {
   allGraphCmsSelection?: GraphcmsCollection<GraphcmsSelection>;
   allGraphCmsShelf?: GraphcmsCollection<GraphcmsShelf>;
   graphCmsArticle?: GraphcmsArticle;
+  graphCmsGlobalContent?: GraphcmsGlobalContent;
   graphCmsCategory?: GraphcmsCategory;
   graphCmsMechanic?: GraphcmsMechanic;
   graphCmsProduct?: GraphcmsProduct;
