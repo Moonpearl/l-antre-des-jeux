@@ -87,7 +87,9 @@ const StaffTitle = styled.h2`
 const ImgBubble = styled.div`
   justify-content: center;
   position: relative;
-  margin-bottom: -15em;
+  @media (min-width: 600px) {
+    margin-bottom: -15em;
+  }
 `;
 
 const ImgMember = styled.img`
@@ -103,15 +105,16 @@ const ImgMember = styled.img`
 const Bubble = styled.div`
   position: relative;
   bottom: 20em;
-  right: 6em;
-  @media only screen and (max-width: 600px) {
+  right: -1em;
+  /* right: 6em; */
+  @media (max-width: 600px) {
     bottom: 0;
     right: 0;
     margin: 1em auto;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
   }
 `;
 
@@ -199,12 +202,6 @@ const Icon = styled.div`
   margin: 1em;
 `;
 
-const Map = styled.div`
-  background-color: palegoldenrod;
-
-  margin: 1em;
-`;
-
 const AboutPage: FC<PagePropsWithData> = ({ data }) => {
   const { graphCmsGlobalContent: globalContent } = data;
 
@@ -215,14 +212,13 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
         <MainContainer>
           <AboutTitle>La boutique</AboutTitle>
           <UnderlayCenter>
-            <Diaporama src={BgImg} alt="Placeholder" />
             <Description>
-              <Markdown>{globalContent.shopDescription}</Markdown>
+              <Markdown>{globalContent?.shopDescription as string}</Markdown>
             </Description>
 
             <StaffTitle>Le staff !</StaffTitle>
 
-            {globalContent.employees.map(employee => (
+            {globalContent?.employees.map(employee => (
               <ImgBubble key={employee.slug}>
                 <ImgMember src={MemberImg} alt="Image du gérant" />
                 <Bubble>
@@ -245,21 +241,21 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
                   <Icon>
                     <GiShop />
                   </Icon>
-                  {globalContent.shopAddress}
+                  {globalContent?.shopAddress}
                 </ContactText>
                 <ContactText>
                   {' '}
                   <Icon>
                     <FaPhoneSquareAlt />
                   </Icon>
-                  {globalContent.shopPhone}
+                  {globalContent?.shopPhone}
                 </ContactText>
                 <ContactText>
                   <Icon>
                     {' '}
                     <FaEnvelopeOpenText />
                   </Icon>
-                  {globalContent.shopEmail}
+                  {globalContent?.shopEmail}
                 </ContactText>
               </ContactContainer>
             }

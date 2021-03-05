@@ -18,6 +18,11 @@ const GlobalStyles: React.FC = () => (
       @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap');
 
+      .leaflet-container {
+        height: 400px;
+        width: 100%;
+      }
+
       .wave {
         transform-origin: left center;
         width: 1440px;
