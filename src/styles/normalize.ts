@@ -1,5 +1,5 @@
-import { dimensions, fonts, colors, breakpoints } from './variables'
-import { getEmSize } from './mixins'
+import { dimensions, fonts, colors, breakpoints } from './variables';
+import { getEmSize } from './mixins';
 
 export default `
   html {
@@ -29,13 +29,8 @@ export default `
   }
 
   a {
-    color: ${colors.brand};
+    color: inherit;
     text-decoration: none;
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
   }
 
   img {
@@ -84,8 +79,7 @@ export default `
   }
 
   h1, h2, h3, h4, h5, h6 {
-    margin-top: 1.414rem;
-    margin-bottom: .5rem;
+    margin: 0;
     color: ${colors.black};
     font-weight: 600;
     line-height: ${dimensions.lineHeight.heading};
@@ -93,7 +87,6 @@ export default `
   }
 
   h1 {
-    margin-top: 0;
     font-size: ${dimensions.headingSizes.h1}rem;
   }
 
@@ -110,12 +103,7 @@ export default `
   }
 
   p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-
-  strong {
-    color: ${colors.black};
+    margin: 0;
   }
 
   ul,
@@ -149,7 +137,7 @@ export default `
     margin: .8rem 0;
     padding: .5rem 1rem;
     border-left: .25rem solid ${colors.ui.light};
-    color: ${colors.gray.calm};
+    color: inherit;
 
     p {
       &:last-child {
@@ -162,4 +150,4 @@ export default `
       padding-left: 1.25rem;
     }
   }
-`
+`;
