@@ -11,7 +11,7 @@ import { colors } from '../styles/variables';
 import Invisible from '../components/styles/invisible';
 
 const HeaderContainer = styled.div`
-  position: 'relative';
+  position: relative;
 `;
 
 const Logo = styled.img`
