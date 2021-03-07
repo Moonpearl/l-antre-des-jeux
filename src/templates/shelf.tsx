@@ -46,6 +46,7 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
             </Title>
           </MainContainer>
         </BackgroundColorContainer>
+        <Filler color={shelf.backgroundColor.css} height="1em" />
         <Separator>
           <DownWave color={shelf.backgroundColor.css || 'rgba(0, 0, 0, 0)'} />
         </Separator>

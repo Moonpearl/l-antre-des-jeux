@@ -158,6 +158,7 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
             </Title>
           </MainContainer>
         </BackgroundColorContainer>
+        <Filler color={globalContent?.shopBackgroundColor.css} height="1em" />
         <Separator>
           <DownWave color={globalContent?.shopBackgroundColor.css || '#000'} />
         </Separator>
