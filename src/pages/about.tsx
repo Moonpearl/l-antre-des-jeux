@@ -171,7 +171,7 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
 
             <SectionTitle>Le staff !</SectionTitle>
 
-            {globalContent?.employees.map(employee => (
+            {globalContent?.employees?.map(employee => (
               <ImgBubble key={employee.slug}>
                 <ImgMember src={employee.picture.url} alt="Image du gérant" />
                 <Bubble>

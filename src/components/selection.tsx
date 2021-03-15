@@ -52,7 +52,7 @@ const Selection: FC<SelectionProps> = ({ selection }) => (
         <SelectionTitle>{selection.name}</SelectionTitle>
       </SelectionTitleContainer>
       <SelectionDescription>{selection.description}</SelectionDescription>
-      <ProductList products={selection.products} />
+      {selection.products && <ProductList products={selection.products} />}
     </StyledSelection>
   </MainContainer>
 );
