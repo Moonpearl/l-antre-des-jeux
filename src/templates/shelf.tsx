@@ -53,9 +53,7 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
         <Filler height="12em" />
 
         <MainContainer>
-          <ProductListContainer>
-            <ProductList products={shelf.products} />
-          </ProductListContainer>
+          <ProductListContainer>{shelf.products && <ProductList products={shelf.products} />}</ProductListContainer>
         </MainContainer>
       </BackgroundImageContainer>
     </IndexLayout>
