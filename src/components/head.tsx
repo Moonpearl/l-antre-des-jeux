@@ -10,12 +10,13 @@ function Head(MetaData) {
       <meta name="nom de propriété" content="information détenue de la propriété" />
 
       {/* Protocole OpenGraph */}
-      <meta property="og:title" content="title" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
       <meta property="og:locale" content="fr_FRANCE" />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={image} />
       <meta property="og:url" content={url} />
-      <meta property="og:description" content={description} />
+
     </Helmet>
   )
 };

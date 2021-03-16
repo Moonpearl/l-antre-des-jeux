@@ -80,11 +80,19 @@ interface IndexLayoutProps {
   title: string;
   description: string;
   keywords: string;
+  openGraphTitle: string;
+  openGraphDescription: string;
+  openGraphLocale: string;
+  openGraphType: string;
+  openGraphImage: string;
+  openGraphUrl: string;
 }
 
-const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description, keywords }) => (
-  <StaticQuery
-    query={graphql`
+const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description, keywords,
+  openGraphTitle, openGraphDescription, openGraphLocale, openGraphType, openGraphImage
+  , openGraphUrl }) => (
+    <StaticQuery
+      query={graphql`
       query IndexLayoutQuery {
         site {
           siteMetadata {
@@ -94,28 +102,28 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description,
         }
       }
     `}
-    render={(data: StaticQueryProps) => (
-      <LayoutRoot>
-        <GlobalStyles />
-        <Helmet
-          title={title}
-          meta={[
-            { name: 'description', content: description },
-            { name: 'keywords', content: keywords },
-            /*   { name: "ogTitle", content: title },*/
-            /*  { property:[og:locale], content =[fr_FRANCE],
-              { name: "ogType", content: website },
-              { name: "ogImage", content: {image} },
-              { name: "ogUrl", content: {url} },
-              { name: "ogDescription", content: {description} },*/
-          ]}
-        />
-        <Header title={data.site.siteMetadata.title} />
-        <LayoutMain>{children}</LayoutMain>
-        <Footer />
-      </LayoutRoot>
-    )}
-  />
-);
+      render={(data: StaticQueryProps) => (
+        <LayoutRoot>
+          <GlobalStyles />
+          <Helmet
+            title={title}
+            meta={[
+              { name: 'description', content: description },
+              { name: 'keywords', content: keywords },
+              { property: 'og:title', name: 'openGraphTitle', content: openGraphTitle },
+              { property: 'og:description', name: 'openGraphDescription', content: openGraphDescription },
+              { property: 'og:locale', name: 'openGraphLocale', content: openGraphLocale },
+              { property: 'og:type', name: 'openGraphType', content: openGraphType },
+              { property: 'og:image', name: 'openGraphImage', content: openGraphImage },
+              { property: 'og:url', name: 'openGraphUrl', content: openGraphUrl },
+            ]}
+          />
+          <Header title={data.site.siteMetadata.title} />
+          <LayoutMain>{children}</LayoutMain>
+          <Footer />
+        </LayoutRoot>
+      )}
+    />
+  );
 
 export default IndexLayout;
