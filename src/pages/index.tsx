@@ -33,7 +33,7 @@ const Separator = styled.div`
 const DownWave = DownWaves[0];
 
 const IndexPage: FC<PagePropsWithData> = ({ data }) => (
-  <IndexLayout>
+  <IndexLayout title="Acceuil" description="..." keywords="acceuil, jeux, société">
     {/* Website logo */}
     <HeaderContainer>
       <Filler color={colors.ui.dark} height="6em" />
@@ -43,6 +43,7 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
         <DownWave color={colors.ui.dark} />
       </Separator>
     </HeaderContainer>
+
 
     <Invisible>
       <Title level={2}>Rayons</Title>

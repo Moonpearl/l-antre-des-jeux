@@ -4,6 +4,7 @@ import { GraphcmsSelection } from '../models/graphcms/assets';
 import { FaBookmark } from 'react-icons/fa';
 import { MainContainer } from './styles';
 import ProductList from './product-list';
+import IndexLayout from '../layouts';
 
 const StyledSelection = styled.div`
   position: relative;
@@ -57,7 +58,8 @@ const Selection: FC<SelectionProps> = ({ selection }) => (
       <SelectionDescription>{selection.description}</SelectionDescription>
       <ProductList products={selection.products} />
     </StyledSelection>
-  </MainContainer>
+
+  </MainContainer >
 );
 
 export default Selection;

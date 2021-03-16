@@ -115,7 +115,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
   }
 
   return (
-    <IndexLayout>
+    <IndexLayout title="Produits" description="..." keywords="produits">
       <BackgroundImageContainer
         backgroundImage={product.shelf?.backgroundImage || { url: '' }}
         backgroundSize="cover"

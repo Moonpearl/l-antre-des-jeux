@@ -76,7 +76,13 @@ interface StaticQueryProps {
   };
 }
 
-const IndexLayout: React.FC = ({ children }) => (
+interface IndexLayoutProps {
+  title: string;
+  description: string;
+  keywords: string;
+}
+
+const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description, keywords }) => (
   <StaticQuery
     query={graphql`
       query IndexLayoutQuery {
@@ -92,10 +98,16 @@ const IndexLayout: React.FC = ({ children }) => (
       <LayoutRoot>
         <GlobalStyles />
         <Helmet
-          title={data.site.siteMetadata.title}
+          title={title}
           meta={[
-            { name: 'description', content: data.site.siteMetadata.description },
-            { name: 'keywords', content: data.site.siteMetadata.keywords },
+            { name: 'description', content: description },
+            { name: 'keywords', content: keywords },
+            /*   { name: "ogTitle", content: title },*/
+            /*  { property:[og:locale], content =[fr_FRANCE],
+              { name: "ogType", content: website },
+              { name: "ogImage", content: {image} },
+              { name: "ogUrl", content: {url} },
+              { name: "ogDescription", content: {description} },*/
           ]}
         />
         <Header title={data.site.siteMetadata.title} />

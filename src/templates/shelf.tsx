@@ -31,7 +31,7 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
   }
 
   return (
-    <IndexLayout>
+    <IndexLayout title="Rayons" description="..." keywords="acceuil, jeux, société">
       <BackgroundImageContainer
         backgroundImage={shelf.backgroundImage}
         backgroundSize="cover"
