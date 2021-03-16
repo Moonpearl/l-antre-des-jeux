@@ -33,7 +33,8 @@ const Separator = styled.div`
 const DownWave = DownWaves[0];
 
 const IndexPage: FC<PagePropsWithData> = ({ data }) => (
-  <IndexLayout title="Acceuil" description="..." keywords="acceuil, jeux, société">
+  <IndexLayout title="Acceuil" description="..." keywords="acceuil, jeux, société" openGraphTitle="L\'Antre des jeux" openGraphDescription="..."
+    openGraphImage="" openGraphLocale="fr_FRANCE" openGraphType="website" openGraphUrl="...">
     {/* Website logo */}
     <HeaderContainer>
       <Filler color={colors.ui.dark} height="6em" />

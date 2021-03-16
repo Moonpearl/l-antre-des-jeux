@@ -31,7 +31,9 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
   }
 
   return (
-    <IndexLayout title="Rayons" description="..." keywords="acceuil, jeux, société">
+    <IndexLayout title="Rayons" description="..." keywords="acceuil, jeux, société"
+      openGraphTitle="Rayons" openGraphDescription="..."
+      openGraphImage="" openGraphLocale="fr_FRANCE" openGraphType="website" openGraphUrl="...">
       <BackgroundImageContainer
         backgroundImage={shelf.backgroundImage}
         backgroundSize="cover"
