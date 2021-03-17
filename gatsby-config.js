@@ -27,7 +27,7 @@ module.exports = {
         locales: ['fr_FR', 'en'],
       },
     },
-    require("prerender-node").set("prerenderToken", 'G822cgw8AljI6QZyzApR') {
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'content',
