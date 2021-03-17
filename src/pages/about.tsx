@@ -144,10 +144,10 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
 
   return (
     <IndexLayout
-      title="A propos"
-      description="Page info sur le magasin et son personnel"
-      keywords={globalContent?.keywords}
-      openGraphImage="" >
+      title={pages?.title}
+      description={pages?.description}
+      openGraphImage={pages?.openGraphImage}
+      keywords={globalContent?.keywords} >
       {globalContent?.siteName}
       <BackgroundImageContainer
         backgroundImage={globalContent?.shopBackgroundImage || { url: '' }}
@@ -257,5 +257,19 @@ export const query = graphql`
     }
   }
 `;
+
+/*export const query = graphql`
+query AboutPagesQuery {
+  graphCmsPages {
+    description
+    openGraphImage {
+      id
+    }
+    title
+    slug
+  }
+}
+`*/
+
 
 export default AboutPage;
