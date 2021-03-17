@@ -6,9 +6,7 @@ import Container from '../components/Container';
 import IndexLayout from '../layouts';
 
 const NotFoundPage: FC = () => (
-  <IndexLayout title="404" description="Page non trouvé" keywords="404, notFound"
-    openGraphTitle="404" openGraphDescription="..."
-    openGraphImage="" openGraphLocale="fr_FRANCE" openGraphType="website" openGraphUrl="...">
+  <IndexLayout title="404" description="Page non trouvé" keywords="404, notFound" openGraphImage="" >
     <Page>
       <Container>
         <h1>404: Page not found.</h1>

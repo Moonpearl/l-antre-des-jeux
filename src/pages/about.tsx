@@ -144,9 +144,7 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
   const { graphCmsGlobalContent: globalContent } = data;
 
   return (
-    <IndexLayout title="A propos" description="Page info sur le magasin et son personnel" keywords="about, magasin, employés"
-      openGraphTitle="A propos" openGraphDescription="..."
-      openGraphImage="" openGraphLocale="fr_FRANCE" openGraphType="website" openGraphUrl="...">
+    <IndexLayout title="A propos" description="Page info sur le magasin et son personnel" keywords="about, magasin, employés" openGraphImage="" >
       <BackgroundImageContainer
         backgroundImage={globalContent?.shopBackgroundImage || { url: '' }}
         backgroundSize="cover"
