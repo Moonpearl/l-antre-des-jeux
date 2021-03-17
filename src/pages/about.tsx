@@ -9,7 +9,6 @@ import { PagePropsWithData } from '../models';
 import Markdown from 'markdown-to-jsx';
 import { Filler, BackgroundImageContainer, BackgroundColorContainer, Title } from '../components/styles';
 import DownWaves from '../components/styles/waves/down';
-import { Helmet } from "react-helmet";
 
 const UnderlayCenter = styled.div`
   position: relative;
@@ -144,7 +143,12 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
   const { graphCmsGlobalContent: globalContent } = data;
 
   return (
-    <IndexLayout title="A propos" description="Page info sur le magasin et son personnel" keywords="about, magasin, employés" openGraphImage="" >
+    <IndexLayout
+      title="A propos"
+      description="Page info sur le magasin et son personnel"
+      keywords={globalContent?.keywords}
+      openGraphImage="" >
+      {globalContent?.siteName}
       <BackgroundImageContainer
         backgroundImage={globalContent?.shopBackgroundImage || { url: '' }}
         backgroundSize="cover"
@@ -248,6 +252,8 @@ export const query = graphql`
       shopBackgroundImage {
         url
       }
+      keywords
+      siteName
     }
   }
 `;
