@@ -32,43 +32,51 @@ const Separator = styled.div`
 
 const DownWave = DownWaves[0];
 
-const IndexPage: FC<PagePropsWithData> = ({ data }) => (
-  <IndexLayout title="Acceuil" description="..." keywords="acceuil, jeux, société" openGraphImage="" >
-    {/* Website logo */}
-    <HeaderContainer>
-      <Filler color={colors.ui.dark} height="6em" />
-      <Logo src={LogoImage} alt="Logo de l'antre des jeux" />
-      <Filler color={colors.ui.dark} height="6em" />
-      <Separator>
-        <DownWave color={colors.ui.dark} />
-      </Separator>
-    </HeaderContainer>
+const IndexPage: FC<PagePropsWithData> = ({ data }) => {
+  const { graphCmsPages: pages } = data;
+
+  return (
+    <IndexLayout
+      title={pages?.title}
+      description={pages?.description}
+      openGraphImage={pages?.openGraphImage} >
+      {/* Website logo */}
+      <HeaderContainer>
+        <Filler color={colors.ui.dark} height="6em" />
+        <Logo src={LogoImage} alt="Logo de l'antre des jeux" />
+        <Filler color={colors.ui.dark} height="6em" />
+        <Separator>
+          <DownWave color={colors.ui.dark} />
+        </Separator>
+      </HeaderContainer>
 
 
-    <Invisible>
-      <Title level={2}>Rayons</Title>
-    </Invisible>
-    <ul>
-      {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
-        <li key={node.slug}>
-          <ShelfPreview shelf={node} index={index} />
-        </li>
-      ))}
-    </ul>
+      <Invisible>
+        <Title level={2}>Rayons</Title>
+      </Invisible>
+      <ul>
+        {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
+          <li key={node.slug}>
+            <ShelfPreview shelf={node} index={index} />
+          </li>
+        ))}
+      </ul>
 
-    <Invisible>
-      <Title level={2}>Sélections</Title>
-    </Invisible>
-    <Filler height="12em" />
-    <ul>
-      {data.allGraphCmsSelection?.edges.map(({ node }) => (
-        <li key={node.slug}>
-          <Selection selection={node} />
-        </li>
-      ))}
-    </ul>
-  </IndexLayout>
-);
+      <Invisible>
+        <Title level={2}>Sélections</Title>
+      </Invisible>
+      <Filler height="12em" />
+      <ul>
+        {data.allGraphCmsSelection?.edges.map(({ node }) => (
+          <li key={node.slug}>
+            <Selection selection={node} />
+          </li>
+        ))}
+      </ul>
+    </IndexLayout>
+  );
+
+};
 
 export const query = graphql`
   query HomePageQuery {
