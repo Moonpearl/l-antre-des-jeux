@@ -10,6 +10,7 @@ import Markdown from 'markdown-to-jsx';
 import { Filler, BackgroundImageContainer, BackgroundColorContainer, Title } from '../components/styles';
 import DownWaves from '../components/styles/waves/down';
 
+
 const UnderlayCenter = styled.div`
   position: relative;
   background-color: #fff;
@@ -257,19 +258,6 @@ export const query = graphql`
     }
   }
 `;
-
-/*export const query = graphql`
-query AboutPagesQuery {
-  graphCmsPages {
-    description
-    openGraphImage {
-      id
-    }
-    title
-    slug
-  }
-}
-`*/
 
 
 export default AboutPage;

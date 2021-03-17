@@ -7,3 +7,4 @@ export type { default as GraphcmsMechanic } from './mechanic';
 export type { default as GraphcmsProduct } from './product';
 export type { default as GraphcmsSelection } from './selection';
 export type { default as GraphcmsShelf } from './shelf';
+export type { default as GraphcmsPages } from './pages';
