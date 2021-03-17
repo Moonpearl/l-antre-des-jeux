@@ -9,7 +9,7 @@ import { PagePropsWithData } from '../models';
 import Markdown from 'markdown-to-jsx';
 import { Filler, BackgroundImageContainer, BackgroundColorContainer, Title } from '../components/styles';
 import DownWaves from '../components/styles/waves/down';
-
+/*import { pages } from '../models/graphcms/assets/pages';*/
 
 const UnderlayCenter = styled.div`
   position: relative;
@@ -142,14 +142,16 @@ const DownWave = DownWaves[1];
 
 const AboutPage: FC<PagePropsWithData> = ({ data }) => {
   const { graphCmsGlobalContent: globalContent } = data;
+  const { graphCmsPages: pages } = data;
 
   return (
     <IndexLayout
       title={pages?.title}
       description={pages?.description}
       openGraphImage={pages?.openGraphImage}
-      keywords={globalContent?.keywords} >
-      {globalContent?.siteName}
+      keywords={globalContent?.keywords}
+      siteName={globalContent?.siteName}
+    >
       <BackgroundImageContainer
         backgroundImage={globalContent?.shopBackgroundImage || { url: '' }}
         backgroundSize="cover"

@@ -77,13 +77,14 @@ interface StaticQueryProps {
 }
 
 interface IndexLayoutProps {
-  title: string;
-  description: string;
-  keywords: string;
-  openGraphImage: string;
+  title?: string;
+  description?: string;
+  keywords?: string;
+  openGraphImage?: string;
+  siteName?: string;
 }
 
-const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description, keywords, openGraphImage }) => (
+const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description, keywords, openGraphImage, siteName }) => (
   <StaticQuery
     query={graphql`
       query IndexLayoutQuery {
@@ -103,6 +104,7 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description,
           meta={[
             { name: 'description', content: description },
             { name: 'keywords', content: keywords },
+            { name: 'siteName', content: siteName },
             { property: 'og:image', name: 'openGraphImage', content: openGraphImage },
           ]}
         />
