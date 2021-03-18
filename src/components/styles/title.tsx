@@ -28,6 +28,8 @@ const Title: FC<TitleProps> = ({ level, color, children }) => {
   const Component = `h${level}`;
 
   return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
     <Component>
       <TitleStyle level={level} color={color}>
         {children}
