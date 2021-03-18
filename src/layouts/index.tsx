@@ -71,7 +71,9 @@ interface StaticQueryProps {
     siteMetadata: {
       title: string;
       description: string;
-      keywords: string;
+      keywords: string[];
+      siteUrl: string;
+      defaultLocale: string;
     };
   };
 }
@@ -79,19 +81,26 @@ interface StaticQueryProps {
 interface IndexLayoutProps {
   title?: string;
   description?: string;
-  keywords?: string;
+  keywords?: string[];
   openGraphImage?: string;
   siteName?: string;
+  openGraphTitle?: string;
+  openGraphType?: string;
+  openGraphLocale?: string;
+  pageUri: string;
 }
 
-const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description, keywords, openGraphImage, siteName }) => (
+const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description, keywords, openGraphImage, siteName, openGraphLocale, openGraphType, pageUri }) => (
   <StaticQuery
     query={graphql`
       query IndexLayoutQuery {
         site {
           siteMetadata {
+            keywords
             title
             description
+            siteUrl
+            defaultLocale
           }
         }
       }
@@ -102,13 +111,17 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description,
         <Helmet
           title={title}
           meta={[
-            { name: 'description', content: description },
-            { name: 'keywords', content: keywords },
-            { name: 'siteName', content: siteName },
+            { name: 'description', content: description || data.site.siteMetadata.description },
+            { name: 'keywords', content: (keywords || data.site.siteMetadata.keywords).join(', ') },
+            { name: 'siteName', content: siteName || data.site.siteMetadata.title },
             { property: 'og:image', name: 'openGraphImage', content: openGraphImage },
+            { property: 'og:title', name: 'openGraphTitle', content: title || data.site.siteMetadata.title },
+            { property: 'og:type', name: 'openGraphType', content: openGraphType || 'website' },
+            { property: 'og:url', name: 'openGraphUrl', content: data.site.siteMetadata.siteUrl + pageUri },
+            { property: 'og:locale', name: 'openGraphLocale', content: openGraphLocale || data.site.siteMetadata.defaultLocale },
           ]}
         />
-        <Header title={data.site.siteMetadata.title} />
+        <Header />
         <LayoutMain>{children}</LayoutMain>
         <Footer />
       </LayoutRoot>

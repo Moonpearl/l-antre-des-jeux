@@ -33,13 +33,15 @@ const Separator = styled.div`
 const DownWave = DownWaves[0];
 
 const IndexPage: FC<PagePropsWithData> = ({ data }) => {
-  const { graphCmsPages: pages } = data;
+  const { graphCmsPage: page } = data;
 
   return (
     <IndexLayout
-      title={pages?.title}
-      description={pages?.description}
-      openGraphImage={pages?.openGraphImage} >
+      pageUri=''
+      title={page?.title}
+      description={page?.description}
+      openGraphImage={page?.openGraphImage}
+    >
       {/* Website logo */}
       <HeaderContainer>
         <Filler color={colors.ui.dark} height="6em" />
@@ -49,7 +51,6 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
           <DownWave color={colors.ui.dark} />
         </Separator>
       </HeaderContainer>
-
 
       <Invisible>
         <Title level={2}>Rayons</Title>
@@ -75,7 +76,6 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
       </ul>
     </IndexLayout>
   );
-
 };
 
 export const query = graphql`
@@ -118,6 +118,11 @@ export const query = graphql`
           }
         }
       }
+    }
+    graphCmsPage(slug: {eq: "home"}) {
+      title
+      description
+      openGraphImage
     }
   }
 `;

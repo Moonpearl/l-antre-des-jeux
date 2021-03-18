@@ -3,7 +3,7 @@ import { GraphcmsCollection } from './graphcms';
 import {
   GraphcmsArticle, GraphcmsCategory, GraphcmsMechanic,
   GraphcmsProduct, GraphcmsSelection, GraphcmsShelf,
-  GraphcmsGlobalContent, GraphcmsPages
+  GraphcmsGlobalContent, GraphcmsPage
 } from './graphcms/assets';
 
 interface PageData {
@@ -13,7 +13,7 @@ interface PageData {
   allGraphCmsProduct?: GraphcmsCollection<GraphcmsProduct>;
   allGraphCmsSelection?: GraphcmsCollection<GraphcmsSelection>;
   allGraphCmsShelf?: GraphcmsCollection<GraphcmsShelf>;
-  allGraphCmsPages?: GraphcmsCollection<GraphcmsPages>;
+  allGraphCmsPage?: GraphcmsCollection<GraphcmsPage>;
   graphCmsArticle?: GraphcmsArticle;
   graphCmsGlobalContent?: GraphcmsGlobalContent;
   graphCmsCategory?: GraphcmsCategory;
@@ -21,7 +21,7 @@ interface PageData {
   graphCmsProduct?: GraphcmsProduct;
   graphCmsSelection?: GraphcmsSelection;
   graphCmsShelf?: GraphcmsShelf;
-  graphCmsPages?: GraphcmsPages;
+  graphCmsPage?: GraphcmsPage;
 }
 
 type PagePropsWithData = PageProps<PageData>;

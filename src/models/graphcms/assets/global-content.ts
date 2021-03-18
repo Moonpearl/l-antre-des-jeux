@@ -23,6 +23,6 @@ export default interface GlobalContent extends Asset {
   socialTwitter: string;
   socialInstagram: string;
   employees: Employee[];
-  keywords: string;
+  keywords: string[];
   siteName: string;
 }
