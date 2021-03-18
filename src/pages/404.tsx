@@ -34,20 +34,27 @@ const Text = styled.p`
 text-align: center;
 letter-spacing: 0.2em;
 font-size: 1em;
-font-family: 'Oswald', sans-serif;
+/*font-family: 'Oswald', sans-serif;*/
+font-weight: bold;
+line-height: 2em;
+text-transform: uppercase;
+
 `;
 
 const LinkStyled = styled.p`
 color: #2980B9;
-font-weight: bold;
-font-style: italic;
+font-style: oblique;
 letter-spacing: 0.2em;
 margin-top: 2em;
 border: 1px solid;
 padding: 1em;
 transition: background-color 0.3s ease;
-font-family: 'Oswald', sans-serif;
+/*font-family: 'Oswald', sans-serif;*/
 border-radius: 2em;
+max-width: 23em;
+margin: 0 auto;
+margin-top: 1em;
+font-size: 1em;
 
 &:hover{
   background-color: #2980B9;
