@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { GraphcmsSelection } from '../models/graphcms/assets';
 import { MainContainer } from './styles';
 import ProductList from './product-list';
+import IndexLayout from '../layouts';
 
 const StyledSelection = styled.div`
   position: relative;
@@ -54,7 +55,8 @@ const Selection: FC<SelectionProps> = ({ selection }) => (
       <SelectionDescription>{selection.description}</SelectionDescription>
       {selection.products && <ProductList products={selection.products} />}
     </StyledSelection>
-  </MainContainer>
+
+  </MainContainer >
 );
 
 export default Selection;

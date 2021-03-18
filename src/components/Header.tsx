@@ -121,11 +121,8 @@ const NavItem: FC<NavItemProps> = ({ item }) => {
   }
 };
 
-interface HeaderProps {
-  title: string;
-}
 
-const Header: FC<HeaderProps> = () => {
+const Header = () => {
   const [transparent, setTransparent] = useState(true);
 
   useScrollPosition(({ currPos }) => setTransparent(currPos.y === 0));

@@ -5,11 +5,11 @@ import React, { FC } from 'react';
 import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
 import DownWaves from '../components/styles/waves/down';
 import IndexLayout from '../layouts';
-import { PagePropsWithData } from '../models';
 import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
 import { IconType } from 'react-icons';
 import { FaCog, FaStar, FaUsers } from 'react-icons/fa';
+import { PagePropsWithData, SeoData } from '../models';
 
 const Separator = styled.div`
   position: absolute;
@@ -114,8 +114,16 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
     throw new Error('Non-existing shelf');
   }
 
+  const seoData: SeoData = {
+    pageUri: `/product/${product.slug}`,
+    title: product.name,
+    description: product.description,
+    openGraphImage: product.imageUrl,
+    openGraphType: 'product',
+  };
+
   return (
-    <IndexLayout>
+    <IndexLayout seoData={seoData}>
       <BackgroundImageContainer
         backgroundImage={product.shelf?.backgroundImage || { url: '' }}
         backgroundSize="cover"
