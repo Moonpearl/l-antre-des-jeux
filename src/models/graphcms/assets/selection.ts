@@ -4,5 +4,5 @@ import Product from './product';
 export default interface Selection extends Asset {
   name: string;
   description: string;
-  products: Product[];
+  products?: Product[];
 }

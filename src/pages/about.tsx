@@ -166,6 +166,7 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
             </Title>
           </MainContainer>
         </BackgroundColorContainer>
+        <Filler color={globalContent?.shopBackgroundColor.css} height="1em" />
         <Separator>
           <DownWave color={globalContent?.shopBackgroundColor.css || '#000'} />
         </Separator>
@@ -178,7 +179,7 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
 
             <SectionTitle>Le staff !</SectionTitle>
 
-            {globalContent?.employees.map(employee => (
+            {globalContent?.employees?.map(employee => (
               <ImgBubble key={employee.slug}>
                 <ImgMember src={employee.picture.url} alt="Image du gérant" />
                 <Bubble>

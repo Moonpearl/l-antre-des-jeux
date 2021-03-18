@@ -130,6 +130,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
             </Title>
           </MainContainer>
         </BackgroundColorContainer>
+        <Filler color={product.shelf?.backgroundColor.css} height="1em" />
         <Separator>
           <DownWave color={product.shelf?.backgroundColor.css || '#666'} />
         </Separator>
@@ -138,7 +139,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
         <MainContainer>
           <ProductContainer>
             <ProductImage src={product.imageUrl} />
-            <ProductPrice>Prix: {product.price} &euro;</ProductPrice>
+            <ProductPrice>Prix: {product.price.toFixed(2)} &euro;</ProductPrice>
             <ProductDescription>
               <Markdown>{product.description || ''}</Markdown>
             </ProductDescription>
