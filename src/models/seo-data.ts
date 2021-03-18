@@ -1,5 +1,5 @@
 export default interface SeoData {
-  title?: string;
+  title: string;
   description?: string;
   keywords?: string[];
   openGraphImage?: string;

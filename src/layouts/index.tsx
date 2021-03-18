@@ -104,27 +104,38 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({ children, seoData }) => (
         }
       }
     `}
-    render={(data: StaticQueryProps) => (
-      <LayoutRoot>
-        <GlobalStyles />
-        <Helmet
-          title={seoData.title}
-          meta={[
-            { name: 'description', content: seoData.description || data.site.siteMetadata.description },
-            { name: 'keywords', content: (seoData.keywords || data.graphCmsGlobalContent.keywords || data.site.siteMetadata.keywords).join(', ') },
-            { name: 'siteName', content: seoData.siteName || data.graphCmsGlobalContent.siteName || data.site.siteMetadata.title },
-            { property: 'og:image', name: 'openGraphImage', content: seoData.openGraphImage },
-            { property: 'og:title', name: 'openGraphTitle', content: seoData.title || data.site.siteMetadata.title },
-            { property: 'og:type', name: 'openGraphType', content: seoData.openGraphType || 'website' },
-            { property: 'og:url', name: 'openGraphUrl', content: data.site.siteMetadata.siteUrl + seoData.pageUri },
-            { property: 'og:locale', name: 'openGraphLocale', content: seoData.openGraphLocale || data.site.siteMetadata.defaultLocale },
-          ]}
-        />
-        <Header />
-        <LayoutMain>{children}</LayoutMain>
-        <Footer />
-      </LayoutRoot>
-    )}
+    render={(data: StaticQueryProps) => {
+      const description = seoData.description || data.site.siteMetadata.description;
+      const keywords = (seoData.keywords || data.graphCmsGlobalContent.keywords || data.site.siteMetadata.keywords).join(', ');
+      const siteName = seoData.siteName || data.graphCmsGlobalContent.siteName || data.site.siteMetadata.title;
+      const title = `${siteName} - ${seoData.title}`;
+      const type = seoData.openGraphType || 'website';
+      const image = seoData.openGraphImage;
+      const url = data.site.siteMetadata.siteUrl + seoData.pageUri;
+      const locale = seoData.openGraphLocale || data.site.siteMetadata.defaultLocale;
+
+      return (
+        <LayoutRoot>
+          <GlobalStyles />
+          <Helmet
+            title={title}
+            meta={[
+              { name: 'description', content: description },
+              { name: 'keywords', content: keywords },
+              { name: 'siteName', content: siteName },
+              { property: 'og:image', name: 'openGraphImage', content: image },
+              { property: 'og:title', name: 'openGraphTitle', content: title },
+              { property: 'og:type', name: 'openGraphType', content: type },
+              { property: 'og:url', name: 'openGraphUrl', content: url },
+              { property: 'og:locale', name: 'openGraphLocale', content: locale },
+            ]}
+          />
+          <Header />
+          <LayoutMain>{children}</LayoutMain>
+          <Footer />
+        </LayoutRoot>
+      );
+    }}
   />
 );
 
