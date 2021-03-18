@@ -15,7 +15,7 @@ export default interface Product extends Asset {
   maxPlayers: number;
   minAge: number;
   shelf?: Shelf;
-  selections: Selection[];
+  selections?: Selection[];
   categories?: Category[];
   mechanics?: Mechanic[];
 }

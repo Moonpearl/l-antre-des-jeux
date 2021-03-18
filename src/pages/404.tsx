@@ -68,21 +68,17 @@ const NotFoundPage: FC = () => (
   <IndexLayout>
     <Bg>
       <Page>
-
         <Container>
-
           <ContainerText>
             <Title>Oups !</Title>
             <Text>Cette page n'existe pas.</Text>
             <Text>Veuillez relancer votre dé et ...</Text>
             <Text> <LinkStyled><Link to="/">Revenir à la case départ</Link></LinkStyled></Text>
           </ContainerText>
-
         </Container>
-
       </Page>
     </Bg>
   </IndexLayout >
-);
+)
 
 export default NotFoundPage;

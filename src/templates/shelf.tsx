@@ -46,15 +46,14 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
             </Title>
           </MainContainer>
         </BackgroundColorContainer>
+        <Filler color={shelf.backgroundColor.css} height="1em" />
         <Separator>
           <DownWave color={shelf.backgroundColor.css || 'rgba(0, 0, 0, 0)'} />
         </Separator>
         <Filler height="12em" />
 
         <MainContainer>
-          <ProductListContainer>
-            <ProductList products={shelf.products} />
-          </ProductListContainer>
+          <ProductListContainer>{shelf.products && <ProductList products={shelf.products} />}</ProductListContainer>
         </MainContainer>
       </BackgroundImageContainer>
     </IndexLayout>

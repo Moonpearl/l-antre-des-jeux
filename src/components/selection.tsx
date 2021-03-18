@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
 import { GraphcmsSelection } from '../models/graphcms/assets';
-import { FaBookmark } from 'react-icons/fa';
 import { MainContainer } from './styles';
 import ProductList from './product-list';
 
@@ -16,10 +15,15 @@ const StyledSelection = styled.div`
   margin-bottom: 4rem;
 `;
 
+const SelectionTitleContainer = styled.div`
+  position: relative;
+  bottom: 3rem;
+  display: flex;
+  margin-bottom: -3rem;
+`;
+
 const SelectionTitle = styled.h3`
   background-color: white;
-  position: absolute;
-  top: -1.5rem;
   text-align: center;
   font-family: 'Oswald', sans-serif;
   letter-spacing: 0.05em;
@@ -32,18 +36,9 @@ const SelectionTitle = styled.h3`
   padding: 0 0.5em;
 `;
 
-const ProductShelf = styled.div`
-  position: absolute;
-  top: -0.5rem;
-  right: 0;
-  z-index: 6;
-  font-size: 3em;
-  filter: drop-shadow(4px 4px 2px rgba(96, 96, 96, 0.5));
-`;
-
 const SelectionDescription = styled.div`
   text-align: justify;
-  margin-bottom: 1em;
+  margin: 1em 0;
 `;
 
 interface SelectionProps {
@@ -53,9 +48,11 @@ interface SelectionProps {
 const Selection: FC<SelectionProps> = ({ selection }) => (
   <MainContainer>
     <StyledSelection>
-      <SelectionTitle>{selection.name}</SelectionTitle>
+      <SelectionTitleContainer>
+        <SelectionTitle>{selection.name}</SelectionTitle>
+      </SelectionTitleContainer>
       <SelectionDescription>{selection.description}</SelectionDescription>
-      <ProductList products={selection.products} />
+      {selection.products && <ProductList products={selection.products} />}
     </StyledSelection>
   </MainContainer>
 );
