@@ -62,10 +62,9 @@ font-size: 1em;
 }
 `;
 
-
-
-const NotFoundPage: FC = () => (
-  <IndexLayout>
+const NotFoundPage: FC = () => {
+  return (
+    <IndexLayout seoData={{ pageUri: '', title: 'page non trouvée' }}>
     <Bg>
       <Page>
         <Container>
@@ -79,6 +78,7 @@ const NotFoundPage: FC = () => (
       </Page>
     </Bg>
   </IndexLayout >
-)
+  );
+};
 
 export default NotFoundPage;

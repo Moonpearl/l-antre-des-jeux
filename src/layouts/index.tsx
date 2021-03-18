@@ -10,6 +10,8 @@ import Header from '../components/Header';
 import LayoutRoot from '../components/LayoutRoot';
 import LayoutMain from '../components/LayoutMain';
 import { Footer } from '../components';
+import { SeoData } from '../models';
+import { GraphcmsGlobalContent } from '../models/graphcms/assets';
 
 const GlobalStyles: React.FC = () => (
   <Global
@@ -71,38 +73,69 @@ interface StaticQueryProps {
     siteMetadata: {
       title: string;
       description: string;
-      keywords: string;
+      keywords: string[];
+      siteUrl: string;
+      defaultLocale: string;
     };
   };
+  graphCmsGlobalContent: GraphcmsGlobalContent;
 }
 
-const IndexLayout: React.FC = ({ children }) => (
+interface IndexLayoutProps {
+  seoData: SeoData;
+}
+
+const IndexLayout: React.FC<IndexLayoutProps> = ({ children, seoData }) => (
   <StaticQuery
     query={graphql`
       query IndexLayoutQuery {
         site {
           siteMetadata {
+            keywords
             title
             description
+            siteUrl
+            defaultLocale
           }
+        }
+        graphCmsGlobalContent {
+          siteName
+          keywords
         }
       }
     `}
-    render={(data: StaticQueryProps) => (
-      <LayoutRoot>
-        <GlobalStyles />
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: data.site.siteMetadata.description },
-            { name: 'keywords', content: data.site.siteMetadata.keywords },
-          ]}
-        />
-        <Header title={data.site.siteMetadata.title} />
-        <LayoutMain>{children}</LayoutMain>
-        <Footer />
-      </LayoutRoot>
-    )}
+    render={(data: StaticQueryProps) => {
+      const description = seoData.description || data.site.siteMetadata.description;
+      const keywords = (seoData.keywords || data.graphCmsGlobalContent.keywords || data.site.siteMetadata.keywords).join(', ');
+      const siteName = seoData.siteName || data.graphCmsGlobalContent.siteName || data.site.siteMetadata.title;
+      const title = `${siteName} - ${seoData.title}`;
+      const type = seoData.openGraphType || 'website';
+      const image = seoData.openGraphImage;
+      const url = data.site.siteMetadata.siteUrl + seoData.pageUri;
+      const locale = seoData.openGraphLocale || data.site.siteMetadata.defaultLocale;
+
+      return (
+        <LayoutRoot>
+          <GlobalStyles />
+          <Helmet
+            title={title}
+            meta={[
+              { name: 'description', content: description },
+              { name: 'keywords', content: keywords },
+              { name: 'siteName', content: siteName },
+              { property: 'og:image', name: 'openGraphImage', content: image },
+              { property: 'og:title', name: 'openGraphTitle', content: title },
+              { property: 'og:type', name: 'openGraphType', content: type },
+              { property: 'og:url', name: 'openGraphUrl', content: url },
+              { property: 'og:locale', name: 'openGraphLocale', content: locale },
+            ]}
+          />
+          <Header />
+          <LayoutMain>{children}</LayoutMain>
+          <Footer />
+        </LayoutRoot>
+      );
+    }}
   />
 );
 
