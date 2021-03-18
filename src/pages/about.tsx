@@ -140,22 +140,18 @@ const Separator = styled.div`
 
 const DownWave = DownWaves[1];
 
-
-
 const AboutPage: FC<PagePropsWithData> = ({ data }) => {
   const { graphCmsGlobalContent: globalContent, graphCmsPage: page } = data;
 
   const seoData: SeoData = {
     pageUri: '/about',
-    title: page?.title,
+    title: page?.title || '',
     description: page?.description,
     openGraphImage: page?.openGraphImage?.url,
-  }
+  };
 
   return (
-    <IndexLayout
-      seoData={seoData}
-    >
+    <IndexLayout seoData={seoData}>
       <BackgroundImageContainer
         backgroundImage={globalContent?.shopBackgroundImage || { url: '' }}
         backgroundSize="cover"
@@ -237,7 +233,7 @@ export const query = graphql`
       keywords
       siteName
     }
-    graphCmsPage(slug: {eq: "about"}) {
+    graphCmsPage(slug: { eq: "about" }) {
       title
       description
       openGraphImage {
@@ -276,6 +272,5 @@ export const query = graphql`
     }
   }
 `;
-
 
 export default AboutPage;

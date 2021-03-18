@@ -37,10 +37,10 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
 
   const seoData: SeoData = {
     pageUri: '/',
-    title: page?.title,
+    title: page?.title || '',
     description: page?.description,
     openGraphImage: page?.openGraphImage?.url,
-  }
+  };
 
   return (
     <IndexLayout seoData={seoData}>
@@ -82,7 +82,7 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
 
 export const query = graphql`
   query HomePageQuery {
-    graphCmsPage(slug: {eq: "home"}) {
+    graphCmsPage(slug: { eq: "home" }) {
       title
       description
       openGraphImage {
