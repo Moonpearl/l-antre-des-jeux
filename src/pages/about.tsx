@@ -5,11 +5,11 @@ import { GiShop } from 'react-icons/gi';
 import IndexLayout from '../layouts/index';
 import MainContainer from '../components/styles/main-container';
 import { graphql } from 'gatsby';
-import { PagePropsWithData } from '../models';
 import Markdown from 'markdown-to-jsx';
 import { Filler, BackgroundImageContainer, BackgroundColorContainer, Title } from '../components/styles';
 import DownWaves from '../components/styles/waves/down';
 /*import { pages } from '../models/graphcms/assets/pages';*/
+import { PagePropsWithData, SeoData } from '../models';
 
 const UnderlayCenter = styled.div`
   position: relative;
@@ -140,17 +140,21 @@ const Separator = styled.div`
 
 const DownWave = DownWaves[1];
 
+
+
 const AboutPage: FC<PagePropsWithData> = ({ data }) => {
-  const { graphCmsGlobalContent: globalContent } = data;
-  const { graphCmsPages: pages } = data;
+  const { graphCmsGlobalContent: globalContent, graphCmsPage: page } = data;
+
+  const seoData: SeoData = {
+    pageUri: '/about',
+    title: page?.title,
+    description: page?.description,
+    openGraphImage: page?.openGraphImage?.url,
+  }
 
   return (
     <IndexLayout
-      title={pages?.title}
-      description={pages?.description}
-      openGraphImage={pages?.openGraphImage}
-      keywords={globalContent?.keywords}
-      siteName={globalContent?.siteName}
+      seoData={seoData}
     >
       <BackgroundImageContainer
         backgroundImage={globalContent?.shopBackgroundImage || { url: '' }}
@@ -229,6 +233,17 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
 
 export const query = graphql`
   query AboutPageQuery {
+    graphCmsGlobalContent {
+      keywords
+      siteName
+    }
+    graphCmsPage(slug: {eq: "about"}) {
+      title
+      description
+      openGraphImage {
+        url
+      }
+    }
     graphCmsGlobalContent {
       employees {
         slug

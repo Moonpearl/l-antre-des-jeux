@@ -10,6 +10,8 @@ import Header from '../components/Header';
 import LayoutRoot from '../components/LayoutRoot';
 import LayoutMain from '../components/LayoutMain';
 import { Footer } from '../components';
+import { SeoData } from '../models';
+import { GraphcmsGlobalContent } from '../models/graphcms/assets';
 
 const GlobalStyles: React.FC = () => (
   <Global
@@ -76,21 +78,14 @@ interface StaticQueryProps {
       defaultLocale: string;
     };
   };
+  graphCmsGlobalContent: GraphcmsGlobalContent;
 }
 
 interface IndexLayoutProps {
-  title?: string;
-  description?: string;
-  keywords?: string[];
-  openGraphImage?: string;
-  siteName?: string;
-  openGraphTitle?: string;
-  openGraphType?: string;
-  openGraphLocale?: string;
-  pageUri: string;
+  seoData: SeoData;
 }
 
-const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description, keywords, openGraphImage, siteName, openGraphLocale, openGraphType, pageUri }) => (
+const IndexLayout: React.FC<IndexLayoutProps> = ({ children, seoData }) => (
   <StaticQuery
     query={graphql`
       query IndexLayoutQuery {
@@ -103,22 +98,26 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({ children, title, description,
             defaultLocale
           }
         }
+        graphCmsGlobalContent {
+          siteName
+          keywords
+        }
       }
     `}
     render={(data: StaticQueryProps) => (
       <LayoutRoot>
         <GlobalStyles />
         <Helmet
-          title={title}
+          title={seoData.title}
           meta={[
-            { name: 'description', content: description || data.site.siteMetadata.description },
-            { name: 'keywords', content: (keywords || data.site.siteMetadata.keywords).join(', ') },
-            { name: 'siteName', content: siteName || data.site.siteMetadata.title },
-            { property: 'og:image', name: 'openGraphImage', content: openGraphImage },
-            { property: 'og:title', name: 'openGraphTitle', content: title || data.site.siteMetadata.title },
-            { property: 'og:type', name: 'openGraphType', content: openGraphType || 'website' },
-            { property: 'og:url', name: 'openGraphUrl', content: data.site.siteMetadata.siteUrl + pageUri },
-            { property: 'og:locale', name: 'openGraphLocale', content: openGraphLocale || data.site.siteMetadata.defaultLocale },
+            { name: 'description', content: seoData.description || data.site.siteMetadata.description },
+            { name: 'keywords', content: (seoData.keywords || data.graphCmsGlobalContent.keywords || data.site.siteMetadata.keywords).join(', ') },
+            { name: 'siteName', content: seoData.siteName || data.graphCmsGlobalContent.siteName || data.site.siteMetadata.title },
+            { property: 'og:image', name: 'openGraphImage', content: seoData.openGraphImage },
+            { property: 'og:title', name: 'openGraphTitle', content: seoData.title || data.site.siteMetadata.title },
+            { property: 'og:type', name: 'openGraphType', content: seoData.openGraphType || 'website' },
+            { property: 'og:url', name: 'openGraphUrl', content: data.site.siteMetadata.siteUrl + seoData.pageUri },
+            { property: 'og:locale', name: 'openGraphLocale', content: seoData.openGraphLocale || data.site.siteMetadata.defaultLocale },
           ]}
         />
         <Header />

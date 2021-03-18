@@ -6,13 +6,8 @@ import Container from '../components/Container';
 import IndexLayout from '../layouts';
 
 const NotFoundPage: FC = () => {
-  const { graphCmsPages: pages } = data;
-
   return (
-    <IndexLayout
-      title={pages?.title}
-      description={pages?.description}
-      openGraphImage={pages?.openGraphImage}  >
+    <IndexLayout seoData={{ pageUri: '', title: 'page non trouvée' }}>
       <Page>
         <Container>
           <h1>404: Page not found.</h1>

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { graphql } from 'gatsby';
 import IndexLayout from '../layouts';
 import { Selection, ShelfPreview } from '../components';
-import { PagePropsWithData } from '../models';
+import { PagePropsWithData, SeoData } from '../models';
 import { Filler, Title } from '../components/styles';
 import { Logo as LogoImage } from '../images';
 import styled from '@emotion/styled';
@@ -35,13 +35,15 @@ const DownWave = DownWaves[0];
 const IndexPage: FC<PagePropsWithData> = ({ data }) => {
   const { graphCmsPage: page } = data;
 
+  const seoData: SeoData = {
+    pageUri: '/',
+    title: page?.title,
+    description: page?.description,
+    openGraphImage: page?.openGraphImage?.url,
+  }
+
   return (
-    <IndexLayout
-      pageUri=''
-      title={page?.title}
-      description={page?.description}
-      openGraphImage={page?.openGraphImage}
-    >
+    <IndexLayout seoData={seoData}>
       {/* Website logo */}
       <HeaderContainer>
         <Filler color={colors.ui.dark} height="6em" />
@@ -80,6 +82,13 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
 
 export const query = graphql`
   query HomePageQuery {
+    graphCmsPage(slug: {eq: "home"}) {
+      title
+      description
+      openGraphImage {
+        url
+      }
+    }
     allGraphCmsShelf {
       edges {
         node {
@@ -118,11 +127,6 @@ export const query = graphql`
           }
         }
       }
-    }
-    graphCmsPage(slug: {eq: "home"}) {
-      title
-      description
-      openGraphImage
     }
   }
 `;

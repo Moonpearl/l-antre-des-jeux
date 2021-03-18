@@ -4,8 +4,8 @@ import React, { FC } from 'react';
 import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
 import DownWaves from '../components/styles/waves/down';
 import IndexLayout from '../layouts';
-import { PagePropsWithData } from '../models';
 import { ProductList } from '../components';
+import { PagePropsWithData, SeoData } from '../models';
 
 const Separator = styled.div`
   position: absolute;
@@ -30,8 +30,15 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
     throw new Error('Non-existing shelf');
   }
 
+  const seoData: SeoData = {
+    pageUri: `/shelf/${shelf.slug}`,
+    title: shelf.name,
+    description: shelf.description,
+    openGraphImage: shelf.backgroundImage.url,
+  };
+
   return (
-    <IndexLayout title="Rayons" description="..." openGraphImage="" keywords="">
+    <IndexLayout seoData={seoData}>
       <BackgroundImageContainer
         backgroundImage={shelf.backgroundImage}
         backgroundSize="cover"
@@ -64,6 +71,7 @@ export const query = graphql`
   query ShelfPageQuery($slug: String!) {
     graphCmsShelf(slug: { eq: $slug }) {
       name
+      slug
       description
       backgroundImage {
         url
