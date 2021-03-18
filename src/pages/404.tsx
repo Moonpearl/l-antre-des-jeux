@@ -22,7 +22,7 @@ color: white;
 const Title = styled.h1`
 text-align: center;
 font-weight: bold;
-font-size: 8em;
+font-size: 6em;
 color: #2980B9;
 margin-bottom: 0.2em;
 font-family: 'Oswald', sans-serif;
@@ -33,7 +33,7 @@ font-family: 'Oswald', sans-serif;
 const Text = styled.p`
 text-align: center;
 letter-spacing: 0.2em;
-font-size: 2em;
+font-size: 1em;
 font-family: 'Oswald', sans-serif;
 `;
 
