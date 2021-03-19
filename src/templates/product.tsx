@@ -1,39 +1,23 @@
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import Markdown from 'markdown-to-jsx';
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
 import DownWaves from '../components/styles/waves/down';
 import IndexLayout from '../layouts';
-import { PagePropsWithData } from '../models';
 import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
 import { IconType } from 'react-icons';
 import { FaCog, FaStar, FaUsers } from 'react-icons/fa';
 import AllWave from '../components/styles/waves';
+import { PagePropsWithData, SeoData } from '../models';
+import { ThemeContext } from '../contexts/theme';
 
 const Separator = styled.div`
   position: absolute;
   z-index: 1;
   transform: scale(1, 0.5);
   transform-origin: top center;
-`;
-
-const ProductContainer = styled.div`
-  background-color: white;
-  border-radius: 1em;
-  padding: 2em;
-  margin-bottom: 2em;
-
-  @media (min-width: 640px) {
-    display: grid;
-    gap: 2em;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-      'im ds ds'
-      'im pr rl'
-      'im ic rl';
-  }
 `;
 
 const ProductImage = styled.img`
@@ -109,28 +93,59 @@ const ProductRelationship: FC<ProductRelationshipProps> = ({ Icon, title, assets
 };
 
 const ProductPage: FC<PagePropsWithData> = ({ data }) => {
+  const { palette } = useContext(ThemeContext);
   const { graphCmsProduct: product } = data;
 
   if (typeof product === 'undefined') {
     throw new Error('Non-existing shelf');
   }
 
+  const seoData: SeoData = {
+    pageUri: `/product/${product.slug}`,
+    title: product.name,
+    description: product.description,
+    openGraphImage: product.imageUrl,
+    openGraphType: 'product',
+  };
+
+  const currentPalette = product.shelf?.palette || palette;
+
+  const styles = {
+    ProductContainer: styled.div`
+      background-color: ${currentPalette.backgroundColor.css};
+      border-radius: 1em;
+      padding: 2em;
+      margin-bottom: 2em;
+
+      @media (min-width: 640px) {
+        display: grid;
+        gap: 2em;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+          'im ds ds'
+          'im pr rl'
+          'im ic rl';
+      }
+    `,
+  };
+
   return (
-    <IndexLayout>
+    <IndexLayout seoData={seoData} palette={product.shelf?.palette}>
       <BackgroundImageContainer
         backgroundImage={product.shelf?.backgroundImage || { url: '' }}
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundAttachment="fixed"
       >
-        <Filler color={product.shelf?.backgroundColor.css || '#666'} height="6em" />
-        <BackgroundColorContainer color={product.shelf?.backgroundColor.css || '#666'}>
+        <Filler color={currentPalette.headerBackgroundColor.css} height="6em" />
+        <BackgroundColorContainer color={currentPalette.headerBackgroundColor.css}>
           <MainContainer>
-            <Title level={1} color={product.shelf?.titleColor.css || '#ccc'}>
+            <Title level={1} color={currentPalette.headerTextColor.css}>
               {product.name}
             </Title>
           </MainContainer>
         </BackgroundColorContainer>
+        <Filler color={currentPalette.headerBackgroundColor.css} height="1em" />
         <Separator>
           {/* <AllWave color={product.shelf?.backgroundColor.css || '666'} />*/}
           {/*<DownWave color={product.shelf?.backgroundColor.css || '#666'} />*/}
@@ -138,9 +153,9 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
         <Filler height="12em" />
 
         <MainContainer>
-          <ProductContainer>
+          <styles.ProductContainer>
             <ProductImage src={product.imageUrl} />
-            <ProductPrice>Prix: {product.price} &euro;</ProductPrice>
+            <ProductPrice>Prix: {product.price.toFixed(2)} &euro;</ProductPrice>
             <ProductDescription>
               <Markdown>{product.description || ''}</Markdown>
             </ProductDescription>
@@ -169,7 +184,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
               <ProductRelationship Icon={FaStar} title="Catégories" assets={product.categories} />
               <ProductRelationship Icon={FaCog} title="Mécaniques" assets={product.mechanics} />
             </ProductRelationships>
-          </ProductContainer>
+          </styles.ProductContainer>
         </MainContainer>
       </BackgroundImageContainer>
     </IndexLayout>
@@ -200,6 +215,35 @@ export const query = graphql`
         }
         backgroundImage {
           url
+        }
+        palette {
+          backgroundColor {
+            css
+          }
+          frameBackgroundColor {
+            css
+          }
+          frameTextColor {
+            css
+          }
+          headerBackgroundColor {
+            css
+          }
+          headerHighlightColor {
+            css
+          }
+          headerTextColor {
+            css
+          }
+          textColor {
+            css
+          }
+          titleColor {
+            css
+          }
+          titleHighlightColor {
+            css
+          }
         }
       }
       mechanics {

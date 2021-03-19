@@ -7,9 +7,10 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: "L'Antre des jeux",
-    description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
-    keywords: 'gatsbyjs, gatsby, javascript, sample, something',
-    siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
+    description: 'Magasin de jeux de sociétés situé en région ?',
+    keywords: ['gatsbyjs', 'gatsby', 'javascript', 'sample', 'something'],
+    siteUrl: 'https://l-antre-des-jeux.netlify.app/',
+    defaultLocale: 'fr',
     author: {
       name: 'Resi Respati',
       url: 'https://twitter.com/resir014',

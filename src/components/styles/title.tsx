@@ -25,14 +25,16 @@ const TitleStyle = styled.span<TitleProps>`
 `;
 
 const Title: FC<TitleProps> = ({ level, color, children }) => {
-  const ComponentName = `h${level}`;
+  const Component = `h${level}`;
 
   return (
-    <ComponentName>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    <Component>
       <TitleStyle level={level} color={color}>
         {children}
       </TitleStyle>
-    </ComponentName>
+    </Component>
   );
 };
 
