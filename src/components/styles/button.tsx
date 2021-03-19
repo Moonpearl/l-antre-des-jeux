@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
-import { colors } from '../../styles/variables';
+import { WithPaletteProps } from '../../models';
 
-const Button = styled.button`
+const Button = styled.button<WithPaletteProps>`
   position: relative;
-  background-color: ${colors.ui.dark};
-  background-image: linear-gradient(160deg, rgba(0, 0, 0, 0) 0%, ${colors.ui.normal} 100%);
+  background-color: ${({ palette }): string => palette.titleColor.css};
+  background-image: linear-gradient(160deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+  background-blend-mode: color-burn;
   border-radius: 0.5em;
   color: white;
   display: inline-block;
@@ -23,7 +24,7 @@ const Button = styled.button`
   }
 
   &:hover {
-    background-color: ${colors.ui.normal};
+    background-color: ${({ palette }): string => palette.titleHighlightColor.css};
     padding: 0.5em 1.5em 0.5em 0.5em;
   }
 
