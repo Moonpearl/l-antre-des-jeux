@@ -52,6 +52,7 @@ interface ShelfPreviewProps {
 }
 
 const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, index }) => {
+
   const UpWave = UpWaves[(index + 1) % UpWaves.length];
   const DownWave = DownWaves[(index + 1) % DownWaves.length];
 
