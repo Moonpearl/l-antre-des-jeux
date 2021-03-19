@@ -10,6 +10,7 @@ import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
 import { IconType } from 'react-icons';
 import { FaCog, FaStar, FaUsers } from 'react-icons/fa';
+import AllWave from '../components/styles/waves';
 
 const Separator = styled.div`
   position: absolute;
@@ -131,7 +132,8 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
           </MainContainer>
         </BackgroundColorContainer>
         <Separator>
-          <DownWave color={product.shelf?.backgroundColor.css || '#666'} />
+          <AllWave color={product.shelf?.backgroundColor.css || '666'} />
+          {/*<DownWave color={product.shelf?.backgroundColor.css || '#666'} />*/}
         </Separator>
         <Filler height="12em" />
 

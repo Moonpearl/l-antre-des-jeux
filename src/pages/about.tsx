@@ -9,6 +9,7 @@ import { PagePropsWithData } from '../models';
 import Markdown from 'markdown-to-jsx';
 import { Filler, BackgroundImageContainer, BackgroundColorContainer, Title } from '../components/styles';
 import DownWaves from '../components/styles/waves/down';
+import AllWave from '../components/styles/waves';
 
 const UnderlayCenter = styled.div`
   position: relative;
@@ -159,7 +160,8 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
           </MainContainer>
         </BackgroundColorContainer>
         <Separator>
-          <DownWave color={globalContent?.shopBackgroundColor.css || '#000'} />
+          <AllWave color={globalContent?.shopBackgroundColor.css || '#000'} />
+          {/*  <DownWave color={globalContent?.shopBackgroundColor.css || '#000'} />*/}
         </Separator>
         <MainContainer>
           <UnderlayCenter>

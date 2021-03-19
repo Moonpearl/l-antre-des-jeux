@@ -7,6 +7,7 @@ import { Filler, Title } from '../components/styles';
 import { Logo as LogoImage } from '../images';
 import styled from '@emotion/styled';
 import DownWaves from '../components/styles/waves/down';
+import AllWave from '../components/styles/waves';
 import { colors } from '../styles/variables';
 import Invisible from '../components/styles/invisible';
 
@@ -40,7 +41,8 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
       <Logo src={LogoImage} alt="Logo de l'antre des jeux" />
       <Filler color={colors.ui.dark} height="6em" />
       <Separator>
-        <DownWave color={colors.ui.dark} />
+        <AllWave imageUrl="" viewBox="" fillOpacity="1" />
+        {/* <DownWave color={colors.ui.dark} />*/}
       </Separator>
     </HeaderContainer>
 

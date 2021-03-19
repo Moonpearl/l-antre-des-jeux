@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 interface AllWaveProps {
-  color?: string;
+  color: string;
   imageUrl: string; /*xmlns*/
   viewBox: number;
   fill: { color };

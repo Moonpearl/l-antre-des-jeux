@@ -6,6 +6,7 @@ import DownWaves from '../components/styles/waves/down';
 import IndexLayout from '../layouts';
 import { PagePropsWithData } from '../models';
 import { ProductList } from '../components';
+import AllWave from '../components/styles/waves';
 
 const Separator = styled.div`
   position: absolute;
@@ -47,7 +48,8 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
           </MainContainer>
         </BackgroundColorContainer>
         <Separator>
-          <DownWave color={shelf.backgroundColor.css || 'rgba(0, 0, 0, 0)'} />
+          <AllWave color={shelf.backgroundColor.css || 'rgba(0, 0, 0, 0)'} />
+          {/*  <DownWave color={shelf.backgroundColor.css || 'rgba(0, 0, 0, 0)'} />*/}
         </Separator>
         <Filler height="12em" />
 
