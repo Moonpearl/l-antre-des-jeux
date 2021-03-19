@@ -1,17 +1,14 @@
 import React, { FC, useContext } from 'react';
 import { graphql } from 'gatsby';
 import IndexLayout from '../layouts';
-import { Selection, ShelfPreview } from '../components';
+import { Selection, ShelfPreview, PageHeader } from '../components';
 import { PagePropsWithData, SeoData } from '../models';
 import { Filler, Title } from '../components/styles';
 import { Logo as LogoImage } from '../images';
 import styled from '@emotion/styled';
-import DownWaves from '../components/styles/waves/down';
-import AllWave from '../components/styles/waves';
+import Wave from '../components/styles/wave';
 import Invisible from '../components/styles/invisible';
 import { ThemeContext } from '../contexts/theme';
-
-const DownWave = DownWaves[0];
 
 // SECTION Main component
 const IndexPage: FC<PagePropsWithData> = ({ data }) => {
@@ -52,14 +49,9 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
   return (
     <IndexLayout seoData={seoData} palette={page?.palette}>
       {/* Website logo */}
-      <styles.HeaderContainer>
-        <Filler color={palette.headerBackgroundColor.css} height="6em" />
+      <PageHeader backgroundColor={palette.headerBackgroundColor.css} wavePath={page.wavePath}>
         <styles.Logo src={LogoImage} alt="Logo de l'antre des jeux" />
-        <Filler color={palette.headerBackgroundColor.css} height="6em" />
-        <styles.Separator>
-          <DownWave color={palette.headerBackgroundColor.css} />
-        </styles.Separator>
-      </styles.HeaderContainer>
+      </PageHeader>
 
       <Invisible>
         <Title level={2}>Rayons</Title>
@@ -94,6 +86,7 @@ export const query = graphql`
     graphCmsPage(slug: { eq: "home" }) {
       title
       description
+      wavePath
       openGraphImage {
         url
       }

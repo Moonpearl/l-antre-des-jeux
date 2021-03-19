@@ -5,3 +5,4 @@ export { default as Filler } from './filler';
 export { default as FlexContainer } from './flex-container';
 export { default as MainContainer } from './main-container';
 export { default as Title } from './title';
+export { default as Wave } from './wave';

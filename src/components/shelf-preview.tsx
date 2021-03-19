@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Markdown from 'markdown-to-jsx';
 import { BackgroundImageContainer, Button, Filler, FlexContainer, MainContainer, Title } from './styles';
 import { GraphcmsShelf } from '../models/graphcms/assets';
-import UpWaves from './styles/waves/up';
+import Wave from './styles/wave';
 import DownWaves from './styles/waves/down';
 import { Link } from 'gatsby';
 import { ThemeContext } from '../contexts/theme';
@@ -21,8 +21,8 @@ interface ShelfPreviewProps {
 const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, index }) => {
   const { palette } = useContext(ThemeContext);
   const currentPalette: Palette = shelf.palette || palette;
-  const UpWave = UpWaves[(index + 1) % UpWaves.length];
-  const DownWave = DownWaves[(index + 1) % DownWaves.length];
+  /* const UpWave = UpWaves[(index + 1) % UpWaves.length];*/
+  /* const DownWave = DownWaves[(index + 1) % DownWaves.length];*/
 
   const styles = {
     ShelfFrame: styled.div<ShelfFrameProps>`
@@ -81,9 +81,9 @@ const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, index }) => {
         </FlexContainer>
       </MainContainer>
       <styles.Separator>
-        <UpWave color={currentPalette.headerBackgroundColor.css} />
+
         <Filler color={currentPalette.headerBackgroundColor.css} height="8em" />
-        <DownWave color={currentPalette.headerBackgroundColor.css} />
+
       </styles.Separator>
     </BackgroundImageContainer>
   );

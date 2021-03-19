@@ -9,7 +9,7 @@ import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
 import { IconType } from 'react-icons';
 import { FaCog, FaStar, FaUsers } from 'react-icons/fa';
-import AllWave from '../components/styles/waves';
+import AllWave from '../components/styles/wave';
 import { PagePropsWithData, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
 

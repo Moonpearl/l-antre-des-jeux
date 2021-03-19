@@ -2,14 +2,10 @@ import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import React, { FC, useContext } from 'react';
 import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
-import DownWaves from '../components/styles/waves/down';
 import IndexLayout from '../layouts';
 import { ProductList } from '../components';
-import AllWave from '../components/styles/waves';
 import { PagePropsWithData, Palette, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
-
-const DownWave = DownWaves[1];
 
 const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
   const { palette } = useContext(ThemeContext);
@@ -61,7 +57,7 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
         </BackgroundColorContainer>
         <Filler color={currentPalette.headerBackgroundColor.css} height="1em" />
         <styles.Separator>
-          <DownWave color={currentPalette.headerBackgroundColor.css || 'rgba(0, 0, 0, 0)'} />
+
         </styles.Separator>
         <Filler height="12em" />
 
