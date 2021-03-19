@@ -132,7 +132,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
           </MainContainer>
         </BackgroundColorContainer>
         <Separator>
-          <AllWave color={product.shelf?.backgroundColor.css || '666'} />
+          {/* <AllWave color={product.shelf?.backgroundColor.css || '666'} />*/}
           {/*<DownWave color={product.shelf?.backgroundColor.css || '#666'} />*/}
         </Separator>
         <Filler height="12em" />

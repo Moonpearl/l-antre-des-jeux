@@ -41,7 +41,7 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => (
       <Logo src={LogoImage} alt="Logo de l'antre des jeux" />
       <Filler color={colors.ui.dark} height="6em" />
       <Separator>
-        <AllWave imageUrl="" viewBox="" fillOpacity="1" />
+        {/*<AllWave imageUrl="" viewBox="" fillOpacity="1" />*/}
         {/* <DownWave color={colors.ui.dark} />*/}
       </Separator>
     </HeaderContainer>

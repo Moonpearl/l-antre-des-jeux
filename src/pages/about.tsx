@@ -160,7 +160,7 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
           </MainContainer>
         </BackgroundColorContainer>
         <Separator>
-          <AllWave color={globalContent?.shopBackgroundColor.css || '#000'} />
+          {/* <AllWave color={globalContent?.shopBackgroundColor.css || '#000'} />*/}
           {/*  <DownWave color={globalContent?.shopBackgroundColor.css || '#000'} />*/}
         </Separator>
         <MainContainer>
