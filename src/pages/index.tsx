@@ -31,7 +31,7 @@ const Separator = styled.div`
   transform-origin: top center;
 `;
 
-const DownWave = DownWaves[0];
+/*const DownWave = DownWaves[0];*/
 
 const IndexPage: FC<PagePropsWithData> = ({ data }) => (
   <IndexLayout>
