@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { ReactNode, useContext, useEffect } from 'react';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import { Global, css } from '@emotion/core';
@@ -12,6 +12,7 @@ import LayoutMain from '../components/LayoutMain';
 import { Footer } from '../components';
 import { SeoData } from '../models';
 import { GraphcmsGlobalContent } from '../models/graphcms/assets';
+import { Palette, ThemeContext } from '../contexts/theme';
 
 const GlobalStyles: React.FC = () => (
   <Global
@@ -83,9 +84,10 @@ interface StaticQueryProps {
 
 interface IndexLayoutProps {
   seoData: SeoData;
+  palette?: Palette;
 }
 
-const IndexLayout: React.FC<IndexLayoutProps> = ({ children, seoData }) => (
+const IndexLayout: React.FC<IndexLayoutProps> = ({ children, seoData, palette: pagePalette }) => (
   <StaticQuery
     query={graphql`
       query IndexLayoutQuery {
@@ -101,10 +103,39 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({ children, seoData }) => (
         graphCmsGlobalContent {
           siteName
           keywords
+          defaultPalette {
+            backgroundColor {
+              css
+            }
+            frameBackgroundColor {
+              css
+            }
+            frameTextColor {
+              css
+            }
+            headerBackgroundColor {
+              css
+            }
+            headerHighlightColor {
+              css
+            }
+            headerTextColor {
+              css
+            }
+            textColor {
+              css
+            }
+            titleColor {
+              css
+            }
+            titleHighlightColor {
+              css
+            }
+          }
         }
       }
     `}
-    render={(data: StaticQueryProps) => {
+    render={(data: StaticQueryProps): ReactNode => {
       const description = seoData.description || data.site.siteMetadata.description;
       const keywords = (seoData.keywords || data.graphCmsGlobalContent.keywords || data.site.siteMetadata.keywords).join(', ');
       const siteName = seoData.siteName || data.graphCmsGlobalContent.siteName || data.site.siteMetadata.title;
@@ -113,6 +144,17 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({ children, seoData }) => (
       const image = seoData.openGraphImage;
       const url = data.site.siteMetadata.siteUrl + seoData.pageUri;
       const locale = seoData.openGraphLocale || data.site.siteMetadata.defaultLocale;
+
+      const { palette, setPalette } = useContext(ThemeContext);
+
+      const currentPalette: Palette = pagePalette || data.graphCmsGlobalContent.defaultPalette || palette;
+
+      console.log('pagePalette:', pagePalette);
+      console.log('defaultPalette:', data.graphCmsGlobalContent.defaultPalette);
+      console.log('contextPalette:', palette);
+      console.log('currentPalette', currentPalette);
+
+      useEffect(() => setPalette(currentPalette), [pagePalette]);
 
       return (
         <LayoutRoot>

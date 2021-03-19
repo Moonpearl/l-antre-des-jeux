@@ -5,3 +5,9 @@
  */
 
 // You can delete this file if you're not using it
+
+import React from 'react';
+import { ThemeProvider } from './src/contexts';
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const wrapRootElement = ({ element }) => <ThemeProvider>{element}</ThemeProvider>;

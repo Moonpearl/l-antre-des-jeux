@@ -1,27 +1,11 @@
 import styled from '@emotion/styled';
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { IconType } from 'react-icons';
 import { colors } from '../styles/variables';
-
-const FooterStyled = styled.footer`
-  position: relative;
-  text-align: center;
-  padding: 4em 0;
-  background-color: ${colors.ui.dark};
-  color: ${colors.ui.light};
-`;
-
-const SocialIcons = styled.div`
-  font-size: 2em;
-  display: flex;
-  justify-content: center;
-
-  & > * {
-    margin: 0 0.25em;
-  }
-`;
+import { ThemeContext } from '../contexts/theme';
+import { WithPaletteProps } from '../models';
 
 interface SocialIconProps {
   url: string;
@@ -42,6 +26,27 @@ const SocialIcon: FC<SocialIconProps> = ({ url, slug, Icon }) => {
 };
 
 const Footer: FC = () => {
+  const { palette } = useContext(ThemeContext);
+
+  const styles = {
+    Footer: styled.footer`
+      position: relative;
+      text-align: center;
+      padding: 4em 0;
+      background-color: ${palette.headerBackgroundColor.css};
+      color: ${palette.headerTextColor.css};
+    `,
+    SocialIcons: styled.div`
+      font-size: 2em;
+      display: flex;
+      justify-content: center;
+
+      & > * {
+        margin: 0 0.25em;
+      }
+    `,
+  };
+
   const { graphCmsGlobalContent: globalContent } = useStaticQuery(graphql`
     query FooterQuery {
       graphCmsGlobalContent {
@@ -53,13 +58,13 @@ const Footer: FC = () => {
   `);
 
   return (
-    <FooterStyled>
-      <SocialIcons>
+    <styles.Footer>
+      <styles.SocialIcons>
         <SocialIcon url={`https://www.facebook.com`} slug={globalContent?.socialFacebook} Icon={FaFacebook} />
         <SocialIcon url={`https://twitter.com`} slug={globalContent?.socialTwitter} Icon={FaTwitter} />
         <SocialIcon url={`https://www.instagram.com`} slug={globalContent?.socialInstagram} Icon={FaInstagram} />
-      </SocialIcons>
-    </FooterStyled>
+      </styles.SocialIcons>
+    </styles.Footer>
   );
 };
 
