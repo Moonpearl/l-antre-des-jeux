@@ -9,6 +9,7 @@ import styled from '@emotion/styled';
 import Wave from '../components/styles/wave';
 import Invisible from '../components/styles/invisible';
 import { ThemeContext } from '../contexts/theme';
+import Separator from '../components/separator';
 
 // SECTION Main component
 const IndexPage: FC<PagePropsWithData> = ({ data }) => {
@@ -63,11 +64,10 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
           </li>
         ))}
       </ul>
-      <Wave />
       <Invisible>
         <Title level={2}>Sélections</Title>
       </Invisible>
-      <Filler height="12em" />
+      {/* <Filler height="12em" />*/}
       <ul>
         {data.allGraphCmsSelection?.edges.map(({ node }) => (
           <li key={node.slug}>

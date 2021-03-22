@@ -81,10 +81,12 @@ const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, index }) => {
 
       </MainContainer>
 
+      <Wave backgroundColor={currentPalette.headerBackgroundColor.css} path={currentWavePath} />
+      {/*<Separator wavePath="" upWavePath="" backgroundColor={currentPalette.headerBackgroundColor.css} />*/}
 
 
       <styles.Separator>
-        <Separator wavePath="" upWavePath="" backgroundColor={currentPalette.headerBackgroundColor.css} />
+
 
         <Filler color={currentPalette.headerBackgroundColor.css} height="8em" />
       </styles.Separator>

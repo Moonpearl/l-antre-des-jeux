@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Filler, Wave } from './styles';
+import { Wave } from './styles';
 import styled from '@emotion/styled';
 
 interface SeparatorProps {
@@ -19,6 +19,7 @@ const Separator: FC<SeparatorProps> = ({ children, backgroundColor, wavePath, up
       z-index: 1;
       transform: scale(1, 0.5);
       transform-origin: top center;
+      bottom: 5;
     `,
   };
 
@@ -27,14 +28,10 @@ const Separator: FC<SeparatorProps> = ({ children, backgroundColor, wavePath, up
 
   return (
     <styles.HeaderContainer>
-      <Filler color={backgroundColor} height="6em" />
-      {children}
-      <Filler color={backgroundColor} height="6em" />
-
+      {/* {children}*/}
       <Wave color={backgroundColor} path={currentUpWavePath} />
       <styles.Separator>
         <Wave color={backgroundColor} path={currentWavePath} />
-
       </styles.Separator>
     </styles.HeaderContainer>
   )
