@@ -7,6 +7,7 @@ import { Wave } from './styles';
 import { Link } from 'gatsby';
 import { ThemeContext } from '../contexts/theme';
 import { Palette } from '../models';
+import Separator from '../components/separator';
 
 interface ShelfFrameProps {
   reverse: boolean;
@@ -75,12 +76,17 @@ const ShelfPreview: FC<ShelfPreviewProps> = ({ shelf, index }) => {
               <Button palette={currentPalette}>Découvrir</Button>
             </Link>
           </styles.ShelfFrame>
+
         </FlexContainer>
+
       </MainContainer>
+
+
+
       <styles.Separator>
+        <Separator wavePath="" upWavePath="" backgroundColor={currentPalette.headerBackgroundColor.css} />
 
         <Filler color={currentPalette.headerBackgroundColor.css} height="8em" />
-
       </styles.Separator>
     </BackgroundImageContainer>
   );

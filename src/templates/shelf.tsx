@@ -1,11 +1,17 @@
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import React, { FC, useContext } from 'react';
-import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
+import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title, Wave } from '../components/styles';
 import IndexLayout from '../layouts';
 import { ProductList } from '../components';
 import { PagePropsWithData, Palette, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
+
+
+interface WaveProps {
+  color: string;
+  path: string;
+};
 
 const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
   const { palette } = useContext(ThemeContext);
@@ -54,8 +60,11 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
               {shelf.name}
             </Title>
           </MainContainer>
+
         </BackgroundColorContainer>
+        <Wave color="" path="" />
         <Filler color={currentPalette.headerBackgroundColor.css} height="1em" />
+
         <styles.Separator>
 
         </styles.Separator>
@@ -68,6 +77,8 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
     </IndexLayout>
   );
 };
+
+
 
 export const query = graphql`
   query ShelfPageQuery($slug: String!) {

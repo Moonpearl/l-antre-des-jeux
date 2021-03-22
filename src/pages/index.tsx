@@ -63,7 +63,7 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
           </li>
         ))}
       </ul>
-
+      <Wave />
       <Invisible>
         <Title level={2}>Sélections</Title>
       </Invisible>
@@ -78,7 +78,7 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
     </IndexLayout>
   );
 };
-// !SECTION
+//* !SECTION */
 
 // ANCHOR GraphQL query
 export const query = graphql`

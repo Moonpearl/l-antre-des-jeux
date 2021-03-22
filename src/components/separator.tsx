@@ -5,21 +5,14 @@ import styled from '@emotion/styled';
 interface SeparatorProps {
   backgroundColor: string;
   wavePath: string;
+  upWavePath: string;
 }
 
-const PageHeader: FC<SeparatorProps> = ({ children, backgroundColor, wavePath }) => {
-  // ANCHOR Styles
+const Separator: FC<SeparatorProps> = ({ children, backgroundColor, wavePath, upWavePath }) => {
+
   const styles = {
     HeaderContainer: styled.div`
       position: relative;
-    `,
-    Logo: styled.img`
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      z-index: 5;
-      filter: drop-shadow(5px 5px 5px #333);
     `,
     Separator: styled.div`
       position: absolute;
@@ -29,15 +22,19 @@ const PageHeader: FC<SeparatorProps> = ({ children, backgroundColor, wavePath })
     `,
   };
 
-  const currentWavePath = wavePath || "M0,128L18.5,154.7C36.9,181,74,235,111,245.3C147.7,256,185,224,222,176C258.5,128,295,64,332,42.7C369.2,21,406,43,443,64C480,85,517,107,554,144C590.8,181,628,235,665,224C701.5,213,738,139,775,112C812.3,85,849,107,886,112C923.1,117,960,107,997,101.3C1033.8,96,1071,96,1108,96C1144.6,96,1182,96,1218,96C1255.4,96,1292,96,1329,106.7C1366.2,117,1403,139,1422,149.3L1440,160L1440,0L1421.5,0C1403.1,0,1366,0,1329,0C1292.3,0,1255,0,1218,0C1181.5,0,1145,0,1108,0C1070.8,0,1034,0,997,0C960,0,923,0,886,0C849.2,0,812,0,775,0C738.5,0,702,0,665,0C627.7,0,591,0,554,0C516.9,0,480,0,443,0C406.2,0,369,0,332,0C295.4,0,258,0,222,0C184.6,0,148,0,111,0C73.8,0,37,0,18,0L0,0Z";
+  const currentWavePath = wavePath || "M0,64L48,96C96,128,192,192,288,213.3C384,235,480,213,576,170.7C672,128,768,64,864,53.3C960,43,1056,85,1152,133.3C1248,181,1344,235,1392,261.3L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z";
+  const currentUpWavePath = upWavePath || "M0,32L48,64C96,96,192,160,288,208C384,256,480,288,576,277.3C672,267,768,213,864,160C960,107,1056,53,1152,58.7C1248,64,1344,128,1392,160L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z";
 
   return (
     <styles.HeaderContainer>
       <Filler color={backgroundColor} height="6em" />
       {children}
       <Filler color={backgroundColor} height="6em" />
+
+      <Wave color={backgroundColor} path={currentUpWavePath} />
       <styles.Separator>
         <Wave color={backgroundColor} path={currentWavePath} />
+
       </styles.Separator>
     </styles.HeaderContainer>
   )
