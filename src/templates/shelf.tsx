@@ -1,17 +1,13 @@
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import React, { FC, useContext } from 'react';
-import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title, Wave } from '../components/styles';
+import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title, Wave, } from '../components/styles';
 import IndexLayout from '../layouts';
-import { ProductList } from '../components';
+import { ProductList, PageHeader } from '../components';
 import { PagePropsWithData, Palette, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
 
 
-interface WaveProps {
-  color: string;
-  path: string;
-};
 
 const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
   const { palette } = useContext(ThemeContext);
@@ -31,12 +27,6 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
   const currentPalette: Palette = shelf.palette || palette;
 
   const styles = {
-    Separator: styled.div`
-      position: absolute;
-      z-index: 1;
-      transform: scale(1, 0.5);
-      transform-origin: top center;
-    `,
     ProductListContainer: styled.div`
       background-color: ${currentPalette.backgroundColor.css};
       border-radius: 1em;
@@ -53,28 +43,25 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
         backgroundPosition="center"
         backgroundAttachment="fixed"
       >
-        <Filler color={currentPalette.headerBackgroundColor.css} height="6em" />
-        <BackgroundColorContainer color={currentPalette.headerBackgroundColor.css}>
+        <PageHeader wavePath={shelf.wavePath} backgroundColor={currentPalette.headerBackgroundColor.css}>
           <MainContainer>
             <Title level={1} color={currentPalette.headerTextColor.css}>
               {shelf.name}
             </Title>
+
           </MainContainer>
+        </PageHeader>
 
-        </BackgroundColorContainer>
-        <Wave color="" path="" />
-        <Filler color={currentPalette.headerBackgroundColor.css} height="1em" />
 
-        <styles.Separator>
 
-        </styles.Separator>
         <Filler height="12em" />
+
 
         <MainContainer>
           <styles.ProductListContainer>{shelf.products && <ProductList products={shelf.products} />}</styles.ProductListContainer>
         </MainContainer>
       </BackgroundImageContainer>
-    </IndexLayout>
+    </IndexLayout >
   );
 };
 
@@ -130,6 +117,7 @@ export const query = graphql`
           }
         }
       }
+      wavePath
     }
   }
 `;

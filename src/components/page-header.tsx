@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Filler, Wave } from './styles';
+import { Filler, Wave, BackgroundColorContainer } from './styles';
 import styled from '@emotion/styled';
 
 interface PageHeaderProps {
@@ -34,8 +34,9 @@ const PageHeader: FC<PageHeaderProps> = ({ children, backgroundColor, wavePath }
   return (
     <styles.HeaderContainer>
       <Filler color={backgroundColor} height="6em" />
-      {children}
-      <Filler color={backgroundColor} height="6em" />
+      <BackgroundColorContainer color={backgroundColor}>
+        {children}
+      </BackgroundColorContainer>
       <styles.Separator>
         <Wave color={backgroundColor} path={currentWavePath} />
       </styles.Separator>
