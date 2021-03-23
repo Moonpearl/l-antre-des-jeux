@@ -6,12 +6,9 @@ import IndexLayout from '../layouts/index';
 import MainContainer from '../components/styles/main-container';
 import { graphql } from 'gatsby';
 import Markdown from 'markdown-to-jsx';
-import { Filler, BackgroundImageContainer, BackgroundColorContainer, Title } from '../components/styles';
-import DownWaves from '../components/styles/waves/down';
-/*import { pages } from '../models/graphcms/assets/pages';*/
+import { Filler, BackgroundImageContainer, Title } from '../components/styles';
 import { PagePropsWithData, SeoData } from '../models';
-
-const DownWave = DownWaves[1];
+import { PageHeader } from '../components';
 
 // SECTION Main component
 const AboutPage: FC<PagePropsWithData> = ({ data }) => {
@@ -150,18 +147,14 @@ const AboutPage: FC<PagePropsWithData> = ({ data }) => {
         backgroundPosition="center"
         backgroundAttachment="fixed"
       >
-        <Filler color={page?.palette?.headerBackgroundColor.css} height="6em" />
-        <BackgroundColorContainer color={page?.palette?.headerBackgroundColor.css}>
+        {page && <PageHeader backgroundColor={page.palette.headerBackgroundColor.css} wavePath={page.wavePath} >
           <MainContainer>
-            <Title level={1} color={page?.palette?.headerTextColor.css}>
+            <Title level={1} color={page.palette.headerTextColor.css}>
               La boutique
             </Title>
           </MainContainer>
-        </BackgroundColorContainer>
-        <Filler color={page?.palette?.headerBackgroundColor.css} height="1em" />
-        <styles.Separator>
-          <DownWave color={page?.palette?.headerBackgroundColor.css || '#000'} />
-        </styles.Separator>
+        </ PageHeader>}
+
         <MainContainer>
           <styles.UnderlayCenter>
             <Filler height="8em" />

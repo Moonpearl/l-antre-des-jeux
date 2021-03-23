@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import Markdown from 'markdown-to-jsx';
 import React, { FC, useContext } from 'react';
-import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
-import DownWaves from '../components/styles/waves/down';
+import { BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
 import IndexLayout from '../layouts';
 import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
@@ -11,13 +10,8 @@ import { IconType } from 'react-icons';
 import { FaCog, FaStar, FaUsers } from 'react-icons/fa';
 import { PagePropsWithData, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
+import PageHeader from '../components/page-header';
 
-const Separator = styled.div`
-  position: absolute;
-  z-index: 1;
-  transform: scale(1, 0.5);
-  transform-origin: top center;
-`;
 
 const ProductImage = styled.img`
   grid-area: im;
@@ -50,7 +44,6 @@ const SectionTitle = styled.h2`
   margin: 1em 0 0.25em;
 `;
 
-const DownWave = DownWaves[1];
 
 interface ProductIconProps {
   Icon: IconType;
@@ -136,18 +129,14 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
         backgroundPosition="center"
         backgroundAttachment="fixed"
       >
-        <Filler color={currentPalette.headerBackgroundColor.css} height="6em" />
-        <BackgroundColorContainer color={currentPalette.headerBackgroundColor.css}>
+        <PageHeader backgroundColor={currentPalette.headerBackgroundColor.css} wavePath={product.shelf?.wavePath || ''}>
           <MainContainer>
             <Title level={1} color={currentPalette.headerTextColor.css}>
               {product.name}
             </Title>
           </MainContainer>
-        </BackgroundColorContainer>
-        <Filler color={currentPalette.headerBackgroundColor.css} height="1em" />
-        <Separator>
-          <DownWave color={currentPalette.headerBackgroundColor.css} />
-        </Separator>
+        </PageHeader>
+
         <Filler height="12em" />
 
         <MainContainer>
@@ -184,8 +173,8 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
             </ProductRelationships>
           </styles.ProductContainer>
         </MainContainer>
-      </BackgroundImageContainer>
-    </IndexLayout>
+      </BackgroundImageContainer >
+    </IndexLayout >
   );
 };
 

@@ -1,8 +1,5 @@
 import React, { FC } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
-
-import Page from '../components/Page';
-import Container from '../components/Container';
 import IndexLayout from '../layouts';
 import styled from '@emotion/styled';
 import { GraphcmsGlobalContent } from '../models/graphcms/assets';

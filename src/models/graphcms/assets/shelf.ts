@@ -12,4 +12,5 @@ export default interface Shelf extends Asset {
   backgroundColor: GraphcmsColor;
   titleColor: GraphcmsColor;
   palette: Palette;
+  wavePath: string;
 }
