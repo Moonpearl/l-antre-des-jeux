@@ -6,10 +6,8 @@ import { PagePropsWithData, SeoData } from '../models';
 import { Filler, Title } from '../components/styles';
 import { Logo as LogoImage } from '../images';
 import styled from '@emotion/styled';
-import Wave from '../components/styles/wave';
 import Invisible from '../components/styles/invisible';
 import { ThemeContext } from '../contexts/theme';
-import Separator from '../components/separator';
 
 // SECTION Main component
 const IndexPage: FC<PagePropsWithData> = ({ data }) => {
@@ -52,6 +50,7 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
       {/* Website logo */}
       <PageHeader backgroundColor={palette.headerBackgroundColor.css} wavePath={page.wavePath}>
         <styles.Logo src={LogoImage} alt="Logo de l'antre des jeux" />
+        <Filler height="6em" />
       </PageHeader>
 
       <Invisible>
@@ -129,6 +128,7 @@ export const query = graphql`
           description
           name
           slug
+          wavePath
           palette {
             backgroundColor {
               css

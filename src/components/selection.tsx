@@ -27,6 +27,7 @@ const Selection: FC<SelectionProps> = ({ selection }) => {
       border: 4px solid ${palette.titleColor.css};
       border-radius: 1em;
       margin-bottom: 4rem;
+      margin-top: 12rem; /* Rajouté pour ne plus avoir la dernère vague de la page d'acceuil au dessus des sélections */
     `,
     SelectionTitleContainer: styled.div`
       position: relative;
