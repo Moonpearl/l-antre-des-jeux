@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import React, { FC, useContext } from 'react';
-import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title, Wave, } from '../components/styles';
+import { BackgroundImageContainer, Filler, MainContainer, Title, } from '../components/styles';
 import IndexLayout from '../layouts';
 import { ProductList, PageHeader } from '../components';
 import { PagePropsWithData, Palette, SeoData } from '../models';

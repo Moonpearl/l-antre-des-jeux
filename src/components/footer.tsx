@@ -3,9 +3,7 @@ import React, { FC, useContext } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { IconType } from 'react-icons';
-import { colors } from '../styles/variables';
 import { ThemeContext } from '../contexts/theme';
-import { WithPaletteProps } from '../models';
 
 interface SocialIconProps {
   url: string;

@@ -9,7 +9,6 @@ import Markdown from 'markdown-to-jsx';
 import { Filler, BackgroundImageContainer, Title } from '../components/styles';
 import { PagePropsWithData, SeoData } from '../models';
 import { PageHeader } from '../components';
-import { defaultPalette } from '../contexts/theme';
 
 // SECTION Main component
 const AboutPage: FC<PagePropsWithData> = ({ data }) => {

@@ -1,7 +1,7 @@
 import React, { FC, useContext } from 'react';
 import styled from '@emotion/styled';
 import Markdown from 'markdown-to-jsx';
-import { BackgroundImageContainer, Button, Filler, FlexContainer, MainContainer, Title } from './styles';
+import { BackgroundImageContainer, Button, FlexContainer, MainContainer, Title } from './styles';
 import { GraphcmsShelf } from '../models/graphcms/assets';
 import { Link } from 'gatsby';
 import { ThemeContext } from '../contexts/theme';

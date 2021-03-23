@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import Markdown from 'markdown-to-jsx';
 import React, { FC, useContext } from 'react';
-import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
-import DownWaves from '../components/styles/waves/down';
+import { BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
 import IndexLayout from '../layouts';
 import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
@@ -13,12 +12,6 @@ import { PagePropsWithData, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
 import PageHeader from '../components/page-header';
 
-const Separator = styled.div`
-  position: absolute;
-  z-index: 1;
-  transform: scale(1, 0.5);
-  transform-origin: top center;
-`;
 
 const ProductImage = styled.img`
   grid-area: im;
@@ -51,7 +44,6 @@ const SectionTitle = styled.h2`
   margin: 1em 0 0.25em;
 `;
 
-const DownWave = DownWaves[1];
 
 interface ProductIconProps {
   Icon: IconType;

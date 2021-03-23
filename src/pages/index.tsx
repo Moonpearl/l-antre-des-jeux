@@ -48,10 +48,10 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
   return (
     <IndexLayout seoData={seoData} palette={page?.palette}>
       {/* Website logo */}
-      <PageHeader backgroundColor={palette.headerBackgroundColor.css} wavePath={page.wavePath}>
+      {page && <PageHeader backgroundColor={palette.headerBackgroundColor.css} wavePath={page?.wavePath}>
         <styles.Logo src={LogoImage} alt="Logo de l'antre des jeux" />
         <Filler height="6em" />
-      </PageHeader>
+      </PageHeader>}
 
       <Invisible>
         <Title level={2}>Rayons</Title>
