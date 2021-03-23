@@ -9,9 +9,9 @@ import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
 import { IconType } from 'react-icons';
 import { FaCog, FaStar, FaUsers } from 'react-icons/fa';
-import AllWave from '../components/styles/wave';
 import { PagePropsWithData, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
+import PageHeader from '../components/page-header';
 
 const Separator = styled.div`
   position: absolute;
@@ -137,19 +137,14 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
         backgroundPosition="center"
         backgroundAttachment="fixed"
       >
-        <Filler color={currentPalette.headerBackgroundColor.css} height="6em" />
-        <BackgroundColorContainer color={currentPalette.headerBackgroundColor.css}>
+        <PageHeader backgroundColor={currentPalette.headerBackgroundColor.css} wavePath={product.shelf?.wavePath || ''}>
           <MainContainer>
             <Title level={1} color={currentPalette.headerTextColor.css}>
               {product.name}
             </Title>
           </MainContainer>
-        </BackgroundColorContainer>
-        <Filler color={currentPalette.headerBackgroundColor.css} height="1em" />
-        <Separator>
-          {/* <AllWave color={product.shelf?.backgroundColor.css || '666'} />*/}
-          {/*<DownWave color={product.shelf?.backgroundColor.css || '#666'} />*/}
-        </Separator>
+        </PageHeader>
+
         <Filler height="12em" />
 
         <MainContainer>
@@ -186,8 +181,8 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
             </ProductRelationships>
           </styles.ProductContainer>
         </MainContainer>
-      </BackgroundImageContainer>
-    </IndexLayout>
+      </BackgroundImageContainer >
+    </IndexLayout >
   );
 };
 
