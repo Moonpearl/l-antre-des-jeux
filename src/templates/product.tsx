@@ -12,7 +12,6 @@ import { PagePropsWithData, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
 import PageHeader from '../components/page-header';
 
-
 const ProductImage = styled.img`
   grid-area: im;
 `;
@@ -43,7 +42,6 @@ const SectionTitle = styled.h2`
   font-size: 1.25em;
   margin: 1em 0 0.25em;
 `;
-
 
 interface ProductIconProps {
   Icon: IconType;
@@ -142,6 +140,17 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
         <MainContainer>
           <styles.ProductContainer>
             <ProductImage src={product.imageUrl} />
+            <button
+              className="snipcart-add-item buy-button"
+              data-item-id={product.slug}
+              data-item-price={product.price}
+              data-item-url="/product/${slug}"
+              data-item-description={product.description}
+              data-item-image={product.imageUrl}
+              data-item-name={product.name}
+            >
+              Add to cart
+            </button>
             <ProductPrice>Prix: {product.price.toFixed(2)} &euro;</ProductPrice>
             <ProductDescription>
               <Markdown>{product.description || ''}</Markdown>
@@ -173,8 +182,8 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
             </ProductRelationships>
           </styles.ProductContainer>
         </MainContainer>
-      </BackgroundImageContainer >
-    </IndexLayout >
+      </BackgroundImageContainer>
+    </IndexLayout>
   );
 };
 
