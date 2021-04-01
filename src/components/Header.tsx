@@ -171,11 +171,12 @@ const Header: FC = () => {
       position: absolute;
       right: 0;
       top: 0;
-      margin-right: 1em;
+      margin-right: 0.2em;
       border: none;
       background-color: ${palette.headerBackgroundColor.css};
       color: ${palette.headerTextColor.css};
       outline: 0;
+      cursor: pointer;
       &:hover {
         background-color: ${palette.headerHighlightColor.css};
 
