@@ -12,7 +12,6 @@ import { PagePropsWithData, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
 import PageHeader from '../components/page-header';
 
-
 const ProductImage = styled.img`
   grid-area: im;
 `;
@@ -43,7 +42,6 @@ const SectionTitle = styled.h2`
   font-size: 1.25em;
   margin: 1em 0 0.25em;
 `;
-
 
 interface ProductIconProps {
   Icon: IconType;
@@ -119,6 +117,20 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
           'im ic rl';
       }
     `,
+
+    BuyButton: styled.button`
+      background: linear-gradient(90deg, rgba(80, 134, 229, 1) 0%, rgba(82, 186, 247, 1) 100%);
+      color: white;
+      padding: 0.7em;
+      border: none;
+      border-radius: 1em;
+      outline: 0;
+      cursor: pointer;
+
+      @media (min-width: 640px) {
+        justify-content: center;
+      }
+    `,
   };
 
   return (
@@ -136,12 +148,23 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
             </Title>
           </MainContainer>
         </PageHeader>
-
         <Filler height="12em" />
-
         <MainContainer>
           <styles.ProductContainer>
             <ProductImage src={product.imageUrl} />
+
+            <styles.BuyButton
+              className="snipcart-add-item buy-button"
+              data-item-id={product.slug}
+              data-item-price={product.price}
+              data-item-url="/product/${slug}"
+              data-item-description={product.description}
+              data-item-image={product.imageUrl}
+              data-item-name={product.name}
+            >
+              Ajouter au panier
+            </styles.BuyButton>
+
             <ProductPrice>Prix: {product.price.toFixed(2)} &euro;</ProductPrice>
             <ProductDescription>
               <Markdown>{product.description || ''}</Markdown>
@@ -173,8 +196,8 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
             </ProductRelationships>
           </styles.ProductContainer>
         </MainContainer>
-      </BackgroundImageContainer >
-    </IndexLayout >
+      </BackgroundImageContainer>
+    </IndexLayout>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { FC, useContext, useState } from 'react';
 import styled from '@emotion/styled';
-import { FaHome, FaQuestionCircle, FaStore } from 'react-icons/fa';
+import { FaHome, FaQuestionCircle, FaStore, FaShoppingCart } from 'react-icons/fa';
 import { IconType } from 'react-icons';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
@@ -163,6 +163,29 @@ const Header: FC = () => {
       display: flex;
       flex-direction: row;
     `,
+
+    Basket: styled.button`
+      margin-top: 0.1em;
+      font-size: 2em;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin-right: 0.2em;
+      border: none;
+      background-color: ${palette.headerBackgroundColor.css};
+      color: ${palette.headerTextColor.css};
+      outline: 0;
+      cursor: pointer;
+      &:hover {
+        background-color: ${palette.headerHighlightColor.css};
+
+        & > .dropdown {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    `,
   };
 
   // ANCHOR Template
@@ -177,6 +200,10 @@ const Header: FC = () => {
               </li>
             ))}
           </styles.NavList>
+
+          <styles.Basket className="header__checkout snipcart-checkout">
+            <FaShoppingCart />
+          </styles.Basket>
         </NavFrame>
       </styles.Navbar>
     </styles.HeaderContainer>

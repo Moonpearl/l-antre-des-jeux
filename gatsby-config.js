@@ -17,7 +17,8 @@ module.exports = {
       email: 'resir014@gmail.com',
     },
   },
-  plugins: [{
+  plugins: [
+    {
       resolve: 'gatsby-source-graphcms',
       options: {
         // Your GraphCMS API endpoint. Available from your project settings.
@@ -26,6 +27,13 @@ module.exports = {
         // token: process.env.GRAPHCMS_TOKEN
         buildMarkdownNodes: true,
         locales: ['fr_FR', 'en'],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-snipcartv3',
+      options: {
+        apiKey:
+          'Mzc5MjcwNzUtYzM4Zi00MTQxLTliMmYtNTNkNTlhMzQ4YzZhNjM3NTIxNzE0NTA0ODgxNTU1' /*This key can be shared without security issues because it only allows a specific subset of API operations.*/,
       },
     },
     {
@@ -38,7 +46,8 @@ module.exports = {
     {
       resolve: 'gatsby-transformer-remark',
       options: {
-        plugins: [{
+        plugins: [
+          {
             resolve: 'gatsby-remark-responsive-iframe',
             options: {
               wrapperStyle: 'margin-bottom: 1rem',
