@@ -1,6 +1,6 @@
 import React, { FC, useContext, useState } from 'react';
 import styled from '@emotion/styled';
-import { FaHome, FaQuestionCircle, FaStore } from 'react-icons/fa';
+import { FaHome, FaQuestionCircle, FaStore, FaShoppingCart } from 'react-icons/fa';
 import { IconType } from 'react-icons';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
@@ -8,6 +8,15 @@ import { GraphcmsShelf } from '../models/graphcms/assets';
 import { GraphcmsCollection } from '../models/graphcms';
 import { Palette, ThemeContext } from '../contexts/theme';
 import css, { SerializedStyles } from '@emotion/css';
+
+const Basket = styled.button`
+  font-size: 2em;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 1em;
+`;
 
 // ANCHOR Interfaces
 interface NavItemInterface {
@@ -177,6 +186,10 @@ const Header: FC = () => {
               </li>
             ))}
           </styles.NavList>
+
+          <Basket className="header__checkout snipcart-checkout">
+            <FaShoppingCart />
+          </Basket>
         </NavFrame>
       </styles.Navbar>
     </styles.HeaderContainer>
