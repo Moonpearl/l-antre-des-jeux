@@ -9,15 +9,6 @@ import { GraphcmsCollection } from '../models/graphcms';
 import { Palette, ThemeContext } from '../contexts/theme';
 import css, { SerializedStyles } from '@emotion/css';
 
-const Basket = styled.button`
-  font-size: 2em;
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin-right: 1em;
-`;
-
 // ANCHOR Interfaces
 interface NavItemInterface {
   Icon?: IconType;
@@ -172,6 +163,28 @@ const Header: FC = () => {
       display: flex;
       flex-direction: row;
     `,
+
+    Basket: styled.button`
+      margin-top: 0.1em;
+      font-size: 2em;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin-right: 1em;
+      border: none;
+      background-color: ${palette.headerBackgroundColor.css};
+      color: ${palette.headerTextColor.css};
+      outline: 0;
+      &:hover {
+        background-color: ${palette.headerHighlightColor.css};
+
+        & > .dropdown {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    `,
   };
 
   // ANCHOR Template
@@ -187,9 +200,9 @@ const Header: FC = () => {
             ))}
           </styles.NavList>
 
-          <Basket className="header__checkout snipcart-checkout">
+          <styles.Basket className="header__checkout snipcart-checkout">
             <FaShoppingCart />
-          </Basket>
+          </styles.Basket>
         </NavFrame>
       </styles.Navbar>
     </styles.HeaderContainer>
