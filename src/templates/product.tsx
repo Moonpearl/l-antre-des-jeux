@@ -156,7 +156,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
               </div>
               <span
                 className="snipcart-add-item"
-                data-item-id={product.slug}
+                data-item-id={product.ebpId}
                 data-item-price={product.price}
                 data-item-url={`/product/${product.slug}`}
                 data-item-description={product.description}
@@ -204,6 +204,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
 export const query = graphql`
   query ProductPageQuery($slug: String!) {
     graphCmsProduct(slug: { eq: $slug }) {
+      ebpId
       name
       description
       price
