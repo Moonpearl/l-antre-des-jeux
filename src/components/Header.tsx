@@ -12,7 +12,7 @@ import css, { SerializedStyles } from '@emotion/css';
 // ANCHOR Interfaces
 interface NavItemInterface {
   Icon?: IconType;
-  action: string | NavItemInterface[];
+  action?: string | NavItemInterface[];
   caption?: string;
 }
 
@@ -26,6 +26,7 @@ interface WithPaletteProps {
 
 interface NavItemProps {
   item: NavItemInterface;
+  className?: string;
 }
 
 // SECTION Sub component
@@ -41,7 +42,7 @@ const NavFrame = styled.div<WithTransparentProps & WithPaletteProps>`
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 `;
 
-const NavItem: FC<NavItemProps> = ({ item }) => {
+const NavItem: FC<NavItemProps> = ({ item, className }) => {
   const { palette } = useContext(ThemeContext);
 
   // ANCHOR Styles
@@ -51,6 +52,7 @@ const NavItem: FC<NavItemProps> = ({ item }) => {
       position: relative;
       display: flex;
       transition: background-color 0.3s ease;
+      cursor: pointer;
       &:hover {
         background-color: ${palette.headerHighlightColor.css};
 
@@ -82,7 +84,7 @@ const NavItem: FC<NavItemProps> = ({ item }) => {
 
   // ANCHOR Template
   const jsx = (
-    <styles.LinkContainer>
+    <styles.LinkContainer className={className}>
       {item.Icon && (
         <styles.IconContainer>
           <item.Icon />
@@ -93,11 +95,12 @@ const NavItem: FC<NavItemProps> = ({ item }) => {
         <styles.Dropdown className="dropdown">
           <NavFrame transparent={false} palette={palette}>
             <ul>
-              {item.action.map((subitem, index) => (
-                <li key={index}>
-                  <NavItem item={subitem} />
-                </li>
-              ))}
+              {item.action &&
+                item.action.map((subitem, index) => (
+                  <li key={index}>
+                    <NavItem item={subitem} />
+                  </li>
+                ))}
             </ul>
           </NavFrame>
         </styles.Dropdown>
@@ -163,29 +166,6 @@ const Header: FC = () => {
       display: flex;
       flex-direction: row;
     `,
-
-    Basket: styled.button`
-      margin-top: 0.1em;
-      font-size: 2em;
-      display: inline-block;
-      position: absolute;
-      right: 0;
-      top: 0;
-      margin-right: 0.2em;
-      border: none;
-      background-color: ${palette.headerBackgroundColor.css};
-      color: ${palette.headerTextColor.css};
-      outline: 0;
-      cursor: pointer;
-      &:hover {
-        background-color: ${palette.headerHighlightColor.css};
-
-        & > .dropdown {
-          visibility: visible;
-          opacity: 1;
-        }
-      }
-    `,
   };
 
   // ANCHOR Template
@@ -199,11 +179,8 @@ const Header: FC = () => {
                 <NavItem item={item} />
               </li>
             ))}
+            <NavItem className="snipcart-summary snipcart-checkout" item={{ Icon: FaShoppingCart }} />
           </styles.NavList>
-
-          <styles.Basket className="header__checkout snipcart-checkout">
-            <FaShoppingCart />
-          </styles.Basket>
         </NavFrame>
       </styles.Navbar>
     </styles.HeaderContainer>

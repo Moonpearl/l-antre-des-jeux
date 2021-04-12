@@ -30,10 +30,14 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-snipcartv3',
+      resolve: 'gatsby-plugin-snipcart-advanced',
       options: {
-        apiKey:
-          'Mzc5MjcwNzUtYzM4Zi00MTQxLTliMmYtNTNkNTlhMzQ4YzZhNjM3NTIxNzE0NTA0ODgxNTU1' /*This key can be shared without security issues because it only allows a specific subset of API operations.*/,
+        version: '3.0.29',
+        publicApiKey: process.env.SNIPCART_API_KEY,
+        defaultLang: 'fr',
+        currency: 'eur',
+        openCartOnAdd: true,
+        useSideCart: true,
       },
     },
     {
