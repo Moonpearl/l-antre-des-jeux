@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import Markdown from 'markdown-to-jsx';
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useEffect } from 'react';
 import { BackgroundImageContainer, Button, Filler, MainContainer, Title } from '../components/styles';
 import IndexLayout from '../layouts';
 import { GiAges } from 'react-icons/gi';
@@ -11,6 +11,8 @@ import { FaCog, FaShoppingCart, FaStar, FaUsers } from 'react-icons/fa';
 import { PagePropsWithData, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
 import PageHeader from '../components/page-header';
+import Axios from 'axios';
+import { SnipcartProduct } from '../models/snipcart';
 
 const ProductImage = styled.img`
   grid-area: im;
@@ -89,12 +91,23 @@ const ProductRelationship: FC<ProductRelationshipProps> = ({ Icon, title, assets
 };
 
 const ProductPage: FC<PagePropsWithData> = ({ data }) => {
+  const { SNIPCART_API_KEY } = process.env;
+
   const { palette } = useContext(ThemeContext);
   const { graphCmsProduct: product } = data;
 
   if (typeof product === 'undefined') {
     throw new Error('Non-existing shelf');
   }
+
+  useEffect(() => {
+    Axios.get<SnipcartProduct>('https://app.snipcart.com/api/products', {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Basic ${Buffer.from(SNIPCART_API_KEY + ':').toString('base64')}`,
+      },
+    }).then(response => console.log(response));
+  }, []);
 
   const seoData: SeoData = {
     pageUri: `/product/${product.slug}`,
