@@ -1,23 +1,31 @@
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import Markdown from 'markdown-to-jsx';
-import React, { FC, useContext } from 'react';
-import { BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
+import React, { FC, useContext, useEffect } from 'react';
+import { BackgroundImageContainer, Button, Filler, MainContainer, Title } from '../components/styles';
 import IndexLayout from '../layouts';
 import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
 import { IconType } from 'react-icons';
-import { FaCog, FaStar, FaUsers } from 'react-icons/fa';
+import { FaCog, FaShoppingCart, FaStar, FaUsers } from 'react-icons/fa';
 import { PagePropsWithData, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
 import PageHeader from '../components/page-header';
+import Axios from 'axios';
+import { SnipcartProduct } from '../models/snipcart';
 
 const ProductImage = styled.img`
   grid-area: im;
 `;
 
-const ProductPrice = styled.div`
+const ProductPriceContainer = styled.div`
   grid-area: pr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ProductPrice = styled.span`
   font-size: 2em;
 `;
 
@@ -83,12 +91,23 @@ const ProductRelationship: FC<ProductRelationshipProps> = ({ Icon, title, assets
 };
 
 const ProductPage: FC<PagePropsWithData> = ({ data }) => {
+  const { SNIPCART_API_KEY } = process.env;
+
   const { palette } = useContext(ThemeContext);
   const { graphCmsProduct: product } = data;
 
   if (typeof product === 'undefined') {
     throw new Error('Non-existing shelf');
   }
+
+  useEffect(() => {
+    Axios.get<SnipcartProduct>('https://app.snipcart.com/api/products', {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Basic ${Buffer.from(SNIPCART_API_KEY + ':').toString('base64')}`,
+      },
+    }).then(response => console.log(response));
+  }, []);
 
   const seoData: SeoData = {
     pageUri: `/product/${product.slug}`,
@@ -117,20 +136,6 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
           'im ic rl';
       }
     `,
-
-    BuyButton: styled.button`
-      background: linear-gradient(90deg, rgba(80, 134, 229, 1) 0%, rgba(82, 186, 247, 1) 100%);
-      color: white;
-      padding: 0.7em;
-      border: none;
-      border-radius: 1em;
-      outline: 0;
-      cursor: pointer;
-
-      @media (min-width: 640px) {
-        justify-content: center;
-      }
-    `,
   };
 
   return (
@@ -153,22 +158,30 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
           <styles.ProductContainer>
             <ProductImage src={product.imageUrl} />
 
-            <styles.BuyButton
-              className="snipcart-add-item buy-button"
-              data-item-id={product.slug}
-              data-item-price={product.price}
-              data-item-url="/product/${slug}"
-              data-item-description={product.description}
-              data-item-image={product.imageUrl}
-              data-item-name={product.name}
-            >
-              Ajouter au panier
-            </styles.BuyButton>
-
-            <ProductPrice>Prix: {product.price.toFixed(2)} &euro;</ProductPrice>
             <ProductDescription>
               <Markdown>{product.description || ''}</Markdown>
             </ProductDescription>
+
+            <ProductPriceContainer>
+              <div>
+                Prix:&nbsp;
+                <ProductPrice>{product.price.toFixed(2)} &euro;</ProductPrice>
+              </div>
+              <span
+                className="snipcart-add-item"
+                data-item-id={product.ebpId}
+                data-item-price={product.price}
+                data-item-url={`/product/${product.slug}`}
+                data-item-description={product.description}
+                data-item-image={product.imageUrl}
+                data-item-name={product.name}
+              >
+                <Button palette={currentPalette} className="buy-button">
+                  <FaShoppingCart /> Ajouter au panier
+                </Button>
+              </span>
+            </ProductPriceContainer>
+
             <ProductIcons>
               <SectionTitle>
                 <GrDocumentText />
@@ -204,6 +217,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
 export const query = graphql`
   query ProductPageQuery($slug: String!) {
     graphCmsProduct(slug: { eq: $slug }) {
+      ebpId
       name
       description
       price
