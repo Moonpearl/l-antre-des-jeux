@@ -6,6 +6,7 @@ import { FaBookmark, FaSearch } from 'react-icons/fa';
 import { Button } from './styles';
 import { ThemeContext } from '../contexts/theme';
 import { Palette } from '../models';
+import { SnipcartBuyButton } from '.';
 
 interface ProductPreviewProps {
   product: GraphcmsProduct;
@@ -78,6 +79,7 @@ const ProductPreview: FC<ProductPreviewProps> = ({ product }) => {
             &nbsp; Voir
           </Button>
         </Link>
+        <SnipcartBuyButton product={product} />
       </styles.Overlay>
 
       {product.shelf && (

@@ -1,18 +1,19 @@
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import Markdown from 'markdown-to-jsx';
-import React, { FC, useContext, useEffect, useState } from 'react';
-import { BackgroundImageContainer, Button, Filler, MainContainer, Title } from '../components/styles';
+import React, { FC, useContext, useEffect } from 'react';
+import { BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
 import IndexLayout from '../layouts';
 import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
 import { IconType } from 'react-icons';
-import { FaCheck, FaCog, FaShoppingCart, FaStar, FaUsers } from 'react-icons/fa';
-import { PagePropsWithData, Palette, SeoData } from '../models';
+import { FaCog, FaStar, FaUsers } from 'react-icons/fa';
+import { PagePropsWithData, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
 import PageHeader from '../components/page-header';
 import Axios from 'axios';
 import { SnipcartProduct } from '../models/snipcart';
+import { SnipcartBuyButton } from '../components';
 
 const ProductImage = styled.img`
   grid-area: im;
@@ -90,22 +91,9 @@ const ProductRelationship: FC<ProductRelationshipProps> = ({ Icon, title, assets
   );
 };
 
-const boughtPalette: Palette = {
-  backgroundColor: { css: '#000' },
-  headerBackgroundColor: { css: '#000' },
-  headerHighlightColor: { css: '#000' },
-  headerTextColor: { css: '#000' },
-  frameBackgroundColor: { css: '#000' },
-  frameTextColor: { css: '#000' },
-  textColor: { css: '#000' },
-  titleColor: { css: '#4aa54f' },
-  titleHighlightColor: { css: 'green' },
-};
-
 const ProductPage: FC<PagePropsWithData> = ({ data }) => {
   const { SNIPCART_API_KEY } = process.env;
 
-  const [bought, setBought] = useState(false);
   const { palette } = useContext(ThemeContext);
   const { graphCmsProduct: product } = data;
 
@@ -181,32 +169,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
                 Prix:&nbsp;
                 <ProductPrice>{product.price.toFixed(2)} &euro;</ProductPrice>
               </div>
-              <span
-                className="snipcart-add-item"
-                data-item-id={product.ebpId}
-                data-item-price={product.price}
-                data-item-url={`/product/${product.slug}`}
-                data-item-description={product.description}
-                data-item-image={product.imageUrl}
-                data-item-name={product.name}
-              >
-                <Button
-                  disabled={bought}
-                  palette={bought ? boughtPalette : currentPalette}
-                  className="buy-button"
-                  onClick={bought ? undefined : (): void => setBought(true)}
-                >
-                  {bought ? (
-                    <>
-                      <FaCheck /> Ajouté au panier
-                    </>
-                  ) : (
-                    <>
-                      <FaShoppingCart /> Ajouter au panier
-                    </>
-                  )}
-                </Button>
-              </span>
+              <SnipcartBuyButton product={product} />
             </ProductPriceContainer>
 
             <ProductIcons>
