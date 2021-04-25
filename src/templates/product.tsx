@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import Markdown from 'markdown-to-jsx';
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { BackgroundImageContainer, Button, Filler, MainContainer, Title } from '../components/styles';
 import IndexLayout from '../layouts';
 import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
 import { IconType } from 'react-icons';
-import { FaCog, FaShoppingCart, FaStar, FaUsers } from 'react-icons/fa';
-import { PagePropsWithData, SeoData } from '../models';
+import { FaCheck, FaCog, FaShoppingCart, FaStar, FaUsers } from 'react-icons/fa';
+import { PagePropsWithData, Palette, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
 import PageHeader from '../components/page-header';
 import Axios from 'axios';
@@ -90,9 +90,22 @@ const ProductRelationship: FC<ProductRelationshipProps> = ({ Icon, title, assets
   );
 };
 
+const boughtPalette: Palette = {
+  backgroundColor: { css: '#000' },
+  headerBackgroundColor: { css: '#000' },
+  headerHighlightColor: { css: '#000' },
+  headerTextColor: { css: '#000' },
+  frameBackgroundColor: { css: '#000' },
+  frameTextColor: { css: '#000' },
+  textColor: { css: '#000' },
+  titleColor: { css: '#4aa54f' },
+  titleHighlightColor: { css: 'green' },
+};
+
 const ProductPage: FC<PagePropsWithData> = ({ data }) => {
   const { SNIPCART_API_KEY } = process.env;
 
+  const [bought, setBought] = useState(false);
   const { palette } = useContext(ThemeContext);
   const { graphCmsProduct: product } = data;
 
@@ -106,7 +119,8 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
         Accept: 'application/json',
         Authorization: `Basic ${Buffer.from(SNIPCART_API_KEY + ':').toString('base64')}`,
       },
-    }).then(response => console.log(response));
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    }).then(_response => undefined);
   }, []);
 
   const seoData: SeoData = {
@@ -176,8 +190,21 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
                 data-item-image={product.imageUrl}
                 data-item-name={product.name}
               >
-                <Button palette={currentPalette} className="buy-button">
-                  <FaShoppingCart /> Ajouter au panier
+                <Button
+                  disabled={bought}
+                  palette={bought ? boughtPalette : currentPalette}
+                  className="buy-button"
+                  onClick={bought ? undefined : (): void => setBought(true)}
+                >
+                  {bought ? (
+                    <>
+                      <FaCheck /> Ajouté au panier
+                    </>
+                  ) : (
+                    <>
+                      <FaShoppingCart /> Ajouter au panier
+                    </>
+                  )}
                 </Button>
               </span>
             </ProductPriceContainer>

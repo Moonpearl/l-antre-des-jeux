@@ -149,11 +149,6 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({ children, seoData, palette: p
 
       const currentPalette: Palette = pagePalette || data.graphCmsGlobalContent.defaultPalette || palette;
 
-      console.log('pagePalette:', pagePalette);
-      console.log('defaultPalette:', data.graphCmsGlobalContent.defaultPalette);
-      console.log('contextPalette:', palette);
-      console.log('currentPalette', currentPalette);
-
       useEffect(() => setPalette(currentPalette), [pagePalette]);
 
       return (
