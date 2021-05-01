@@ -85,34 +85,35 @@ const SnipcartController: FC = () => {
 
   // ANCHOR Template
   return (
-    <styles.Container className={isModalOpen ? '' : 'hidden'}>
-      {productItem && (
-        <styles.Modal>
-          <p>Vous avez ajouté le produit suivant à votre panier:</p>
-          <styles.FlexContainer>
-            <styles.ProductImage src={productItem.image} alt={productItem.name} />
-            <div>{productItem.name}</div>
-          </styles.FlexContainer>
-          <styles.Alert>
-            <strong>⚠️ Attention:</strong> L&apos;Antre des jeux n&apos;assure aucune livraison. Toute commande effectuée sur ce site doit
-            être retirée directement <Link to="/about">en magasin</Link>.
-          </styles.Alert>
-          <styles.FlexContainer>
-            <input
-              id="snipcart-modal-no-diplay"
-              type="checkbox"
-              checked={dontShowAgain}
-              onChange={(event): void => setDontShowAgain(event.target.checked)}
-            />
-            <label htmlFor="snipcart-modal-no-diplay">Ne plus afficher cet avertissement</label>
-          </styles.FlexContainer>
-          <Button palette={palette} onClick={(): void => setIsModalOpen(false)}>
-            <FaThumbsUp />
-            {` `}J&apos;ai compris
-          </Button>
-        </styles.Modal>
-      )}
-    </styles.Container>
+    <div />
+    // <styles.Container className={isModalOpen ? '' : 'hidden'}>
+    //   {productItem && (
+    //     <styles.Modal>
+    //       <p>Vous avez ajouté le produit suivant à votre panier:</p>
+    //       <styles.FlexContainer>
+    //         <styles.ProductImage src={productItem.image} alt={productItem.name} />
+    //         <div>{productItem.name}</div>
+    //       </styles.FlexContainer>
+    //       <styles.Alert>
+    //         <strong>⚠️ Attention:</strong> L&apos;Antre des jeux n&apos;assure aucune livraison. Toute commande effectuée sur ce site doit
+    //         être retirée directement <Link to="/about">en magasin</Link>.
+    //       </styles.Alert>
+    //       <styles.FlexContainer>
+    //         <input
+    //           id="snipcart-modal-no-diplay"
+    //           type="checkbox"
+    //           checked={dontShowAgain}
+    //           onChange={(event): void => setDontShowAgain(event.target.checked)}
+    //         />
+    //         <label htmlFor="snipcart-modal-no-diplay">Ne plus afficher cet avertissement</label>
+    //       </styles.FlexContainer>
+    //       <Button palette={palette} onClick={(): void => setIsModalOpen(false)}>
+    //         <FaThumbsUp />
+    //         {` `}J&apos;ai compris
+    //       </Button>
+    //     </styles.Modal>
+    //   )}
+    // </styles.Container>
   );
 };
 // !SECTION
