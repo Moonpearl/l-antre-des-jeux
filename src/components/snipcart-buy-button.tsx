@@ -47,7 +47,12 @@ const SnipcartBuyButton: FC<SnipcartBuyButtonProps> = ({ product }) => {
         disabled={bought}
         palette={bought ? boughtPalette : palette}
         className="buy-button"
-        onClick={bought ? undefined : (): void => setBought(true)}
+        onClick={(event): void => {
+          if (!bought) {
+            event.stopPropagation();
+            setBought(true);
+          }
+        }}
       >
         {bought ? (
           <>
