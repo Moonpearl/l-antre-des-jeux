@@ -8,6 +8,12 @@
 
 import React from 'react';
 import { ThemeProvider } from './src/contexts';
+import { SnipcartController } from './src/components';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const wrapRootElement = ({ element }) => <ThemeProvider>{element}</ThemeProvider>;
+export const wrapRootElement = ({ element }) => (
+  <ThemeProvider>
+    <SnipcartController />
+    {element}
+  </ThemeProvider>
+);
