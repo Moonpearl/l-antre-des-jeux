@@ -7,7 +7,7 @@ import IndexLayout from '../layouts';
 import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
 import { IconType } from 'react-icons';
-import { FaCog, FaStar, FaUsers } from 'react-icons/fa';
+import { FaCog, FaShoppingCart, FaStar, FaUsers } from 'react-icons/fa';
 import { PagePropsWithData, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
 import PageHeader from '../components/page-header';
