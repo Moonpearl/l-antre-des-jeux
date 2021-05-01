@@ -51,11 +51,11 @@ const SnipcartBuyButton: FC<SnipcartBuyButtonProps> = ({ product }) => {
       >
         {bought ? (
           <>
-            <FaCheck /> Ajouté au panier
+            <FaCheck /> Ajouté
           </>
         ) : (
           <>
-            <FaShoppingCart /> Ajouter au panier
+            <FaShoppingCart /> Ajouter
           </>
         )}
       </Button>

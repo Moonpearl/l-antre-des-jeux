@@ -6,7 +6,7 @@ export default (callback: (data: SnipcartProductItem) => void): void => {
   const { Snipcart } = window;
 
   useEffect(() => {
-    Snipcart.events.on('item.adding', (data: SnipcartProductItem) => {
+    return Snipcart.events.on('item.adding', (data: SnipcartProductItem) => {
       callback(data);
     });
   }, [Snipcart]);

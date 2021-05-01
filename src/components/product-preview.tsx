@@ -2,8 +2,8 @@ import React, { FC, useContext } from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { GraphcmsProduct } from '../models/graphcms/assets';
-import { FaBookmark, FaSearch } from 'react-icons/fa';
-import { Button } from './styles';
+import { FaBookmark } from 'react-icons/fa';
+import { Title } from './styles';
 import { ThemeContext } from '../contexts/theme';
 import { Palette } from '../models';
 import { SnipcartBuyButton } from '.';
@@ -22,12 +22,9 @@ const ProductPreview: FC<ProductPreviewProps> = ({ product }) => {
       position: relative;
       height: 100%;
 
-      &:hover .ProductPreview-overlay {
+      &:hover > *:first-child {
         opacity: 1;
       }
-    `,
-    ProductName: styled.h4`
-      color: white;
     `,
     ProductImage: styled.img`
       height: 100%;
@@ -38,7 +35,7 @@ const ProductPreview: FC<ProductPreviewProps> = ({ product }) => {
     `,
     Overlay: styled.div`
       opacity: 0;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.75);
       transition: 0.5s ease;
       position: absolute;
       top: 0;
@@ -46,12 +43,18 @@ const ProductPreview: FC<ProductPreviewProps> = ({ product }) => {
       bottom: 0;
       right: 0;
       z-index: 1;
+      display: flex;
+      justify-content: center;
+      border-radius: 0.5em;
+    `,
+    Info: styled.div`
+      color: white;
       text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
       row-gap: 1em;
-      border-radius: 0.5em;
+      margin: 0 2.5rem;
     `,
     ProductShelf: styled.div`
       position: absolute;
@@ -70,28 +73,32 @@ const ProductPreview: FC<ProductPreviewProps> = ({ product }) => {
   };
 
   return (
-    <styles.Product>
-      <styles.Overlay className="ProductPreview-overlay">
-        <styles.ProductName>{product.name}</styles.ProductName>
-        <Link to={`/product/${product.slug}`}>
-          <Button palette={palette}>
-            <FaSearch />
-            &nbsp; Voir
-          </Button>
-        </Link>
-        <SnipcartBuyButton product={product} />
-      </styles.Overlay>
+    <Link to={`/product/${product.slug}`}>
+      <styles.Product>
+        <styles.Overlay>
+          <styles.Info>
+            <Title level={3} size={0.8}>
+              {product.name}
+            </Title>
+            <div>
+              Prix:&nbsp;
+              <span>{product.price.toFixed(2)} &euro;</span>
+            </div>
+            <SnipcartBuyButton product={product} />
+          </styles.Info>
+        </styles.Overlay>
 
-      {product.shelf && (
-        <Link to={`/shelf/${product.shelf.slug}`}>
-          <styles.ProductShelf>
-            <FaBookmark />
-          </styles.ProductShelf>
-        </Link>
-      )}
+        {product.shelf && (
+          <Link to={`/shelf/${product.shelf.slug}`}>
+            <styles.ProductShelf>
+              <FaBookmark />
+            </styles.ProductShelf>
+          </Link>
+        )}
 
-      <styles.ProductImage src={product.imageUrl} alt={product.name} />
-    </styles.Product>
+        <styles.ProductImage src={product.imageUrl} alt={product.name} />
+      </styles.Product>
+    </Link>
   );
 };
 
