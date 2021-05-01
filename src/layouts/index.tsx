@@ -9,7 +9,7 @@ import '../styles/normalize';
 import Header from '../components/Header';
 import LayoutRoot from '../components/LayoutRoot';
 import LayoutMain from '../components/LayoutMain';
-import { Footer } from '../components';
+import { Footer, SnipcartController } from '../components';
 import { SeoData } from '../models';
 import { GraphcmsGlobalContent } from '../models/graphcms/assets';
 import { Palette, ThemeContext } from '../contexts/theme';
@@ -153,6 +153,7 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({ children, seoData, palette: p
 
       return (
         <LayoutRoot>
+          <SnipcartController />
           <GlobalStyles />
           <Helmet
             htmlAttributes={{
