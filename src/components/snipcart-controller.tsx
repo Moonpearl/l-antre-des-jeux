@@ -66,22 +66,22 @@ const styles = {
 // SECTION Main component
 const SnipcartController: FC = () => {
   // ANCHOR Hooks
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [dontShowAgain, setDontShowAgain] = useState(false);
-  const [productItem, setProductItem] = useState<SnipcartProductItem>();
-  const { palette } = useContext(ThemeContext);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [dontShowAgain, setDontShowAgain] = useState(false);
+  // const [productItem, setProductItem] = useState<SnipcartProductItem>();
+  // const { palette } = useContext(ThemeContext);
 
-  useSnipcartItemAdded((data: SnipcartProductItem) => {
-    setProductItem(data);
-  });
+  // useSnipcartItemAdded((data: SnipcartProductItem) => {
+  //   setProductItem(data);
+  // });
 
-  useEffect(() => {
-    if (productItem) {
-      if (!dontShowAgain) {
-        setIsModalOpen(true);
-      }
-    }
-  }, [productItem]);
+  // useEffect(() => {
+  //   if (productItem) {
+  //     if (!dontShowAgain) {
+  //       setIsModalOpen(true);
+  //     }
+  //   }
+  // }, [productItem]);
 
   // ANCHOR Template
   return (
