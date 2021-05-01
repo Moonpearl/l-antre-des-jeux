@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import Markdown from 'markdown-to-jsx';
 import React, { FC, useContext, useEffect } from 'react';
-import { BackgroundImageContainer, Button, Filler, MainContainer, Title } from '../components/styles';
+import { BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
 import IndexLayout from '../layouts';
 import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
@@ -13,6 +13,7 @@ import { ThemeContext } from '../contexts/theme';
 import PageHeader from '../components/page-header';
 import Axios from 'axios';
 import { SnipcartProduct } from '../models/snipcart';
+import { SnipcartBuyButton } from '../components';
 
 const ProductImage = styled.img`
   grid-area: im;
@@ -106,7 +107,8 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
         Accept: 'application/json',
         Authorization: `Basic ${Buffer.from(SNIPCART_API_KEY + ':').toString('base64')}`,
       },
-    }).then(response => console.log(response));
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    }).then(_response => undefined);
   }, []);
 
   const seoData: SeoData = {
@@ -167,19 +169,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
                 Prix:&nbsp;
                 <ProductPrice>{product.price.toFixed(2)} &euro;</ProductPrice>
               </div>
-              <span
-                className="snipcart-add-item"
-                data-item-id={product.ebpId}
-                data-item-price={product.price}
-                data-item-url={`/product/${product.slug}`}
-                data-item-description={product.description}
-                data-item-image={product.imageUrl}
-                data-item-name={product.name}
-              >
-                <Button palette={currentPalette} className="buy-button">
-                  <FaShoppingCart /> Ajouter au panier
-                </Button>
-              </span>
+              <SnipcartBuyButton product={product} />
             </ProductPriceContainer>
 
             <ProductIcons>

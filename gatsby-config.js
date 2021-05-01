@@ -36,8 +36,9 @@ module.exports = {
         publicApiKey: process.env.SNIPCART_API_KEY,
         defaultLang: 'fr',
         currency: 'eur',
-        openCartOnAdd: true,
+        openCartOnAdd: false,
         useSideCart: true,
+        templatesUrl: '/snipcart/index.html',
       },
     },
     {

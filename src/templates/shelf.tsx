@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import React, { FC, useContext } from 'react';
-import { BackgroundImageContainer, Filler, MainContainer, Title, } from '../components/styles';
+import { BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
 import IndexLayout from '../layouts';
 import { ProductList, PageHeader } from '../components';
 import { PagePropsWithData, Palette, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
-
-
 
 const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
   const { palette } = useContext(ThemeContext);
@@ -48,24 +46,18 @@ const ShelfPage: FC<PagePropsWithData> = ({ data }) => {
             <Title level={1} color={currentPalette.headerTextColor.css}>
               {shelf.name}
             </Title>
-
           </MainContainer>
         </PageHeader>
 
-
-
         <Filler height="12em" />
-
 
         <MainContainer>
           <styles.ProductListContainer>{shelf.products && <ProductList products={shelf.products} />}</styles.ProductListContainer>
         </MainContainer>
       </BackgroundImageContainer>
-    </IndexLayout >
+    </IndexLayout>
   );
 };
-
-
 
 export const query = graphql`
   query ShelfPageQuery($slug: String!) {
@@ -107,7 +99,10 @@ export const query = graphql`
       }
       products {
         slug
+        ebpId
+        price
         name
+        description
         imageUrl
         shelf {
           slug

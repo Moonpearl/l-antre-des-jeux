@@ -9,7 +9,7 @@ import '../styles/normalize';
 import Header from '../components/Header';
 import LayoutRoot from '../components/LayoutRoot';
 import LayoutMain from '../components/LayoutMain';
-import { Footer } from '../components';
+import { Footer, SnipcartController } from '../components';
 import { SeoData } from '../models';
 import { GraphcmsGlobalContent } from '../models/graphcms/assets';
 import { Palette, ThemeContext } from '../contexts/theme';
@@ -149,15 +149,11 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({ children, seoData, palette: p
 
       const currentPalette: Palette = pagePalette || data.graphCmsGlobalContent.defaultPalette || palette;
 
-      console.log('pagePalette:', pagePalette);
-      console.log('defaultPalette:', data.graphCmsGlobalContent.defaultPalette);
-      console.log('contextPalette:', palette);
-      console.log('currentPalette', currentPalette);
-
       useEffect(() => setPalette(currentPalette), [pagePalette]);
 
       return (
         <LayoutRoot>
+          <SnipcartController />
           <GlobalStyles />
           <Helmet
             htmlAttributes={{

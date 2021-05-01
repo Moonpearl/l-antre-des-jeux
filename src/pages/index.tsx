@@ -48,10 +48,12 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
   return (
     <IndexLayout seoData={seoData} palette={page?.palette}>
       {/* Website logo */}
-      {page && <PageHeader backgroundColor={palette.headerBackgroundColor.css} wavePath={page?.wavePath}>
-        <styles.Logo src={LogoImage} alt="Logo de l'antre des jeux" />
-        <Filler height="6em" />
-      </PageHeader>}
+      {page && (
+        <PageHeader backgroundColor={palette.headerBackgroundColor.css} wavePath={page?.wavePath}>
+          <styles.Logo src={LogoImage} alt="Logo de l'antre des jeux" />
+          <Filler height="6em" />
+        </PageHeader>
+      )}
 
       <Invisible>
         <Title level={2}>Rayons</Title>
@@ -169,7 +171,10 @@ export const query = graphql`
           description
           products {
             slug
+            ebpId
+            price
             name
+            description
             imageUrl
             shelf {
               slug
