@@ -7,16 +7,18 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: "L'Antre des jeux",
-    description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
-    keywords: 'gatsbyjs, gatsby, javascript, sample, something',
-    siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',
+    description: 'Magasin de jeux de sociétés situé en région ?',
+    keywords: ['gatsbyjs', 'gatsby', 'javascript', 'sample', 'something'],
+    siteUrl: 'https://l-antre-des-jeux.netlify.app/',
+    defaultLocale: 'fr',
     author: {
       name: 'Resi Respati',
       url: 'https://twitter.com/resir014',
       email: 'resir014@gmail.com',
     },
   },
-  plugins: [{
+  plugins: [
+    {
       resolve: 'gatsby-source-graphcms',
       options: {
         // Your GraphCMS API endpoint. Available from your project settings.
@@ -25,6 +27,18 @@ module.exports = {
         // token: process.env.GRAPHCMS_TOKEN
         buildMarkdownNodes: true,
         locales: ['fr_FR', 'en'],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-snipcart-advanced',
+      options: {
+        version: '3.0.29',
+        publicApiKey: process.env.SNIPCART_API_KEY,
+        defaultLang: 'fr',
+        currency: 'eur',
+        openCartOnAdd: false,
+        useSideCart: true,
+        templatesUrl: '/snipcart/index.html',
       },
     },
     {
@@ -37,7 +51,8 @@ module.exports = {
     {
       resolve: 'gatsby-transformer-remark',
       options: {
-        plugins: [{
+        plugins: [
+          {
             resolve: 'gatsby-remark-responsive-iframe',
             options: {
               wrapperStyle: 'margin-bottom: 1rem',

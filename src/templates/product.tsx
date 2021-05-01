@@ -1,46 +1,32 @@
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import Markdown from 'markdown-to-jsx';
-import React, { FC } from 'react';
-import { BackgroundColorContainer, BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
-import DownWaves from '../components/styles/waves/down';
+import React, { FC, useContext, useEffect } from 'react';
+import { BackgroundImageContainer, Filler, MainContainer, Title } from '../components/styles';
 import IndexLayout from '../layouts';
-import { PagePropsWithData } from '../models';
 import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
 import { IconType } from 'react-icons';
-import { FaCog, FaStar, FaUsers } from 'react-icons/fa';
-
-const Separator = styled.div`
-  position: absolute;
-  z-index: 1;
-  transform: scale(1, 0.5);
-  transform-origin: top center;
-`;
-
-const ProductContainer = styled.div`
-  background-color: white;
-  border-radius: 1em;
-  padding: 2em;
-  margin-bottom: 2em;
-
-  @media (min-width: 640px) {
-    display: grid;
-    gap: 2em;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-      'im ds ds'
-      'im pr rl'
-      'im ic rl';
-  }
-`;
+import { FaCog, FaShoppingCart, FaStar, FaUsers } from 'react-icons/fa';
+import { PagePropsWithData, SeoData } from '../models';
+import { ThemeContext } from '../contexts/theme';
+import PageHeader from '../components/page-header';
+import Axios from 'axios';
+import { SnipcartProduct } from '../models/snipcart';
+import { SnipcartBuyButton } from '../components';
 
 const ProductImage = styled.img`
   grid-area: im;
 `;
 
-const ProductPrice = styled.div`
+const ProductPriceContainer = styled.div`
   grid-area: pr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ProductPrice = styled.span`
   font-size: 2em;
 `;
 
@@ -65,8 +51,6 @@ const SectionTitle = styled.h2`
   font-size: 1.25em;
   margin: 1em 0 0.25em;
 `;
-
-const DownWave = DownWaves[1];
 
 interface ProductIconProps {
   Icon: IconType;
@@ -108,41 +92,86 @@ const ProductRelationship: FC<ProductRelationshipProps> = ({ Icon, title, assets
 };
 
 const ProductPage: FC<PagePropsWithData> = ({ data }) => {
+  const { SNIPCART_API_KEY } = process.env;
+
+  const { palette } = useContext(ThemeContext);
   const { graphCmsProduct: product } = data;
 
   if (typeof product === 'undefined') {
     throw new Error('Non-existing shelf');
   }
 
+  useEffect(() => {
+    Axios.get<SnipcartProduct>('https://app.snipcart.com/api/products', {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Basic ${Buffer.from(SNIPCART_API_KEY + ':').toString('base64')}`,
+      },
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    }).then(_response => undefined);
+  }, []);
+
+  const seoData: SeoData = {
+    pageUri: `/product/${product.slug}`,
+    title: product.name,
+    description: product.description,
+    openGraphImage: product.imageUrl,
+    openGraphType: 'product',
+  };
+
+  const currentPalette = product.shelf?.palette || palette;
+
+  const styles = {
+    ProductContainer: styled.div`
+      background-color: ${currentPalette.backgroundColor.css};
+      border-radius: 1em;
+      padding: 2em;
+      margin-bottom: 2em;
+
+      @media (min-width: 640px) {
+        display: grid;
+        gap: 2em;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+          'im ds ds'
+          'im pr rl'
+          'im ic rl';
+      }
+    `,
+  };
+
   return (
-    <IndexLayout>
+    <IndexLayout seoData={seoData} palette={product.shelf?.palette}>
       <BackgroundImageContainer
         backgroundImage={product.shelf?.backgroundImage || { url: '' }}
         backgroundSize="cover"
         backgroundPosition="center"
         backgroundAttachment="fixed"
       >
-        <Filler color={product.shelf?.backgroundColor.css || '#666'} height="6em" />
-        <BackgroundColorContainer color={product.shelf?.backgroundColor.css || '#666'}>
+        <PageHeader backgroundColor={currentPalette.headerBackgroundColor.css} wavePath={product.shelf?.wavePath || ''}>
           <MainContainer>
-            <Title level={1} color={product.shelf?.titleColor.css || '#ccc'}>
+            <Title level={1} color={currentPalette.headerTextColor.css}>
               {product.name}
             </Title>
           </MainContainer>
-        </BackgroundColorContainer>
-        <Filler color={product.shelf?.backgroundColor.css} height="1em" />
-        <Separator>
-          <DownWave color={product.shelf?.backgroundColor.css || '#666'} />
-        </Separator>
+        </PageHeader>
         <Filler height="12em" />
-
         <MainContainer>
-          <ProductContainer>
+          <styles.ProductContainer>
             <ProductImage src={product.imageUrl} />
-            <ProductPrice>Prix: {product.price.toFixed(2)} &euro;</ProductPrice>
+
             <ProductDescription>
               <Markdown>{product.description || ''}</Markdown>
             </ProductDescription>
+
+            <ProductPriceContainer>
+              <div>
+                Prix:&nbsp;
+                <ProductPrice>{product.price.toFixed(2)} &euro;</ProductPrice>
+              </div>
+              <SnipcartBuyButton product={product} />
+            </ProductPriceContainer>
+
             <ProductIcons>
               <SectionTitle>
                 <GrDocumentText />
@@ -168,7 +197,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
               <ProductRelationship Icon={FaStar} title="Catégories" assets={product.categories} />
               <ProductRelationship Icon={FaCog} title="Mécaniques" assets={product.mechanics} />
             </ProductRelationships>
-          </ProductContainer>
+          </styles.ProductContainer>
         </MainContainer>
       </BackgroundImageContainer>
     </IndexLayout>
@@ -178,6 +207,7 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
 export const query = graphql`
   query ProductPageQuery($slug: String!) {
     graphCmsProduct(slug: { eq: $slug }) {
+      ebpId
       name
       description
       price
@@ -199,6 +229,35 @@ export const query = graphql`
         }
         backgroundImage {
           url
+        }
+        palette {
+          backgroundColor {
+            css
+          }
+          frameBackgroundColor {
+            css
+          }
+          frameTextColor {
+            css
+          }
+          headerBackgroundColor {
+            css
+          }
+          headerHighlightColor {
+            css
+          }
+          headerTextColor {
+            css
+          }
+          textColor {
+            css
+          }
+          titleColor {
+            css
+          }
+          titleHighlightColor {
+            css
+          }
         }
       }
       mechanics {

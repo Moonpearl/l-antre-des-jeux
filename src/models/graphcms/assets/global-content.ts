@@ -1,5 +1,8 @@
+import GraphCmsColor from '../color';
+import GraphcmsImage from '../image';
 import Asset from './asset';
 import Employee from './employee';
+import Palette from './palette';
 
 export default interface GlobalContent extends Asset {
   shopDescription: string;
@@ -10,17 +13,14 @@ export default interface GlobalContent extends Asset {
     latitude: number;
     longitude: number;
   };
-  shopBackgroundColor: {
-    css?: string;
-  };
-  shopTitleColor: {
-    css?: string;
-  };
-  shopBackgroundImage: {
-    url: string;
-  };
+  shopBackgroundColor: GraphCmsColor;
+  shopTitleColor: GraphCmsColor;
+  shopBackgroundImage: GraphcmsImage;
   socialFacebook: string;
   socialTwitter: string;
   socialInstagram: string;
-  employees: Employee[];
+  keywords: string[];
+  siteName: string;
+  employees?: Employee[];
+  defaultPalette: Palette;
 }

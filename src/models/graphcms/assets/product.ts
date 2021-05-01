@@ -5,6 +5,7 @@ import Selection from './selection';
 import Shelf from './shelf';
 
 export default interface Product extends Asset {
+  ebpId: string;
   name: string;
   description: string;
   price: number;
@@ -15,7 +16,7 @@ export default interface Product extends Asset {
   maxPlayers: number;
   minAge: number;
   shelf?: Shelf;
-  selections: Selection[];
+  selections?: Selection[];
   categories?: Category[];
   mechanics?: Mechanic[];
 }
