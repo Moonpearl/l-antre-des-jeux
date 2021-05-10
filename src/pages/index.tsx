@@ -62,6 +62,7 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
         {globalContent?.shelves?.map((shelf, index) => (
           <li key={shelf.slug}>
             <ShelfPreview shelf={shelf} index={index} />
+
           </li>
         ))}
       </ul>
@@ -73,6 +74,7 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
         {selections?.edges.map(({ node: selection }) => (
           <li key={selection.slug}>
             <Selection selection={selection} />
+
           </li>
         ))}
       </ul>
