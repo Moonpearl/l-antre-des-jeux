@@ -13,7 +13,7 @@ import { ThemeContext } from '../contexts/theme';
 const IndexPage: FC<PagePropsWithData> = ({ data }) => {
   const { palette } = useContext(ThemeContext);
 
-  const { graphCmsPage: page } = data;
+  const { graphCmsPage: page, graphCmsGlobalContent: globalContent, allGraphCmsSelection: selections } = data;
 
   // ANCHOR SEO parameters
   const seoData: SeoData = {
@@ -59,9 +59,10 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
         <Title level={2}>Rayons</Title>
       </Invisible>
       <ul>
-        {data.allGraphCmsShelf?.edges.map(({ node }, index) => (
-          <li key={node.slug}>
-            <ShelfPreview shelf={node} index={index} />
+        {globalContent?.shelves?.map((shelf, index) => (
+          <li key={shelf.slug}>
+            <ShelfPreview shelf={shelf} index={index} />
+
           </li>
         ))}
       </ul>
@@ -70,16 +71,17 @@ const IndexPage: FC<PagePropsWithData> = ({ data }) => {
       </Invisible>
       {/* <Filler height="12em" />*/}
       <ul>
-        {data.allGraphCmsSelection?.edges.map(({ node }) => (
-          <li key={node.slug}>
-            <Selection selection={node} />
+        {selections?.edges.map(({ node: selection }) => (
+          <li key={selection.slug}>
+            <Selection selection={selection} />
+
           </li>
         ))}
       </ul>
     </IndexLayout>
   );
 };
-//* !SECTION */
+// !SECTION
 
 // ANCHOR GraphQL query
 export const query = graphql`
@@ -121,44 +123,42 @@ export const query = graphql`
         }
       }
     }
-    allGraphCmsShelf {
-      edges {
-        node {
-          backgroundImage {
-            url
+    graphCmsGlobalContent {
+      shelves {
+        backgroundImage {
+          url
+        }
+        description
+        name
+        slug
+        wavePath
+        palette {
+          backgroundColor {
+            css
           }
-          description
-          name
-          slug
-          wavePath
-          palette {
-            backgroundColor {
-              css
-            }
-            frameBackgroundColor {
-              css
-            }
-            frameTextColor {
-              css
-            }
-            headerBackgroundColor {
-              css
-            }
-            headerHighlightColor {
-              css
-            }
-            headerTextColor {
-              css
-            }
-            textColor {
-              css
-            }
-            titleColor {
-              css
-            }
-            titleHighlightColor {
-              css
-            }
+          frameBackgroundColor {
+            css
+          }
+          frameTextColor {
+            css
+          }
+          headerBackgroundColor {
+            css
+          }
+          headerHighlightColor {
+            css
+          }
+          headerTextColor {
+            css
+          }
+          textColor {
+            css
+          }
+          titleColor {
+            css
+          }
+          titleHighlightColor {
+            css
           }
         }
       }

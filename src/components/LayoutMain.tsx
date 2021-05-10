@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 const StyledLayoutMain = styled.main`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   flex: 1;
 `;
 
