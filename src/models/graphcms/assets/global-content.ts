@@ -3,6 +3,7 @@ import GraphcmsImage from '../image';
 import Asset from './asset';
 import Employee from './employee';
 import Palette from './palette';
+import Shelf from './shelf';
 
 export default interface GlobalContent extends Asset {
   shopDescription: string;
@@ -23,4 +24,5 @@ export default interface GlobalContent extends Asset {
   siteName: string;
   employees?: Employee[];
   defaultPalette: Palette;
+  shelves?: Shelf[];
 }

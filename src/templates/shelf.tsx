@@ -107,8 +107,34 @@ export const query = graphql`
         shelf {
           slug
           name
-          backgroundColor {
-            css
+          palette {
+            backgroundColor {
+              css
+            }
+            frameBackgroundColor {
+              css
+            }
+            frameTextColor {
+              css
+            }
+            headerBackgroundColor {
+              css
+            }
+            headerHighlightColor {
+              css
+            }
+            headerTextColor {
+              css
+            }
+            textColor {
+              css
+            }
+            titleColor {
+              css
+            }
+            titleHighlightColor {
+              css
+            }
           }
         }
       }
