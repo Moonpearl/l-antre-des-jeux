@@ -221,12 +221,6 @@ export const query = graphql`
       shelf {
         name
         slug
-        backgroundColor {
-          css
-        }
-        titleColor {
-          css
-        }
         backgroundImage {
           url
         }
