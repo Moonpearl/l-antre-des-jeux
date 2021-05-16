@@ -7,7 +7,7 @@ import IndexLayout from '../layouts';
 import { GiAges } from 'react-icons/gi';
 import { GrClock, GrDocumentText } from 'react-icons/gr';
 import { IconType } from 'react-icons';
-import { FaCog, FaShoppingCart, FaStar, FaUsers } from 'react-icons/fa';
+import { FaCog, FaStar, FaUsers } from 'react-icons/fa';
 import { PagePropsWithData, SeoData } from '../models';
 import { ThemeContext } from '../contexts/theme';
 import PageHeader from '../components/page-header';
@@ -172,27 +172,33 @@ const ProductPage: FC<PagePropsWithData> = ({ data }) => {
               <SnipcartBuyButton product={product} />
             </ProductPriceContainer>
 
-            <ProductIcons>
-              <SectionTitle>
-                <GrDocumentText />
-                &nbsp;Fiche technique
-              </SectionTitle>
-              <ProductIcon Icon={GiAges} caption={`${product.minAge} ans`} />
-              <ProductIcon
-                Icon={GrClock}
-                caption={
-                  `${product.minPlaytime} min` +
-                  (product.maxPlaytime && product.maxPlaytime !== product.minPlaytime ? ` - ${product.maxPlaytime} min` : '')
-                }
-              />
-              <ProductIcon
-                Icon={FaUsers}
-                caption={
-                  `${product.minPlayers} joueurs` +
-                  (product.maxPlayers && product.maxPlayers !== product.minPlayers ? ` - ${product.maxPlayers} joueurs` : '')
-                }
-              />
-            </ProductIcons>
+            {(product.minAge || product.minPlaytime || product.minPlayers) && (
+              <ProductIcons>
+                <SectionTitle>
+                  <GrDocumentText />
+                  &nbsp;Fiche technique
+                </SectionTitle>
+                {product.minAge && <ProductIcon Icon={GiAges} caption={`${product.minAge} ans`} />}
+                {product.minPlaytime && (
+                  <ProductIcon
+                    Icon={GrClock}
+                    caption={
+                      `${product.minPlaytime} min` +
+                      (product.maxPlaytime && product.maxPlaytime !== product.minPlaytime ? ` - ${product.maxPlaytime} min` : '')
+                    }
+                  />
+                )}
+                {product.minPlayers && (
+                  <ProductIcon
+                    Icon={FaUsers}
+                    caption={
+                      `${product.minPlayers} joueurs` +
+                      (product.maxPlayers && product.maxPlayers !== product.minPlayers ? ` - ${product.maxPlayers} joueurs` : '')
+                    }
+                  />
+                )}
+              </ProductIcons>
+            )}
             <ProductRelationships>
               <ProductRelationship Icon={FaStar} title="Catégories" assets={product.categories} />
               <ProductRelationship Icon={FaCog} title="Mécaniques" assets={product.mechanics} />
@@ -261,6 +267,10 @@ export const query = graphql`
       categories {
         slug
         name
+      }
+      productVariants {
+        name
+        priceModifier
       }
     }
   }

@@ -33,6 +33,8 @@ const SnipcartBuyButton: FC<SnipcartBuyButtonProps> = ({ product }) => {
     }
   });
 
+  const hasVariants = product.productVariants && product.productVariants.length > 0;
+
   return (
     <span
       className="snipcart-add-item"
@@ -42,6 +44,13 @@ const SnipcartBuyButton: FC<SnipcartBuyButtonProps> = ({ product }) => {
       data-item-description={product.description}
       data-item-image={product.imageUrl}
       data-item-name={product.name}
+      data-item-custom1-name={hasVariants && 'Variante'}
+      data-item-custom1-options={
+        hasVariants &&
+        product.productVariants
+          ?.map(variant => `${variant.name}${variant.priceModifier !== 0 ? `[${variant.priceModifier}]` : ''}`)
+          .join('|')
+      }
     >
       <Button
         disabled={bought}

@@ -137,6 +137,10 @@ export const query = graphql`
             }
           }
         }
+        productVariants {
+          name
+          priceModifier
+        }
       }
       wavePath
     }
