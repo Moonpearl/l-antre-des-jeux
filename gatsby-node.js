@@ -47,6 +47,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   for (const resource of resources) {
+    console.info(`Fetching resources of type '${resource.uri}'`);
+
     const allAssets = await graphql(`
       {
         ${resource.node}(limit: 1000) {
@@ -76,5 +78,7 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       });
     });
+
+    await setTimeout(() => undefined, 1000);
   }
 };
