@@ -35,22 +35,54 @@ const SnipcartBuyButton: FC<SnipcartBuyButtonProps> = ({ product }) => {
 
   const hasVariants = product.productVariants && product.productVariants.length > 0;
 
-  return (
+  return hasVariants ? (
     <span
       className="snipcart-add-item"
       data-item-id={product.ebpId}
       data-item-price={product.price}
-      data-item-url={`/product/${product.slug}`}
+      data-item-url={`https://test-l-antre-des-jeux-admin.netlify.app/.netlify/functions/get-product-json?slug=${product.slug}`}
       data-item-description={product.description}
       data-item-image={product.imageUrl}
       data-item-name={product.name}
-      data-item-custom1-name={hasVariants && 'Variante'}
+      data-item-custom1-name="Variante"
       data-item-custom1-options={
         hasVariants &&
         product.productVariants
           ?.map(variant => `${variant.name}${variant.priceModifier !== 0 ? `[${variant.priceModifier}]` : ''}`)
           .join('|')
       }
+    >
+      <Button
+        disabled={bought}
+        palette={bought ? boughtPalette : palette}
+        className="buy-button"
+        onClick={(event): void => {
+          if (!bought) {
+            event.stopPropagation();
+            setBought(true);
+          }
+        }}
+      >
+        {bought ? (
+          <>
+            <FaCheck /> Ajouté
+          </>
+        ) : (
+          <>
+            <FaShoppingCart /> Ajouter
+          </>
+        )}
+      </Button>
+    </span>
+  ) : (
+    <span
+      className="snipcart-add-item"
+      data-item-id={product.ebpId}
+      data-item-price={product.price}
+      data-item-url={`https://test-l-antre-des-jeux-admin.netlify.app/.netlify/functions/get-product-json?slug=${product.slug}`}
+      data-item-description={product.description}
+      data-item-image={product.imageUrl}
+      data-item-name={product.name}
     >
       <Button
         disabled={bought}
