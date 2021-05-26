@@ -4,7 +4,7 @@ import { ThemeContext } from '../contexts/theme';
 import { useSnipcartItemAdded } from '../hooks';
 import { Palette } from '../models';
 import { GraphcmsProduct } from '../models/graphcms/assets';
-import { SnipcartProductItem } from '../models/snipcart';
+import { SnipcartProductItem, SnipcartProductProps } from '../models/snipcart';
 import { Button } from './styles';
 
 interface SnipcartBuyButtonProps {
@@ -33,16 +33,26 @@ const SnipcartBuyButton: FC<SnipcartBuyButtonProps> = ({ product }) => {
     }
   });
 
+  const hasVariants = product.productVariants && product.productVariants.length > 0;
+
+  const productProps: SnipcartProductProps = {
+    'data-item-id': product.ebpId,
+    'data-item-price': product.price,
+    'data-item-url': `https://test-l-antre-des-jeux-admin.netlify.app/.netlify/functions/get-product-json?slug=${product.slug}`,
+    'data-item-description': product.description,
+    'data-item-image': product.imageUrl,
+    'data-item-name': product.name,
+  };
+
+  if (hasVariants) {
+    productProps['data-item-custom1-name'] = 'Variante';
+    productProps['data-item-custom1-options'] = product.productVariants
+      ?.map(variant => `${variant.name}${variant.priceModifier !== 0 ? `[${variant.priceModifier}]` : ''}`)
+      .join('|');
+  }
+
   return (
-    <span
-      className="snipcart-add-item"
-      data-item-id={product.ebpId}
-      data-item-price={product.price}
-      data-item-url={`/product/${product.slug}`}
-      data-item-description={product.description}
-      data-item-image={product.imageUrl}
-      data-item-name={product.name}
-    >
+    <span className="snipcart-add-item" {...productProps}>
       <Button
         disabled={bought}
         palette={bought ? boughtPalette : palette}

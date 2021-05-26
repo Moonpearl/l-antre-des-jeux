@@ -3,6 +3,7 @@ import Category from './category';
 import Mechanic from './mechanic';
 import Selection from './selection';
 import Shelf from './shelf';
+import ProductVariant from './variant';
 
 export default interface Product extends Asset {
   ebpId: string;
@@ -19,4 +20,5 @@ export default interface Product extends Asset {
   selections?: Selection[];
   categories?: Category[];
   mechanics?: Mechanic[];
+  productVariants?: ProductVariant[];
 }
